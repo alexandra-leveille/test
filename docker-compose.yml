@@ -1,0 +1,18 @@
+version: '3.1'
+
+services:
+
+    db:
+        image: postgres:10
+        restart: always
+        ports:
+            - 5439:5432
+        environment:
+            POSTGRES_USER: test
+            POSTGRES_PASSWORD: test100
+            POSTGRES_DB: testdb
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - 8089:8080
