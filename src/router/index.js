@@ -11,6 +11,12 @@ import AddCommand from '@/components/AddCommand'
 import Localize from '@/components/Localize'
 import Pompez from '@/components/Pompez'
 import Payez from '@/components/Payez'
+import Users from '@/components/Users'
+import Fillers from '@/components/Fillers'
+import Command from '@/components/Command'
+import Display from '@/components/Display'
+import ReCommand from '@/components/ReCommand'
+import Maps from '@/components/Maps'
 
 //import './index2'
 
@@ -73,6 +79,36 @@ export default new Router({
       path: '/Payez',
       name: 'Payez',
       component: Payez
+    },
+    {
+      path: '/Users',
+      name: 'Users',
+      component: Users
+    },
+    {
+      path: '/Fillers',
+      name: 'Fillers',
+      component: Fillers
+    },
+    {
+      path: '/Command',
+      name: 'Command',
+      component: Command
+    },
+    {
+      path: '/Display',
+      name: 'Display',
+      component: Display
+    },
+    {
+      path: '/ReCommand',
+      name: 'ReCommand',
+      component: ReCommand
+    },
+    {
+      path: '/Maps',
+      name: 'Maps',
+      component: Maps
     }
   ]
 });

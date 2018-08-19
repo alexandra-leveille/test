@@ -1,6 +1,6 @@
 //jshint esversion:6
 
-console.log("index2.js");
+console.log("index2.js bis");
 
 const express = require('express')
 const cors = require('cors')
@@ -22,12 +22,16 @@ app.use((req, res, next) => {
 //   res.status(404).send('pas de connexion')
 // })
 
+////////// Global Connection ///////////
 app.get('/', (req,res) => {
   res.send('Effectuated')
 })
 
-app.use('/users', require('./controllers/user.js'))
 
+//////////// back end //////////////
+app.use('/users', require('./controllers/user.js'))
+app.use('/fillers', require('./controllers/filler.js'))
+app.use('/command', require('./controllers/command.js'))
 
 const port = process.env.PORT || 3005
 

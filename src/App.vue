@@ -46,8 +46,8 @@ nav ul.list{
 nav ul li{
   display: inline;
   float: left;
-  height: 6vh;
-  line-height: 6vh;
+  height: 4vh;
+  line-height: 4vh;
   text-align: center;
   width: 7vw;
   background: gold;
@@ -57,7 +57,7 @@ nav ul li{
 nav a {
   text-decoration: none;
   color: black;
-  font-size: 0.7vw;
+  font-size: 0.8vw;
   transition:0.5s;
 }
 nav a:hover{

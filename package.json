@@ -6,11 +6,13 @@
   "author": "",
   "private": true,
   "scripts": {
+    "front": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "dev": "nodemon",
     "start": "node index.js",
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@okta/okta-vue": "^1.0.0",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "bootstrap-vue": "latest",
@@ -19,7 +21,8 @@
     "pg": "^7.4.1",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
-    "vuetify": "^1.1.1"
+    "vuetify": "^1.1.1",
+    "vue2-google-maps": "^0.10.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
