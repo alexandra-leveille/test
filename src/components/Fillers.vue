@@ -1,7 +1,17 @@
 <template lang="html">
 <div class="">
 
-  <h1> Fillers available today </h1>
+  <div>
+    <b-card overlay
+            img-src="https://picsum.photos/900/250/?image=1"
+            img-alt="Card Image"
+            text-variant="white"
+            title="Image Overlay"
+            sub-title="Recapitulatif de command">
+      <h1> Fillers available today </h1>
+    </b-card>
+  </div>
+
 To register as a filler
   <button @click="showingAddModal = true" type="" name="button"> <span> Add New </span> </button>
 
@@ -25,80 +35,108 @@ To register as a filler
 
 
 <!-- ////////////////////// showingAdd Modal ////////////////////////// -->
+
 <div id="addModal" v-if="showingAddModal">
-  <button @click="showingAddModal = false" type="button" name="button" class="close">
-  <i class="far fa-times-circle"></i>
-  </button>
-<table class="form">
+    <b-card-group deck>
+        <b-card img-src="https://placekitten.com/1008/305"
+                img-alt="Card image"
+                img-top>
+            <p class="card-text">
+              <div>
+                <button @click="showingAddModal = false" type="button" name="button" class="close">
+                <i class="far fa-times-circle"></i>
+                </button>
+              <table class="form">
 
-<tr>
-<th> Filler  - Firstname </th>
-<th> : </th>
-<td> <input type="text" name=""  v-model="newFiller.firstname"> </td>
-</tr>
+              <tr>
+              <th> Filler  - Firstname </th>
+              <th> : </th>
+              <td> <input type="text" name=""  v-model="newFiller.firstname"> </td>
+              </tr>
 
-<tr>
-<th> Filler  - Lastname </th>
-<th> : </th>
-<td> <input type="text" name=""  v-model="newFiller.lastname"> </td>
-</tr>
+              <tr>
+              <th> Filler  - Lastname </th>
+              <th> : </th>
+              <td> <input type="text" name=""  v-model="newFiller.lastname"> </td>
+              </tr>
 
 
-<tr>
-<th></th>
-<th> </th>
-<td> <button @click="showingAddModal = false; createFiller()"> Save </button> </td>
-</tr>
+              <tr>
+              <th></th>
+              <th> </th>
+              <td> <button @click="showingAddModal = false; createFiller()"> Save </button> </td>
+              </tr>
 
-</table>
+              </table>
+              </div>
+            </p>
+        </b-card>
+    </b-card-group>
 </div>
+
 <!-- ////////////////////////////////////showingEditModal \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
 <div id="editModal" v-if="showingEditModal">
-  <button @click="showingEditModal = false" type="button" name="button" class="close">
-  <i class="far fa-times-circle"></i>
-  </button>
-<table class="form">
+    <b-card-group deck>
+        <b-card img-src="https://placekitten.com/1003/200"
+                img-alt="Card image"
+                img-top>
+            <p class="card-text">
+              <div>
+                <button @click="showingEditModal = false" type="button" name="button" class="close">
+                <i class="far fa-times-circle"></i>
+                </button>
+              <table class="form">
 
-<tr>
-<th> Filler  - Firstname </th>
-<th> : </th>
-<td> <input type="text" name=""  v-model="clickedFiller.firstname"> </td>
-</tr>
+              <tr>
+              <th> Filler  - Firstname </th>
+              <th> : </th>
+              <td> <input type="text" name=""  v-model="clickedFiller.firstname"> </td>
+              </tr>
 
-<tr>
-<th> Filler  - Lastname </th>
-<th> : </th>
-<td> <input type="text" name=""  v-model="clickedFiller.lastname"> </td>
-</tr>
+              <tr>
+              <th> Filler  - Lastname </th>
+              <th> : </th>
+              <td> <input type="text" name=""  v-model="clickedFiller.lastname"> </td>
+              </tr>
 
 
-<tr>
-<th></th>
-<th> </th>
-<td> <button @click="showingEditModal = false; updateFiller()"> Update </button> </td>
-</tr>
+              <tr>
+              <th></th>
+              <th> </th>
+              <td> <button @click="showingEditModal = false; updateFiller()"> Update </button> </td>
+              </tr>
 
-</table>
+              </table>
+              </div>
+            </p>
+        </b-card>
+    </b-card-group>
 </div>
 
 <!-- /////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
-
 <div id="deleteModal" v-if="showingDeleteModal">
-  <button @click="showingDeleteModal = false" type="button" name="button" class="close">
-  <i class="far fa-times-circle"></i>
-  </button>
-<p> Do you wish to delete the following :
-  command number {{clickedFiller.id }}, with the lastname {{clickedFiller.lastname }}</p>
-<button @click="showingDeleteModal = false; deleteFiller()"  type="button" name="button"> YES </button>
-<button @click="showingDeleteModal = false" type="button" name="button"> NO </button>
+    <b-card-group deck>
+        <b-card img-src="https://placekitten.com/1000/300"
+                img-alt="Card image"
+                img-bottom>
+            <p class="card-text">
+              <div>
+                <button @click="showingDeleteModal = false" type="button" name="button" class="close">
+                <i class="far fa-times-circle"></i>
+                </button>
+              <p> Do you wish to delete the following :
+                command number {{clickedFiller.id }}, with the lastname {{clickedFiller.lastname }}</p>
+              <button @click="showingDeleteModal = false; deleteFiller()"  type="button" name="button"> YES </button>
+              <button @click="showingDeleteModal = false" type="button" name="button"> NO </button>
 
+              </div>
+            </p>
+        </b-card>
+    </b-card-group>
 </div>
 
-
 <!-- /////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
-
-
-
 
 </div>
 </template>
@@ -230,7 +268,6 @@ div#addModal, div#deleteModal, div#editModal{
   height: 25vh;
   width: 40vw;
   margin: auto;
-  border: 2px solid black;
   position:fixed;
   top:0;
   left:0;

@@ -19,11 +19,11 @@ import ReCommand from '@/components/ReCommand'
 import Maps from '@/components/Maps'
 import LogFillers from '@/components/LogFillers'
 import LogUsers from '@/components/LogUsers'
+import Hello from '@/components/Hello'
+import PostsManager from '@/components/PostsManager'
+import './index2'
+import Auth from '@okta/okta-vue'
 
-//import './index2'
-
-
-Vue.use(Router)
 
 export default new Router({
   routes: [
@@ -121,6 +121,23 @@ export default new Router({
       path: '/LogFillers',
       name: 'LogFillers',
       component: LogFillers
+    },
+    {
+      path: '/Hello',
+      name: 'Hello',
+      component: Hello
+    },
+    {
+      path: '/implicit/callback',
+      component: Auth.handleCallback()
+    },
+    {
+      path: '/posts-manager',
+      name: 'PostsManager',
+      component: PostsManager,
+      meta: {
+        requiresAuth: true
+      }
     }
   ]
 });

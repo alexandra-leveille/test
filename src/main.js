@@ -6,6 +6,7 @@ import router from './router'
 import Vuetify from 'vuetify'
 import colors from 'vuetify/es5/util/colors'
 import BootstrapVue from 'bootstrap-vue'
+import Auth from '@okta/okta-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
@@ -29,6 +30,8 @@ Vue.use(Vuetify, {
     error: '#b71c1c'
   }
 });
+
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

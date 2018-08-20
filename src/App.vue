@@ -1,24 +1,102 @@
 <template>
   <div id="app">
-    <nav>
-    <ul class="list">
-      <li class="item"> <router-link tag="li" to="/"> <a><i class="fas fa-home"></i> Home </a> </router-link></li>
-      <li class="item"> <router-link tag="li" to="/Sign"> <a> Sign </a> </router-link></li>
-      <li class="item"> <router-link tag="li" to="/NotreConcept"> <a>Notre Concept</a> </router-link></li>
-      <li class="item"> <router-link tag="li" to="/NotreProjet"> <a>Notre Projet</a> </router-link></li>
-      <li class="item"> <router-link tag="li" to="/Rejoindre"> <a>Rejoindre</a> </router-link></li>
-      <li class="item"> <router-link tag="li" to="/Reservez"> <a>Reservez</a> </router-link></li>
-      <li class="item"> <router-link tag="li" to="/Who"> <a> Qui sommes Nous</a> </router-link></li>
-      <li class="item"> <router-link tag="li" to="/AddCommand"> <a> AddCommand </a> </router-link></li>
-    </ul>
-    </nav>
+<nav>
+    <div>
+      <b-button-group>
+        <b-dropdown right text="Home">
+            <b-dropdown-item> <router-link tag="li" to="/"> <i class="fas fa-home fa-lg"></i> Home</router-link> </b-dropdown-item>
+            <b-nav-item to="/posts-manager">Posts Manager</b-nav-item>
+            <b-nav-item href="#" @click.prevent="login" v-if="!activeUser">Login</b-nav-item>
+            <b-nav-item href="#" @click.prevent="logout" v-else>Logout</b-nav-item>
+        </b-dropdown>
+        <b-dropdown right text="FulFill">
+          <b-dropdown-item> <router-link tag="li" to="/Localize"> Localize </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/Payez"> Payez </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/Pompez"> Pompez </router-link> </b-dropdown-item>
+          <b-dropdown-divider></b-dropdown-divider>
+          <b-dropdown-item> <router-link tag="li" to="/Maps"> Maps </router-link> </b-dropdown-item>
+
+        </b-dropdown>
+        <b-dropdown right text="Project">
+          <b-dropdown-item> <router-link tag="li" to="/NotreConcept"> Notre Concept </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/NotreProjet"> Notre Projet </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/Rejoidre"> Rejoindre </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/Reservez"> Reservez </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/Who"> Qui Sommes-nous </router-link> </b-dropdown-item>
+          <b-dropdown-divider></b-dropdown-divider>
+          <b-dropdown-item> <router-link tag="li" to="/Sign"> Sign Up </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/Sign"> Sign In </router-link> </b-dropdown-item>
+        </b-dropdown>
+        <b-dropdown right text="Admin">
+          <b-dropdown-item> <router-link tag="li" to="/Users"> Users </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/Fillers"> Fillers </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/Command"> Command </router-link> </b-dropdown-item>
+          <b-dropdown-divider></b-dropdown-divider>
+          <b-dropdown-item> <router-link tag="li" to="/Display"> Display </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/ReCommand"> ReCommand </router-link> </b-dropdown-item>
+        </b-dropdown>
+        <b-dropdown right text="Logged">
+          <b-dropdown-item> <router-link tag="li" to="/LogFillers"> LogFillers </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/LogUsers"> LogUsers </router-link> </b-dropdown-item>
+          <b-dropdown-divider></b-dropdown-divider>
+          <b-dropdown-item> Admin </router-link> </b-dropdown-item>
+        </b-dropdown>
+      </b-button-group>
+    </div>
+</nav>
+
+
+  <!-- <div id="app">
+    <b-navbar toggleable="md" type="dark" variant="dark">
+      <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+      <b-navbar-brand to="/">My Vue App</b-navbar-brand>
+      <b-collapse is-nav id="nav_collapse">
+        <b-navbar-nav>
+          <b-nav-item to="/">Home</b-nav-item>
+          <b-nav-item to="/posts-manager">Posts Manager</b-nav-item>
+          <b-nav-item href="#" @click.prevent="login" v-if="!activeUser">Login</b-nav-item>
+          <b-nav-item href="#" @click.prevent="logout" v-else>Logout</b-nav-item>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
+  </div> -->
+
+
+
+
     <router-view/>
   </div>
 </template>
 
 <script>
+
 export default {
-  name: 'App'
+  name: 'app',
+  data () {
+    return {
+      activeUser: null
+    }
+  },
+  async created () {
+    await this.refreshActiveUser()
+  },
+  watch: {
+    // everytime a route is changed refresh the activeUser
+    '$route': 'refreshActiveUser'
+  },
+  methods: {
+    login () {
+      this.$auth.loginRedirect()
+    },
+    async refreshActiveUser () {
+      this.activeUser = await this.$auth.getUser()
+    },
+    async logout () {
+      await this.$auth.logout()
+      await this.refreshActiveUser()
+      this.$router.push('/')
+    }
+  }
 }
 </script>
 
@@ -35,35 +113,8 @@ nav{
   width: auto;
   height: auto;
   float: right;
-  background: cyan;
   margin-top:-50px;
 }
 
-nav ul.list{
-  list-style: none;
-}
-
-nav ul li{
-  display: inline;
-  float: left;
-  height: 4vh;
-  line-height: 4vh;
-  text-align: center;
-  width: 7vw;
-  background: gold;
-  margin-right:3px;
-}
-
-nav a {
-  text-decoration: none;
-  color: black;
-  font-size: 0.8vw;
-  transition:0.5s;
-}
-nav a:hover{
-  color:silver;
-  border-bottom: 1px solid;
-  transition:0.5s;
-}
 
 </style>

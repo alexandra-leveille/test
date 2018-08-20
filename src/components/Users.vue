@@ -1,5 +1,15 @@
 <template lang="html">
 <div class="">
+  <div>
+    <b-card overlay
+            img-src="https://picsum.photos/900/250/?image=05"
+            img-alt="Card Image"
+            text-variant="white"
+            title="Image Overlay"
+            sub-title="Recapitulatif of Users">
+    <h1> Users available today </h1>
+    </b-card>
+  </div>
 
   <h1> List of users present Today </h1>
   <h2> To Add a new User <button @click="showingAddModal = true" type="" name="button"> <i class="fas fa-user-plus"></i> </button> </h2>
@@ -23,83 +33,140 @@
 </tr>
 </table>
 
+<!-- ///////////////////////////////////////////////////////////////////// -->
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- ////////////////////// showingAdd Modal ////////////////////////// -->
+
 <div id="addModal" v-if="showingAddModal">
+  <b-card title="Card Title"
+          img-src="https://picsum.photos/600/300/?image=23"
+          img-alt="Image"
+          img-top
+          tag="article"
+          style="max-width: 20rem;"
+          class="mb-2">
+    <p class="card-text">
+      <div >
 
-<button @click="showingAddModal = false" type="button" name="button" class="close">
-<i class="far fa-times-circle"></i>
-</button>
-<table class="form">
+      <button @click="showingAddModal = false" type="button" name="button" class="close">
+      <i class="far fa-times-circle"></i>
+      </button>
+      <table class="form">
 
-<tr>
-<th> Firstname </th>
-<th> : </th>
-<td> <input type="text" name=""  v-model="newUser.firstname"> </td>
-</tr>
+      <tr>
+      <th> Firstname </th>
+      <th> : </th>
+      <td> <input type="text" name=""  v-model="newUser.firstname"> </td>
+      </tr>
 
-<tr>
-<th>  Lastname </th>
-<th> : </th>
-<td> <input type="text" name=""  v-model="newUser.lastname"> </td>
-</tr>
+      <tr>
+      <th>  Lastname </th>
+      <th> : </th>
+      <td> <input type="text" name=""  v-model="newUser.lastname"> </td>
+      </tr>
 
 
-<tr>
-<th></th>
-<th> </th>
-<td> <button @click="showingAddModal = false; createUser()"> Save </button> </td>
-</tr>
+      <tr>
+      <th></th>
+      <th> </th>
+      <td> <button @click="showingAddModal = false; createUser()"> Save </button> </td>
+      </tr>
 
-</table>
+      </table>
+      </div>
+    </p>
+  </b-card>
 </div>
+
+
+
+
+
+
+
+
 <!-- ////////////////////////////////////showingEditModal \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
 <div id="editModal" v-if="showingEditModal">
-  <button @click="showingEditModal = false" type="button" name="button" class="close">
-  <i class="far fa-times-circle"></i>
-  </button>
-<table class="form">
+  <b-card title="Card Title"
+          img-src="https://picsum.photos/600/300/?image=24"
+          img-alt="Image"
+          img-top
+          tag="article"
+          style="max-width: 20rem;"
+          class="mb-2">
+    <p class="card-text">
+      <div>
+        <button @click="showingEditModal = false" type="button" name="button" class="close">
+        <i class="far fa-times-circle"></i>
+        </button>
+      <table class="form">
 
-<tr>
-<th> user  - Firstname </th>
-<th> : </th>
-<td> <input type="text" name=""  v-model="clickedUser.firstname"> </td>
-</tr>
+      <tr>
+      <th> user  - Firstname </th>
+      <th> : </th>
+      <td> <input type="text" name=""  v-model="clickedUser.firstname"> </td>
+      </tr>
 
-<tr>
-<th> user  - Lastname </th>
-<th> : </th>
-<td> <input type="text" name=""  v-model="clickedUser.lastname"> </td>
-</tr>
+      <tr>
+      <th> user  - Lastname </th>
+      <th> : </th>
+      <td> <input type="text" name=""  v-model="clickedUser.lastname"> </td>
+      </tr>
 
 
-<tr>
-<th></th>
-<th> </th>
-<td> <button @click="showingEditModal = false; updateUser()"> Update </button> </td>
-</tr>
+      <tr>
+      <th></th>
+      <th> </th>
+      <td> <button @click="showingEditModal = false; updateUser()"> Update </button> </td>
+      </tr>
 
-</table>
+      </table>
+      </div>
+    </p>
+
+  </b-card>
 </div>
+
 
 <!-- /////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
 
 <div id="deleteModal" v-if="showingDeleteModal">
-  <button @click="showingDeleteModal = false" type="button" name="button" class="close">
-  <i class="far fa-times-circle"></i>
-  </button>
-<p> Do you wish to delete the following :
-  command number {{clickedUser.id }}, with the lastname {{clickedUser.lastname }}</p>
-<button @click="showingDeleteModal = false; deleteuser()"  type="button" name="button"> YES </button>
-<button @click="showingDeleteModal = false" type="button" name="button"> NO </button>
+  <b-card title="Card Title"
+          img-src="https://picsum.photos/600/300/?image=25"
+          img-alt="Image"
+          img-top
+          tag="article"
+          style="max-width: 20rem;"
+          class="mb-2">
 
+    <div>
+      <button @click="showingDeleteModal = false" type="button" name="button" class="close">
+      <i class="far fa-times-circle"></i>
+      </button>
+    <p> Do you wish to delete the following :
+      command number {{clickedUser.id }}, with the lastname {{clickedUser.lastname }}</p>
+    <button @click="showingDeleteModal = false; deleteuser()"  type="button" name="button"> YES </button>
+    <button @click="showingDeleteModal = false" type="button" name="button"> NO </button>
+
+    </div>
+  </b-card>
 </div>
 
-
 <!-- /////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
-
-
-
 
 </div>
 </template>
@@ -234,7 +301,6 @@ div#addModal, div#deleteModal, div#editModal{
   height: 55vh;
   width: 30vw;
   margin: auto;
-  border: 2px solid black;
   position:fixed;
   top:0;
   left:0;

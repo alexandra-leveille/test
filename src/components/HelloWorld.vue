@@ -2,7 +2,8 @@
   <div class="hello">
     <img src="../assets/gas.jpeg">
     <h1>{{ msg }}</h1>
-    <button type="button" name="button"> Enter </button>
+    <button type="button" name="button"> <router-link tag="li" to="/Sign"> Enter </router-link> </button>
+
   </div>
 </template>
 

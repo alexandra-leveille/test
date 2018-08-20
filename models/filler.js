@@ -17,5 +17,8 @@ module.exports = {
   },
   deleteFiller(id) {
     return db.query(`DELETE FROM fillers WHERE id=${id}`)
-  }
+  },
+  getFillerById(id){
+  return db.query(`SELECT * FROM fillers WHERE id=${id}`)
+}
 }

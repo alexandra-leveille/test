@@ -1,11 +1,18 @@
 <template lang="html">
   <div class="page20">
-  <h1> Page 20 </h1>
-
-  <p> Table of command </p>
-
-
+  <div>
+    <b-card overlay
+            img-src="https://picsum.photos/900/250/?image=03"
+            img-alt="Card Image"
+            text-variant="white"
+            title="Image Overlay"
+            sub-title="Recapitulatif of Users">
+    <h1> Table of command </h1>
+    </b-card>
+  </div>
   <button class="map" type="button" name="button" @click="showingAddModal= true"> <i class="fas fa-map-marked-alt"></i></button>
+<h1> Table of command </h1>
+
   <table class="table">
     <thead>
       <tr>
@@ -27,63 +34,102 @@
 
     </tbody>
   </table>
+
   <!-- ////////////////////////showingAddModal////////////////////////// -->
 
-<div id="addModal" v-if="showingAddModal">
-  <p> Adding a New Command </p>
- <button @click="showingAddModal= false" type="button" name="button" class="close"> <i class="fas fa-times"></i></button>
-<table class="form">
+  <div id="addModal" v-if="showingAddModal">
+    <b-card border-variant="Add New Command"
+             header="Add New Command"
+             header-border-variant="Add New Command"
+             align="center">
+       <p class="card-text"><div>
+         <p> Adding a New Command </p>
+        <button @click="showingAddModal= false" type="button" name="button" class="close"> <i class="fas fa-times"></i></button>
+       <table class="form">
 
 
-<tr>
-  <th> Command name </th>
-  <td> <input type="text" name="" value="" v-model="newCommand.name"> </td>
-</tr>
+       <tr>
+         <th> Command name </th>
+         <td> <input type="text" name="" value="" v-model="newCommand.name"> </td>
+       </tr>
 
-<tr>
-  <th> Command lieux </th>
-  <td> <input type="text" name="" value="" v-model="newCommand.lieux"> </td>
-</tr>
+       <tr>
+         <th> Command lieux </th>
+         <td> <input type="text" name="" value="" v-model="newCommand.lieux"> </td>
+       </tr>
 
-<tr>
-  <td> <button @click="showingAddModal = false; createCommand()" type="button" name="button"> Save </button> </td>
-</tr>
-</table>
-</div>
+       <tr>
+         <td> <button @click="showingAddModal = false; createCommand()" type="button" name="button"> Save </button> </td>
+       </tr>
+       </table>
+       </div></p>
+     </b-card>
+  </div>
+
+
+
+
+
+
+
+
+
 
 <!-- ////////////////////////editModal////////////////////////// -->
 
 <div id="editModal" v-if="showingEditModal">
-  <p> Adding a New Command </p>
-  <button @click="showingEditModal = false" type="button" name="button" class="close"><i class="fas fa-times"></i></button>
-<table class="form">
-  <tr>
-    <th> Command name </th>
-    <td> <input type="text" name="" value="" v-model="clickedCommand.name">  </td>
-  </tr>
+  <b-card title="Edit Command"
+          img-src="https://picsum.photos/600/300/?image=09"
+          img-alt="Image"
+          img-top
+          tag="article"
+          style="max-width: 20rem;"
+          class="mb-2">
+    <p class="card-text">
+      <div>
+        <p> Adding a New Command </p>
+        <button @click="showingEditModal = false" type="button" name="button" class="close"><i class="fas fa-times"></i></button>
+      <table class="form">
+        <tr>
+          <th> Command name </th>
+          <td> <input type="text" name="" value="" v-model="clickedCommand.name">  </td>
+        </tr>
 
 
-  <tr>
-    <th> Command lieux </th>
-    <td> <input type="text" name="" value="" v-model="clickedCommand.lieux"> </td>
-  </tr>
+        <tr>
+          <th> Command lieux </th>
+          <td> <input type="text" name="" value="" v-model="clickedCommand.lieux"> </td>
+        </tr>
 
 
-  <tr>
-    <td> <button @click="showingEditModal= false; updateCommand();" type="button" name="button"> Update </button> </td>
-  </tr>
-</table>
+        <tr>
+          <td> <button @click="showingEditModal= false; updateCommand();" type="button" name="button"> Update </button> </td>
+        </tr>
+      </table>
+      </div>
+    </p>
+  </b-card>
 </div>
+
+
 
 
 <!-- ///////////////////////deleteMODAL////////////////////////// -->
-<div id="deleteModal" v-if="showingDeleteModal">
-  <button @click="showingDeleteModal= false" type="button" name="button" class="close"> <i class="fas fa-times"></i></button>
-<p> Are you sure you want to delete you command </p>
-<button type="button" name="button" @click="showingDeleteModal = false; deleteCommand()"> Yes </button>
-<button type="button" name="button" @click="showingDeleteModal = false"> No </button>
-</div>
 
+<div id="deleteModal" v-if="showingDeleteModal">
+  <b-card border-variant="danger"
+            header="Danger"
+            header-border-variant="danger"
+            header-text-variant="danger"
+            align="center">
+      <p class="card-text"<div>
+        <button @click="showingDeleteModal= false" type="button" name="button" class="close"> <i class="fas fa-times"></i></button>
+      <p> Are you sure you want to delete you command </p>
+      <button type="button" name="button" @click="showingDeleteModal = false; deleteCommand()"> Yes </button>
+      <button type="button" name="button" @click="showingDeleteModal = false"> No </button>
+      </div></p>
+    </b-card>
+  </div>
 
 
 <!-- ///////////////////////END////////////////////////// -->
@@ -206,9 +252,6 @@ button.map{
 }
 
 #addModal, #deleteModal, #editModal{
-  height: 25vh;
-  width: 35vw;;
-  border: 2px solid;
   margin: auto;
   position: fixed;
   top: 0

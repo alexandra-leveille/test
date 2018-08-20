@@ -1,7 +1,17 @@
 <template lang="html">
 <div class="display">
-<h2> Recapitulatif de command </h2>
-
+<div>
+  <b-card overlay
+          img-src="https://picsum.photos/900/250/?image=10"
+          img-alt="Card Image"
+          text-variant="white"
+          title="Image Overlay"
+          sub-title="Recapitulatif of commands">
+    <p class="card-text">
+      Table of different commands
+    </p>
+  </b-card>
+</div>
 
 <table class="table">
   <tr>

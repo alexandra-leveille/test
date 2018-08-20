@@ -29,3 +29,10 @@ module.exports = express.Router()
   .then(result => res.json(result))
   .catch(err => res.json(err))
 })
+
+.get('/:id',(req, res) => {
+  const { id } = req.params;
+  model.getFillerById(id)
+  .then(result => res.json(result))
+  .catch(err => res.json(err))
+})

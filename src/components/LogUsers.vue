@@ -75,7 +75,7 @@
           <td> {{log.user_id}} </td>
           <td> {{log.user_name}} </td>
           <td> {{log.command}}</td>
-          <td> <i class="far fa-plus-square" @click="showingAddModal = true;"></i></td>
+          <td> <i class="fas fa-plus-square" @click="showingAddModal = true;"></i></td>
           <td> <i class="fas fa-pen-square" @click="showingEditModal = true; select(name)"></i></td>
           <td> <i class="fas fa-times" @click="showingDeleteModal = true; select(name)"></i> </td>
         </tr>
@@ -90,6 +90,8 @@
     <table class="form2">
       <p> Hello {{this.logUsers[0].user_name}} </p>
 <p> You are User number {{this.logUsers[0].user_id}} </p>
+<input type="text" name="" value="" v-model="usersNameCommand.user_id">
+<input type="text" name="" value="" v-model="usersNameCommand.user_name">
     <label for=""> Comamnds </label>
     <input type="text" name="" value="" v-model="usersNameCommand.command">
     <button @click="showingAddModal = false; createUsersNameCommando()" type="button" name="button"> Save </button>
@@ -98,20 +100,28 @@
 
       <!-- ////////////////////////////////////////////////////////////////////// -->
 
+      <div id="editModal" v-if="showingEditModal">
+        <h2 class="title"> Edit UsersNameCommand  <button class="fright close" @click="showingEditModal = false"> <i class="fas fa-times-circle"></i> </button> </h2>
+      <p> Are your sure you want to delete Users Number <span> {{clickedUsersNameCommand.user_id}} </span> </p>
+      <table class="form2">
+        <label for=""> user_id </label>
+        <input type="text" name="" value="" v-model="clickedUsersNameCommand.user_id">
+      <br>
+        <label for=""> user_name </label>
+        <input type="text" name="" value="" v-model="clickedUsersNameCommand.user_name">
+      <br>
+        <label for=""> command </label>
+        <input type="text" name="" value="" v-model="clickedUsersNameCommand.command">
+      <br>
+
+      <button @click="showingEditModal = false; updateUsersNameCommand()" type="button" name="button"> Update </button>
+
+      </table>
+      </div>
 
 
 
       <!-- ////////////////////////////////////////////////////////////////////// -->
-
-
-
-
-
-
-
-
-
-
 
   </div>
 </template>
@@ -149,6 +159,7 @@ export default {
   mounted: function(){
     console.log('mounted from LogUsers');
     this.getIdUserCommandName2ById();
+    console.log('Au mounted', logUsersId);
   },
   methods: {
     getIdUserCommandName2ById: function(id){
@@ -165,6 +176,8 @@ export default {
           console.log('this.logUsers[0].user_id', this.logUsers[0].user_id);
           console.log('this.logUsers[0].user_name', this.logUsers[0].user_name);
           console.log('this.logUsers[0].command', this.logUsers[0].command);
+          var logUsersId = this.logUsers[0].user_id;
+          console.log('ligne 189', logUsersId);
           //console.log('sessionStorage.user = ', sessionStorage.user);
           //sessionStorage.user = this.sessionStorageUser;
           //console.log('sessionStorageUser id the following', this.sessionStorageUser);
@@ -173,7 +186,7 @@ export default {
     },
     createUsersNameCommando: function(){
       console.log('create command');
-      axios.post('http://localhost:3005/users/recommand/', this.usersNameCommand).then((response) => {
+      axios.post('http://localhost:3005/users/recommand/'+ sessionStorage.user, this.usersNameCommand).then((response) => {
         console.log('usersNameCommand', response);
         console.log('this.usersNameCommand', this.usersNameCommand);
         this.usersNameCommand = {user_id:'', user_name:'', command:''};

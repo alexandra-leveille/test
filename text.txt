@@ -1,3 +1,10 @@
+Username: assdin504@gmail.com
+  Temporary password: ANx6g2PJ // Holysmartness407
+
+  year 2000 london
+  dev-976497.oktapreview.com
+  dev-976497
+
 back up version just is case backup
 
 console.log("index2.js");
@@ -63,3 +70,73 @@ GROUP BY users.id
 
 
   item:[{"id":4,"name":"cmd4"},{"id":1,"name":"Cmd1"}]
+
+  //////////////////////// NAV BAR ///////////////////////
+
+  <nav>
+  <ul class="list">
+    <li class="item"> <router-link tag="li" to="/"> <a><i class="fas fa-home"></i> Home </a> </router-link></li>
+    <li class="item"> <router-link tag="li" to="/Sign"> <a> Sign </a> </router-link></li>
+    <li class="item"> <router-link tag="li" to="/NotreConcept"> <a>Notre Concept</a> </router-link></li>
+    <li class="item"> <router-link tag="li" to="/NotreProjet"> <a>Notre Projet</a> </router-link></li>
+    <li class="item"> <router-link tag="li" to="/Rejoindre"> <a>Rejoindre</a> </router-link></li>
+    <li class="item"> <router-link tag="li" to="/Reservez"> <a>Reservez</a> </router-link></li>
+    <li class="item"> <router-link tag="li" to="/Who"> <a> Qui sommes Nous</a> </router-link></li>
+    <li class="item"> <router-link tag="li" to="/AddCommand"> <a> AddCommand </a> </router-link></li>
+  </ul>
+  </nav>
+
+
+  <nav>
+  <ul class="list">
+    <li class="item"> <router-link tag="li" to="/"> <a><i class="fas fa-home"></i> Home </a> </router-link></li>
+    <li class="item"> <router-link tag="li" to="/Sign"> <a> Sign </a> </router-link></li>
+    <li class="item"> <router-link tag="li" to="/NotreConcept"> <a>Notre Concept</a> </router-link></li>
+    <li class="item"> <router-link tag="li" to="/NotreProjet"> <a>Notre Projet</a> </router-link></li>
+    <li class="item"> <router-link tag="li" to="/Rejoindre"> <a>Rejoindre</a> </router-link></li>
+    <li class="item"> <router-link tag="li" to="/Reservez"> <a>Reservez</a> </router-link></li>
+    <li class="item"> <router-link tag="li" to="/Who"> <a> Qui sommes Nous</a> </router-link></li>
+    <li class="item"> <router-link tag="li" to="/AddCommand"> <a> AddCommand </a> </router-link></li>
+  </ul>
+  </nav>
+
+
+
+  <div>
+      <b-card-group deck>
+          <b-card img-src="https://placekitten.com/1000/300"
+                  img-alt="Card image"
+                  img-top>
+              <p class="card-text">
+                  Some quick example text to build on the card and make up the bulk of the card's content.
+              </p>
+          </b-card>
+          <b-card img-src="https://placekitten.com/1000/300"
+                  img-alt="Card image"
+                  img-bottom>
+              <p class="card-text">
+                  Some quick example text to build on the card and make up the bulk of the card's content.
+              </p>
+          </b-card>
+      </b-card-group>
+  </div>
+
+
+  <div>
+      <b-card-group deck>
+          <b-card img-src="https://placekitten.com/1000/300"
+                  img-alt="Card image"
+                  img-top>
+              <p class="card-text">
+                  Some quick example text to build on the card and make up the bulk of the card's content.
+              </p>
+          </b-card>
+          <b-card img-src="https://placekitten.com/1000/300"
+                  img-alt="Card image"
+                  img-bottom>
+              <p class="card-text">
+                  Some quick example text to build on the card and make up the bulk of the card's content.
+              </p>
+          </b-card>
+      </b-card-group>
+  </div>
