@@ -116,7 +116,7 @@ export default {
         console.log('this.usersNameCommand', this.usersNameCommand);
         this.usersNameCommand = {user_id:'', user_name:'', command:''};
         if (response.data.error) {
-          console.log(' ERROR usersNameCommand');
+          console.log('ERROR usersNameCommand');
           app.errorMessage = response.data.message;
         } else {
           console.log('usersNameCommand', this.usersNameCommand);

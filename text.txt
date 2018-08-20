@@ -60,3 +60,6 @@ FROM users
 JOIN users_command ON users.id = users_command.user_id
 JOIN command ON command.id = users_command.command_id
 GROUP BY users.id
+
+
+  item:[{"id":4,"name":"cmd4"},{"id":1,"name":"Cmd1"}]

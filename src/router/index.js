@@ -17,6 +17,8 @@ import Command from '@/components/Command'
 import Display from '@/components/Display'
 import ReCommand from '@/components/ReCommand'
 import Maps from '@/components/Maps'
+import LogFillers from '@/components/LogFillers'
+import LogUsers from '@/components/LogUsers'
 
 //import './index2'
 
@@ -109,6 +111,16 @@ export default new Router({
       path: '/Maps',
       name: 'Maps',
       component: Maps
+    },
+    {
+      path: '/LogUsers',
+      name: 'LogUsers',
+      component: LogUsers
+    },
+    {
+      path: '/LogFillers',
+      name: 'LogFillers',
+      component: LogFillers
     }
   ]
 });
