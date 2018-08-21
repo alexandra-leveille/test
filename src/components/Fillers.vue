@@ -25,7 +25,7 @@ To register as a filler
 </tr>
 
 <tr v-for="filler in fillers">
-  <td> {{ filler. id }} </td>
+  <td> {{ filler.id }} </td>
   <td> {{filler.lastname }} </td>
   <td> {{filler.firstname }} </td>
   <td> <button @click="showingEditModal = true; selectFiller(filler)" type="button" name="button"> <i class="fas fa-eraser"></i> </button>  </td>

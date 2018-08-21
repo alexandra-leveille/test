@@ -49,7 +49,7 @@ GIF Link https://media.giphy.com/media/4f0yJLT9ZdLEc/giphy.gif
 html video = https://giphy.com/gifs/4f0yJLT9ZdLEc/html5
 
 
-for display2 command
+Bingo for display2 command
 CREATE TABLE display2_command (
 User_id integer REFERENCES users ON DELETE CASCADE,
 User_name varchar (255),
@@ -140,3 +140,138 @@ GROUP BY users.id
           </b-card>
       </b-card-group>
   </div>
+
+  ///////////////////////////////////////////////////////////////////////
+
+  CREATE TABLE items
+(
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255),
+type VARCHAR(255),
+title VARCHAR(255),
+activity VARCHAR(255),
+price integer,
+dispo boolean
+);
+
+
+INSERT INTO items
+(name, type, title, activity, price, dispo)
+VALUES
+('Alphonse', 'Wolkswagen', 'lund 04 oct 2017 @ 8h', 'Faire le plein', 35, '0'),
+('Bernard', 'Lexus', 'lund 04 oct 2017 @ 12h', 'Faire le 1/2', 35, '1'),
+('Celine', 'Mercedes', 'mer 06 oct 2017 @ 10h', 'Faire le 1/4', 15, '1'),
+('Daniel', 'Wolkswagen', 'jeu 07 oct 2017 @ 11h', 'Faire le 1/2', 35, '0'),
+('Etienne', 'Wolkswagen', 'dim 10 oct 2017 @ 14h', 'Faire le plein', 55, '0');
+
+////////////////////////////////////////////////////////////////////////////////
+From logged Fillers
+getUsersNameCommandById:function(id){
+  axios.get('http://localhost:3007/command'+ sessionStorage.command).then((response) => {
+    //console.log('getUsersNameCommandById', response);
+    if (response.data.error) {
+      app.errorMessage = response.data.message;
+      console.log('ERROR getUsersNameCommandById');
+    } else {
+      console.log('SUCESS SO', response.data.rows);
+      this.ranges = response.data.rows;
+      console.log('l id de luser est le suivant ', this.ranges[0].id);
+      console.log('l id de luser est le suivant ', this.ranges.id);
+      var loggedCommand = this.ranges[0].id;
+      console.log('loggedUser ==>', loggedCommand);
+      this.loggedCommand = {};
+    }
+  })
+}
+
+
+
+for logged users
+<p> usersNameCommand </p> {{usersNameCommand}}
+<p> rangeUsers </p> {{this.rangeUsers}}
+
+<hr>
+<tr v-for="range in rangeUsers">
+  <td> {{range.user_id}}</td>
+  <td> {{range.user_name}}</td>
+  <td> {{range.command}}</td>
+  <td> <i class="fas fa-pen-square" @click="showingEditModal = true; selectUser(user)"></i></td>
+  <td> <i class="fas fa-times" @click="showingDeleteModal = true; selectUser(user)"></i> </td>
+</tr>
+
+//////////////////////////////////////////////////// DE BASE ADD MODAL //////////////////////////////
+<div id="addModal" v-if="showingAddModal">
+  <b-card title=" Add a New UserCommand"
+          img-src="https://picsum.photos/600/300/?image=25"
+          img-alt="Image"
+          img-top
+          tag="article"
+          style="max-width: 20rem;"
+          class="mb-2">
+    <p class="card-text">
+      <div>
+       <button class="fright close" @click="showingAddModal = false"> <i class="fas fa-times-circle"></i> </button>
+      <br>
+      <div>
+<button class="fright close" @click="showingAddModal = false"> CLOSE </button>
+<table class="table">
+
+<label for=""> Firstname </label>
+<input type="text" name="" value="" v-model="newItem.name">
+<hr>
+<label for=""> Type </label>
+<input type="text" name="" value="" v-model="newItem.type">
+<select  v-model="newItem.type" class="" name="activite">
+  <option   value="full"> DIESEL </option>
+  <option   value="half"> Essence SP 98 </option>
+  <option   value="quarter"> Essence SP 95 </option>
+  <option   value="quarter"> Carburant GPL </option>
+</select>
+
+<hr>
+<label for=""> title-date </label>
+<input type="date" name="" value="" v-model="newItem.title">
+<hr>
+<label for=""> activite </label>
+<input type="text" name="" value="" v-model="newItem.activity">
+<select v-model="newItem.activity" class="" name="activite">
+  <option value="full"> Faire le  Plein </option>
+  <option value="half"> Faire le 1/2 </option>
+  <option value="quarter"> Faire le 1/4 </option>
+</select>
+
+<hr>
+<label for=""> Prix </label>
+<input type="text" name="" value="" v-model="newItem.price">
+<hr>
+<label for=""> disponibilite </label>
+<input type="text" name="" value="" v-model="newItem.dispo">
+ <select v-model="newItem.dispo" class="" name="">
+  <option value=""> YES </option>
+  <option value=""> NO </option>
+</select>
+<hr>
+
+</table>
+<button @click="showingAddModal = false; createItem()" type="button" name="button"> CREER </button>
+</div>
+
+      </div>
+    </p>
+  </b-card>
+</div>
+
+////////////////////////////////////////////////////////////////////////////////
+
+<label for="">Name</label>
+<input type="text" name="" value="" v-model="clickedUsersNameCommand.name">
+<label for="">type</label>
+<input type="text" name="" value="" v-model="clickedUsersNameCommand.type">
+<label for="">title</label>
+<input type="text" name="" value="" v-model="clickedUsersNameCommand.title">
+<label for="">activity</label>
+<input type="text" name="" value="" v-model="clickedUsersNameCommand.activity">
+<label for="">price</label>
+<input type="text" name="" value="" v-model="clickedUsersNameCommand.price">
+<label for="">dispo</label>
+<input type="text" name="" value="" v-model="clickedUsersNameCommand.dispo">

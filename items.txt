@@ -1,0 +1,129 @@
+<template lang="html">
+  <div class="items">
+
+<button type="button" name="button" @click="showingAddModal = true"> Add item </button>
+    <h2> Table of items </h2>
+
+    <table class="table">
+      <tr>
+        <th> Id </th>
+        <th> NAME</th>
+        <th> TYPE</th>
+        <th> DATE </th>
+        <th> ACTIVITY</th>
+        <th> PRIX </th>
+        <th> DISPO </th>
+        <th> EDIT </th>
+        <th> DELETE </th>
+      </tr>
+
+      <tr v-for="item in items">
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.type}}</td>
+        <td>{{item.title}}</td>
+        <td>{{item.activity}}</td>
+        <td>{{item.price}}</td>
+        <td>{{item.dispo}}</td>
+        <td> <button type="button" name="button"> EDIT </button> </td>
+        <td> <button type="button" name="button"> DELETE </button> </td>
+      </tr>
+    </table>
+
+
+
+<div class="">
+      {{newItem.name}}
+      {{newItem.type}}
+      {{newItem.title}}
+      {{newItem.activity}}
+      {{newItem.price}}
+      {{newItem.dispo}}
+</div>
+
+<div id="addModal" v-if="showingAddModal">
+<input type="text" name="" value="" v-model="newItem.name">
+<input type="text" name="" value="" v-model="newItem.type">
+<input type="text" name="" value="" v-model="newItem.title">
+<input type="text" name="" value="" v-model="newItem.activity">
+<input type="text" name="" value="" v-model="newItem.price">
+<input type="text" name="" value="" v-model="newItem.dispo">
+
+<button type="button" name="button" @click="showingAddModal = false;createItem()"> save </button>
+</div>
+
+
+
+  </div>
+</template>
+
+<script>
+import axios from 'axios'
+export default {
+  name:'Items',
+  data () {
+    return {
+      showingAddModal: false,
+      items: [],
+      newItem: {name:'', type:'', title:'', activity:'', price:'', dispo:''}
+    }
+  },
+  mounted : function(){
+    console.log('=== item is mounted ===');
+    this.getItems();
+  },
+  methods: {
+    getItems: function(){
+      axios.get('http://localhost:3005/items').then((response) => {
+        console.log('getItems', response);
+        if (response.data.error) {
+          console.log('==getItems==');
+          app.errorMessage = response.data.message;
+        } else {
+          console.log('NO ERROR ID ITEMS', this.items);
+          this.items = response.data.rows;
+        }
+      })
+    },
+    createItem: function(){
+      console.log('create Item');
+      axios.post('http://localhost:3005/items', this.newItem).then((response) => {
+        console.log('items', response);
+        console.log('this.Items', this.newItem);
+        this.newItem = {name:'', type:'', title:'', activity:'', price:'', dispo:''}
+        if (response.data.error) {
+          console.log('== ligne 72 ==');
+          app.errorMessage = response.data.message;
+        } else {
+          console.log('// ligne 75 //');
+          this.getItems();
+        }
+      })
+    }
+  }
+}
+</script>
+
+<style lang="css">
+table{
+  margin: auto;
+}
+
+table tr{
+  background: orangered;
+}
+table td{
+  background: cyan;
+}
+
+#addModal{
+  height: 40vh;
+  width: 25vw;
+  border: 3px solid;
+}
+
+#addModal input{
+  width: 150px;
+  border-bottom: 2px solid;
+}
+</style>

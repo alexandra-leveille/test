@@ -1,13 +1,11 @@
 <template lang="html">
   <div class="logusers">
 
-
 <div class="avatar">
 
 </div>
 
 <h2> Hello <span class="gold"> {{this.logUsers[0].user_name}} </span> </h2>
-
 
     <template>
       <v-container fluid grid-list-md>
@@ -60,7 +58,6 @@
         </v-layout>
       </v-container>
     </template>
-{{usersNameCommand}}
     <table class="table">
         <tr>
           <th> You are User number </th>
@@ -76,50 +73,73 @@
           <td> {{log.user_name}} </td>
           <td> {{log.command}}</td>
           <td> <i class="fas fa-plus-square" @click="showingAddModal = true;"></i></td>
-          <td> <i class="fas fa-pen-square" @click="showingEditModal = true; select(name)"></i></td>
-          <td> <i class="fas fa-times" @click="showingDeleteModal = true; select(name)"></i> </td>
+          <td> <i class="fas fa-pen-square" @click="showingEditModal = true; selectUser(user)"></i></td>
+          <td> <i class="fas fa-times" @click="showingDeleteModal = true; selectUser(user)"></i> </td>
         </tr>
     </table>
 
-      <!-- ////////////////////////////////////////////////////////////////////// -->
+      <!-- /////////////////////////// AddModal ///////////////////////// -->
 
     <div id="addModal" v-if="showingAddModal">
-      <h2 class="title"> Add a New UserCommand <button class="fright close" @click="showingAddModal = false"> <i class="fas fa-times-circle"></i> </button> </h2>
-    <br>
+      <b-card title=" Add a New UserCommand"
+              img-src="https://picsum.photos/600/300/?image=25"
+              img-alt="Image"
+              img-top
+              tag="article"
+              style="max-width: 20rem;"
+              class="mb-2">
+        <p class="card-text">
+          <div>
+           <button class="fright close" @click="showingAddModal = false"> <i class="fas fa-times-circle"></i> </button>
+          <br>
 
-    <table class="form2">
-      <p> Hello {{this.logUsers[0].user_name}} </p>
-<p> You are User number {{this.logUsers[0].user_id}} </p>
-<input type="text" name="" value="" v-model="usersNameCommand.user_id">
-<input type="text" name="" value="" v-model="usersNameCommand.user_name">
-    <label for=""> Comamnds </label>
-    <input type="text" name="" value="" v-model="usersNameCommand.command">
-    <button @click="showingAddModal = false; createUsersNameCommando()" type="button" name="button"> Save </button>
-    </table>
+          <table class="form2">
+            <p> Hello {{this.logUsers[0].user_name}} </p>
+      <p> You are User number {{this.logUsers[0].user_id}} </p>
+      <input type="text" name="" value="" v-model="usersNameCommand.user_id">
+      <input type="text" name="" value="" v-model="usersNameCommand.user_name">
+          <p> Comamnds </p> <input type="text" name="" value="" v-model="usersNameCommand.command">
+          <button @click="showingAddModal = false; createUserCommandName2()" type="button" name="button"> Save </button>
+          </table>
+          </div>
+      </b-card>
     </div>
 
-      <!-- ////////////////////////////////////////////////////////////////////// -->
-
+      <!-- //////////////////////////////// Edit  Modal /////////////////////// -->
       <div id="editModal" v-if="showingEditModal">
-        <h2 class="title"> Edit UsersNameCommand  <button class="fright close" @click="showingEditModal = false"> <i class="fas fa-times-circle"></i> </button> </h2>
-      <p> Are your sure you want to delete Users Number <span> {{clickedUsersNameCommand.user_id}} </span> </p>
-      <table class="form2">
-        <label for=""> user_id </label>
-        <input type="text" name="" value="" v-model="clickedUsersNameCommand.user_id">
-      <br>
-        <label for=""> user_name </label>
-        <input type="text" name="" value="" v-model="clickedUsersNameCommand.user_name">
-      <br>
-        <label for=""> command </label>
-        <input type="text" name="" value="" v-model="clickedUsersNameCommand.command">
-      <br>
-
-      <button @click="showingEditModal = false; updateUsersNameCommand()" type="button" name="button"> Update </button>
-
-      </table>
+        <b-card title="Card Title"
+                img-src="https://picsum.photos/600/300/?image=24"
+                img-alt="Image"
+                img-top
+                tag="article"
+                style="max-width: 20rem;"
+                class="mb-2">
+          <p class="card-text">
+            <div>
+              <button @click="showingEditModal = false" type="button" name="button" class="close">
+              <i class="far fa-times-circle"></i>
+              </button>
+            <table class="form">
+            <tr>
+            <th> name </th>
+            <th> : </th>
+            <td> <input type="text" name=""  v-model="clickedUsersNameCommand.user_name"> </td>
+            </tr>
+            <tr>
+            <th> Command </th>
+            <th> : </th>
+            <td> <input type="text" name=""  v-model="clickedUsersNameCommand.command"> </td>
+            </tr>
+            <tr>
+            <th></th>
+            <th> </th>
+            <td> <button @click="showingEditModal = false; updateUserCommandName2()"> Update </button> </td>
+            </tr>
+            </table>
+            </div>
+          </p>
+        </b-card>
       </div>
-
-
 
       <!-- ////////////////////////////////////////////////////////////////////// -->
 
@@ -139,6 +159,7 @@ export default {
       fidelity: 'Your fidelity CODE is : AFTDOEU',
       below:'Please find bellow a summary of all your past orders',
       logUsers:[],
+      rangeUsers:[],
       usersNameCommand: { user_id:'', user_name:'', command:''},
       clickedUsersNameCommand:{},
       showingAddModal:false,
@@ -158,10 +179,23 @@ export default {
   },
   mounted: function(){
     console.log('mounted from LogUsers');
+    this.getIdUserCommandName2();
     this.getIdUserCommandName2ById();
-    console.log('Au mounted', logUsersId);
+    //console.log('Au mounted', logUsersId);
   },
   methods: {
+    getIdUserCommandName2: function(){
+    axios.get('http://localhost:3005/users/recommand/').then((response) => {
+      console.log('getIdUserCommandName2', response);
+      if (response.data.error) {
+        console.log('=== getIdUserCommandName2 ===');
+        app.errorMessage = response.data.message;
+      } else {
+        console.log('NO ERROR getIdUserCommandName2', this.rangeUsers);
+        this.rangeUsers = response.data.rows;
+      }
+    })
+    },
     getIdUserCommandName2ById: function(id){
       axios.get('http://localhost:3005/users/recommand/'+ sessionStorage.user).then((response) => {
         console.log('getIdUserCommandName2ById', response);
@@ -176,17 +210,20 @@ export default {
           console.log('this.logUsers[0].user_id', this.logUsers[0].user_id);
           console.log('this.logUsers[0].user_name', this.logUsers[0].user_name);
           console.log('this.logUsers[0].command', this.logUsers[0].command);
-          var logUsersId = this.logUsers[0].user_id;
-          console.log('ligne 189', logUsersId);
+          //var logUsersId = this.logUsers[0].user_id;
+          //console.log('ligne 189', logUsersId);
           //console.log('sessionStorage.user = ', sessionStorage.user);
           //sessionStorage.user = this.sessionStorageUser;
           //console.log('sessionStorageUser id the following', this.sessionStorageUser);
         }
       })
     },
-    createUsersNameCommando: function(){
+    selectUser(user) {
+      this.clickedUsersNameCommand = user;
+    },
+    createUserCommandName2: function(){
       console.log('create command');
-      axios.post('http://localhost:3005/users/recommand/'+ sessionStorage.user, this.usersNameCommand).then((response) => {
+      axios.post('http://localhost:3005/users/recommand/', this.usersNameCommand).then((response) => {
         console.log('usersNameCommand', response);
         console.log('this.usersNameCommand', this.usersNameCommand);
         this.usersNameCommand = {user_id:'', user_name:'', command:''};
@@ -195,11 +232,11 @@ export default {
           app.errorMessage = response.data.message;
         } else {
           console.log('usersNameCommand', this.usersNameCommand);
-            this.getIdUserCommandName2ById();
+          this.getIdUserCommandName2ById();
         }
       })
     },
-    updateUsersNameCommand: function(){
+    updateUserCommandName2: function() {
       console.log('updateUsersNameCommand');
       console.log(this.clickedUsersNameCommand);
         axios.put('http://localhost:3005/users/recommand/'+ this.clickedUsersNameCommand.user_id, this.clickedUsersNameCommand).then((response) => {
@@ -215,10 +252,6 @@ export default {
           console.log('this.clickedUsersNameCommand.user_id:', this.clickedUsersNameCommand.user_id);
         }
       })
-    },
-    select(name){
-      this.clickedUsersNameCommand = name;
-      console.log(name);
     }
 }
 }
@@ -258,12 +291,9 @@ list-style: none;
 }
 
 #addModal, #editModal, #deleteModal {
-height: 75vh;
-width: 40vw;
-border: 2px solid;
 margin: auto;
 position: fixed;
 top: 0;
-background: rgba(247,208,228,0.3);
 }
+
 </style>
