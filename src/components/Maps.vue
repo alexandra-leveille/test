@@ -16,6 +16,7 @@
       :center="center"
       :zoom="12"
       style="width:100%;  height: 400px;"
+      id="map"
     >
       <gmap-marker
         :key="index"
@@ -73,3 +74,10 @@ export default {
   }
 };
 </script>
+<style media="screen">
+  #map{
+    width:260px;
+    height: 200px;
+    border: 2px solid lime;
+  }
+</style>

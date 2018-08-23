@@ -24,6 +24,7 @@ import PostsManager from '@/components/PostsManager'
 import Items from '@/components/Items'
 import './index2'
 import Auth from '@okta/okta-vue'
+import Carburants from  '@/components/Carburants'
 
 
 export default new Router({
@@ -132,6 +133,11 @@ export default new Router({
       path: '/Hello',
       name: 'Hello',
       component: Hello
+    },
+    {
+      path: '/Carburants',
+      name: 'Carburants',
+      component: Carburants
     },
     {
       path: '/implicit/callback',
