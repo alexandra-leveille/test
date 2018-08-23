@@ -6,8 +6,9 @@
 <button type="button" name="button" @click="showingEditModal = true;"> EDIT </button>
 <button type="button" name="button" @click="showingDeleteModal = true;"> DELETE </button>
 
-
-
+<button  @click="showingAddModal = true" type="" name="button">
+<i class="fas fa-address-card fa-5x"></i>
+</button>
 
 <template>
   <v-layout row>
@@ -28,7 +29,7 @@
               <p> Driver with Id Number {{LogFillers[0].id}} </p>
               <p>Your name  is : {{LogFillers[0].firstname}} {{LogFillers[0].lastname}}</p>
 
-              <button  @click="showingAddModal = true" type="" name="button">
+              <button @click="showingAddModal = true" type="" name="button">
               <i class="fas fa-address-card fa-1x"></i>
               </button>
             </v-subheader>
@@ -94,14 +95,34 @@
 <input type="text" name="Firstname" value="Firstname" v-model="newItem.name">
 <label for="">type</label>
 <input type="text" name="" value="type" v-model="newItem.type">
+<select  v-model="newItem.type" class="" name="activite">
+  <option   value="DIESE"> DIESEL </option>
+  <option   value="Essence SP 98"> Essence SP 98 </option>
+  <option   value="Essence SP 95"> Essence SP 95 </option>
+  <option   value="Carburant GPL"> Carburant GPL </option>
+</select>
 <label for="">date</label>
-<input type="text" name="" value="title" v-model="newItem.title">
+<input type="date" name="" value="title" v-model="newItem.title">
 <label for="">activity</label>
 <input type="text" name="" value="activity" v-model="newItem.activity">
+<select v-model="newItem.activity" class="" name="activite">
+  <option value="Faire le  Plein"> Faire le  Plein </option>
+  <option value="Faire le 1/2"> Faire le 1/2 </option>
+  <option value="Faire le 1/4"> Faire le 1/4 </option>
+</select>
+
 <label for="">price</label>
 <input type="text" name="" value="prix" v-model="newItem.price">
+<input type="range" name="points" min="0" max="300" v-model="newItem.price">
+<hr>
 <label for="">dispo</label>
+
 <input type="text" name="" value="disponibilite" v-model="newItem.dispo">
+<select v-model="newItem.dispo"  name="">
+  <option value="YES"> YES </option>
+  <option value="NO"> NO </option>
+</select>
+<hr>
 </table>
 <button @click="showingAddModal = false; createItem()" type="button" name="button"> CREER </button>
 </div>
@@ -126,14 +147,36 @@
           <input type="text" name="" value="" v-model="clickedItem.name">
           <label for=""> type </label>
           <input type="text" name="" value="" v-model="clickedItem.type">
+          <select v-model="clickedItem.type" name="activite">
+    <option value="DIESEL"> DIESEL </option>
+    <option value="Essence SP 98"> Essence SP 98 </option>
+    <option value="Essence SP 95"> Essence SP 95 </option>
+    <option value="Carburant GPL"> Carburant GPL </option>
+  </select>
+  <hr>
+
           <label for="">title</label>
-          <input type="text" name="" value="" v-model="clickedItem.title">
+          <input type="date" name="" value="" v-model="clickedItem.title">
+
           <label for="">activity</label>
           <input type="text" name="" value="" v-model="clickedItem.activity">
+
+          <select v-model="clickedItem.activity" class="" name="activite">
+    <option value="Faire le  Plein"> Faire le  Plein </option>
+    <option value="Faire le 1/2"> Faire le 1/2 </option>
+    <option value="Faire le 1/4"> Faire le 1/4 </option>
+  </select>
+
           <label for="">price</label>
           <input type="text" name="" value="" v-model="clickedItem.price">
+          <input type="range" name="points" min="0" max="300" v-model="clickedItem.price">
+
           <label for="">dispo</label>
           <input type="text" name="" value="" v-model="clickedItem.dispo">
+          <select v-model="clickedItem.dispo" class="" name="">
+          <option value="YES"> YES </option>
+          <option value="NO"> NO </option>
+          </select>
 
           <button @click="showingDeleteModal=false;updateItem()" type="button" name="button"> EDIT </button>
         </p>
@@ -251,7 +294,7 @@ export default {
     deleteItem: function () {
   console.log('we do delete');
   console.log(this.clickedItem);
-  axios.delete('http://localhost:3007/items/'+ this.clickedItem.id).then((response) => {
+  axios.delete('http://localhost:3005/items/'+ this.clickedItem.id).then((response) => {
     console.log('delete from response', response);
     this.clickedItem = {};
     if (response.data.error) {
@@ -293,4 +336,23 @@ position: relative;
 .bloc{
   margin-left:5vw;
 }
+
+#addModal table.table{
+  display: flex;
+  border: 2px solid;
+justify-content: flex-start;
+align-items: flex-start;
+flex-direction: column;
+}
+
+#addModal table.table input{
+  width: 25vw;
+  border-bottom: 1px solid;
+}
+
+#addModal table.table select{
+  background: rgba(191,119,179,0.27);
+}
+
+
 </style>
