@@ -2,14 +2,6 @@
   <div class="logfillers">
 <h5> <span class="light"> {{LogFillers[0].firstname}} </span>  Welcome on your Personal Filler Page</h5>
 
-
-<button type="button" name="button" @click="showingEditModal = true;"> EDIT </button>
-<button type="button" name="button" @click="showingDeleteModal = true;"> DELETE </button>
-
-<button  @click="showingAddModal = true" type="" name="button">
-<i class="fas fa-address-card fa-5x"></i>
-</button>
-
 <template>
   <v-layout row>
     <v-flex xs12 sm6 offset-sm3>
@@ -21,6 +13,28 @@
                 <i class="far fa-plus-square" @click="showingAddModal= true"></i>
                 <i class="fas fa-search"></i>
           </v-toolbar>
+
+          <div class="map" id="map">
+            <label>
+              <gmap-autocomplete
+                @place_changed="setPlace">
+              </gmap-autocomplete>
+              <button @click="addMarker">Add</button>
+            </label>
+            <gmap-map
+              :center="center"
+              :zoom="12"
+              style="width:100%;  height:250px;"
+              id="map2"
+            >
+              <gmap-marker
+                :key="index"
+                v-for="(m, index) in markers"
+                :position="m.position"
+                @click="center=m.position"
+              ></gmap-marker>
+            </gmap-map>
+          </div>
 
         <v-list three-line>
           <template v-for="(item, index) in items">
@@ -64,12 +78,24 @@
               <p> <h6> Availability : {{item.dispo}} </h6> </p>
               </v-list-tile-content>
 
+              <div class="bas">
+                <i class="fas fa-angle-right fa-3x"></i>
+              </div>
+
             </v-list-tile>
           </template>
+
+          <div class="bottom">
+            <img src="../assets/min_localize.png" alt="">
+            <img src="../assets/min_pomp.png" alt="">
+            <img src="../assets/min_pay.png" alt="">
+            <img src="../assets/min_pomp.png" alt="">
+          </div>
         </v-list>
       </v-card>
     </v-flex>
   </v-layout>
+
 </template>
 
 
@@ -96,7 +122,7 @@
 <label for="">type</label>
 <input type="text" name="" value="type" v-model="newItem.type">
 <select  v-model="newItem.type" class="" name="activite">
-  <option   value="DIESE"> DIESEL </option>
+    <option   value="DIESEL"> DIESEL </option>
   <option   value="Essence SP 98"> Essence SP 98 </option>
   <option   value="Essence SP 95"> Essence SP 95 </option>
   <option   value="Carburant GPL"> Carburant GPL </option>
@@ -134,15 +160,17 @@
     <!-- ////////////////////////// editModal /////////////////////// -->
 
     <div id="editModal" v-if="showingEditModal">
-      <b-card title="Card Title"
+      <b-card title="Edit Order"
               img-src="https://picsum.photos/600/300/?image=20"
               img-alt="Image"
               img-top
               tag="article"
               style="max-width: 20rem;"
               class="mb-2">
-              <button class="fright close" @click="showingEditModal = false"> CLOSE </button>
+              <button class="fright close" @click="showingEditModal = false">
+               CLOSE </button>
         <p class="card-text">
+          <table class="table">
           <label for=""> name </label>
           <input type="text" name="" value="" v-model="clickedItem.name">
           <label for=""> type </label>
@@ -177,7 +205,7 @@
           <option value="YES"> YES </option>
           <option value="NO"> NO </option>
           </select>
-
+</table>
           <button @click="showingDeleteModal=false;updateItem()" type="button" name="button"> EDIT </button>
         </p>
       </b-card>
@@ -188,8 +216,8 @@
 <!-- ////////////////////////// deleteModal /////////////////////// -->
 
 <div id="deleteModal" v-if="showingDeleteModal">
-    <b-card title="Card title"
-            sub-title="Card subtitle">
+    <b-card title="Delete Order"
+            sub-title="For sure">
         <p class="card-text">
           <p> Are you sure you want to delete {{this.clickedItem.id}} </p>
           <button  @click="showingDeleteModal = false; deleteItem()" type="button" name="button"> YES </button>
@@ -224,16 +252,43 @@ export default {
               {path:"../assets/avatar/daniel.png"},
               {path:"../assets/avatar/celine.png"},
               {path:"../assets/avatar/marc.png"},
-              {path:"../assets/avatar/flora.png"}]
+              {path:"../assets/avatar/flora.png"}],
+              center: { lat: 45.508, lng: -73.587 },
+              markers: [],
+              places: [],
+              currentPlace: null
     }
   },
   mounted: function (){
     this.getItems();
     console.log('mounted au mounted');
     this.getFillerById();
-
+    this.geolocate();
   },
   methods: {
+    setPlace(place) {
+      this.currentPlace = place;
+    },
+    addMarker() {
+      if (this.currentPlace) {
+        const marker = {
+          lat: this.currentPlace.geometry.location.lat(),
+          lng: this.currentPlace.geometry.location.lng()
+        };
+        this.markers.push({ position: marker });
+        this.places.push(this.currentPlace);
+        this.center = marker;
+        this.currentPlace = null;
+      }
+    },
+    geolocate: function() {
+      navigator.geolocation.getCurrentPosition(position => {
+        this.center = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+      });
+    },
     getFillerById:function(id){
       axios.get('http://localhost:3005/fillers/'+ sessionStorage.filler).then((response) => {
         if (response.data.error) {
@@ -312,6 +367,12 @@ export default {
 </script>
 
 <style lang="css">
+div.map#map{
+  height: 46vh;
+  width: auto;
+  border: 2px solid red;
+}
+
 .mix{
 position: relative;
 }
@@ -337,7 +398,16 @@ position: relative;
   margin-left:5vw;
 }
 
-#addModal table.table{
+#addModal, #editModal, #deleteModal{
+  border: 3px solid lime;
+  width: 35vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: auto;
+}
+
+#addModal table.table, #editModal table.table {
   display: flex;
   border: 2px solid;
 justify-content: flex-start;
@@ -345,14 +415,23 @@ align-items: flex-start;
 flex-direction: column;
 }
 
-#addModal table.table input{
+#addModal table.table input, #editModal table.table input{
   width: 25vw;
   border-bottom: 1px solid;
 }
 
-#addModal table.table select{
+#addModal table.table select, #editModal table.table select{
   background: rgba(191,119,179,0.27);
 }
 
+.bottom{
+  height: 10vh;
+  width: auto;
+  background: black;
+  color: silver;
+  display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
 
 </style>

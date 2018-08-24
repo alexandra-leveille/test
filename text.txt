@@ -1,3 +1,9 @@
+////////////////////////////////////////////////////////////////
+just in case docker is doing pulling fs layer
+docker-machine restart
+docker-machine env
+@FOR /f "tokens=*" %i IN ('docker-machine env') DO @%i
+
 Username: assdin504@gmail.com
   Temporary password: ANx6g2PJ // Holysmartness407
 
@@ -351,3 +357,12 @@ for logged users
         </template>
 
         ////////////////////////////////////////////////////////////////////////
+
+
+TOP BUTTONS ON logfillers
+<button type="button" name="button" @click="showingEditModal = true;"> EDIT </button>
+<button type="button" name="button" @click="showingDeleteModal = true;"> DELETE </button>
+
+<button  @click="showingAddModal = true" type="" name="button">
+<i class="fas fa-address-card fa-5x"></i>
+</button>
