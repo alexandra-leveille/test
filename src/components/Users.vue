@@ -25,7 +25,7 @@
 </tr>
 
 <tr v-for="user in users">
-  <td> {{ user. id }} </td>
+  <td> {{ user.id }} </td>
   <td> {{user.lastname }} </td>
   <td> {{user.firstname }} </td>
   <td> <button @click="showingEditModal = true; selectUser(user)" type="button" name="button"> <i class="fas fa-eraser"></i> </button>  </td>
@@ -34,17 +34,6 @@
 </table>
 
 <!-- ///////////////////////////////////////////////////////////////////// -->
-
-
-
-
-
-
-
-
-
-
-
 
 
 <!-- ////////////////////// showingAdd Modal ////////////////////////// -->
@@ -89,13 +78,6 @@
     </p>
   </b-card>
 </div>
-
-
-
-
-
-
-
 
 <!-- ////////////////////////////////////showingEditModal \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
 
@@ -166,7 +148,7 @@
   </b-card>
 </div>
 
-<!-- /////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<!-- /////////////////////////////////////////////////    \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
 
 </div>
 </template>
@@ -199,6 +181,8 @@ export default {
         } else {
           console.log('NO ERROR THIS users IS', this.users);
           this.users = response.data.rows;
+          console.log('ligne 202');
+          console.log(this.users);
         }
       })
     },

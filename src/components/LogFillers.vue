@@ -87,9 +87,13 @@
 
           <div class="bottom">
             <img src="../assets/min_localize.png" alt="">
+            <h6> Recherche </h6>
             <img src="../assets/min_pomp.png" alt="">
+            <h6> Prestataires </h6>
             <img src="../assets/min_pay.png" alt="">
+            <h6> Payez </h6>
             <img src="../assets/min_pomp.png" alt="">
+            <h6> Mon Compte </h6>
           </div>
         </v-list>
       </v-card>
@@ -169,6 +173,7 @@
               class="mb-2">
               <button class="fright close" @click="showingEditModal = false">
                CLOSE </button>
+               <button class="fright close" @click="showingAddModal = false"> <i class="fas fa-times-circle"></i> </button>
         <p class="card-text">
           <table class="table">
           <label for=""> name </label>

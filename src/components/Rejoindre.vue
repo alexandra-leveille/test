@@ -1,8 +1,44 @@
+
 <template>
-  <div class="rejoidre">
   <v-card>
     <v-card-title>
       Nutrition
+      <i @click="showingAddModal = true;" class="far fa-plus-square fa-2x"></i>
+    <div id="addModal" class="addModal" v-if="showingAddModal">
+      <button @click="showingAddModal = false" type="button" name="button"> CLOSE </button>
+      <table class="table">
+        <label for=""> Carburant </label>
+        <input type="text" name="" value="" v-model="newHeader.carburant">
+        <label for=""> Type </label>
+        <input type="text" name="" value="" v-model="newHeader.type">
+        <label for=""> Disponibilite </label>
+        <input type="text" name="" value="" v-model="newHeader.disponibilite">
+        <label for=""> Qualite </label>
+        <input type="text" name="" value="" v-model="newHeader.qualite">
+        <label for=""> Prix </label>
+        <input type="text" name="" value="" v-model="newHeader.prix">
+      </table>
+        <button @click="showingAddModal = false; createHeader()" type="button" name="button"> CREATE </button>
+    </div>
+
+
+    <div id="editModal" class="editModal" v-if="showingEditModal">
+      <button @click="showingAddModal = false" type="button" name="button"> CLOSE </button>
+      <table class="table">
+        <label for=""> Carburant </label>
+        <input type="text" name="" value="" v-model="clickedHeader.carburant">
+        <label for=""> Type </label>
+        <input type="text" name="" value="" v-model="clickedHeader.type">
+        <label for=""> Disponibilite </label>
+        <input type="text" name="" value="" v-model="clickedHeader.disponibilite">
+        <label for=""> Qualite </label>
+        <input type="text" name="" value="" v-model="clickedHeader.qualite">
+        <label for=""> Prix </label>
+        <input type="text" name="" value="" v-model="clickedHeader.prix">
+      </table>
+        <button @click="showingAddModal = false; updateHeader()" type="button" name="button"> CREATE </button>
+    </div>
+
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -14,142 +50,124 @@
     </v-card-title>
     <v-data-table
       :headers="headers"
-      :items="desserts"
+      :items="small"
       :search="search"
     >
       <template slot="items" slot-scope="props">
-        <td>{{ props.item.name }}</td>
-        <td class="text-xs-right">{{ props.item.calories }}</td>
-        <td class="text-xs-right">{{ props.item.fat }}</td>
-        <td class="text-xs-right">{{ props.item.carbs }}</td>
-        <td class="text-xs-right">{{ props.item.protein }}</td>
-        <td class="text-xs-right">{{ props.item.iron }}</td>
+        <td> {{ props.item.id }} </td>
+
+
+        <td class="text-xs-right">{{ props.item.carburant }}</td>
+        <td class="text-xs-right">{{ props.item.type }}</td>
+        <td class="text-xs-right">{{ props.item.disponibilite }}</td>
+        <td class="text-xs-right">{{ props.item.qualite }}</td>
+        <td class="text-xs-right">{{ props.item.prix }}</td>
+        <td> <i @click="showingEditModal = true; selectUser(head)" class="fas fa-pen-square fa-1x"></i> </td>
+        <td> <i @click="showingDeleteModal = true; selectUser(head)" class="fas fa-trash-alt fa-1x"></i> </td>
       </template>
       <v-alert slot="no-results" :value="true" color="error" icon="warning">
         Your search for "{{ search }}" found no results.
       </v-alert>
     </v-data-table>
   </v-card>
-    </div>
 </template>
 
+
 <script>
+import axios from 'axios'
   export default {
   name: 'Rejoindre',
     data () {
       return {
         search: '',
+        showingAddModal: false,
+        showingEditModal:false,
+        showingDeleteModal: false,
+        clickedHeader: {},
+        newHeader: {carburant:'', type:'', disponibilite:'' , qualite:'', prix:''},
         headers: [
           {
-            text: 'Dessert (100g serving)',
+            text: 'Id Number',
             align: 'left',
             sortable: false,
             value: 'name'
           },
-          { text: 'Calories', value: 'calories' },
-          { text: 'Fat (g)', value: 'fat' },
-          { text: 'Carbs (g)', value: 'carbs' },
-          { text: 'Protein (g)', value: 'protein' },
-          { text: 'Iron (%)', value: 'iron' }
+          { text: 'Carburant', value: 'calories' },
+          { text: 'Type', value: 'fat' },
+          { text: 'Disponibilite', value: 'carbs' },
+          { text: 'Qualite', value: 'protein' },
+          { text: 'Prix', value: 'iron' }
         ],
-        desserts: [
-          {
-            value: false,
-            name: 'Frozen Yogurt',
-            calories: 159,
-            fat: 6.0,
-            carbs: 24,
-            protein: 4.0,
-            iron: '1%'
-          },
-          {
-            value: false,
-            name: 'Ice cream sandwich',
-            calories: 237,
-            fat: 9.0,
-            carbs: 37,
-            protein: 4.3,
-            iron: '1%'
-          },
-          {
-            value: false,
-            name: 'Eclair',
-            calories: 262,
-            fat: 16.0,
-            carbs: 23,
-            protein: 6.0,
-            iron: '7%'
-          },
-          {
-            value: false,
-            name: 'Cupcake',
-            calories: 305,
-            fat: 3.7,
-            carbs: 67,
-            protein: 4.3,
-            iron: '8%'
-          },
-          {
-            value: false,
-            name: 'Gingerbread',
-            calories: 356,
-            fat: 16.0,
-            carbs: 49,
-            protein: 3.9,
-            iron: '16%'
-          },
-          {
-            value: false,
-            name: 'Jelly bean',
-            calories: 375,
-            fat: 0.0,
-            carbs: 94,
-            protein: 0.0,
-            iron: '0%'
-          },
-          {
-            value: false,
-            name: 'Lollipop',
-            calories: 392,
-            fat: 0.2,
-            carbs: 98,
-            protein: 0,
-            iron: '2%'
-          },
-          {
-            value: false,
-            name: 'Honeycomb',
-            calories: 408,
-            fat: 3.2,
-            carbs: 87,
-            protein: 6.5,
-            iron: '45%'
-          },
-          {
-            value: false,
-            name: 'Donut',
-            calories: 452,
-            fat: 25.0,
-            carbs: 51,
-            protein: 4.9,
-            iron: '22%'
-          },
-          {
-            value: false,
-            name: 'KitKat',
-            calories: 518,
-            fat: 26.0,
-            carbs: 65,
-            protein: 7,
-            iron: '6%'
-          }
+        small: [
+        // {id:1, carburant:"DIESEL", type:"polluant", disponibilite:true, qualite:"acceptable", prix: 35},
+        // {id:2, carburant:"ESSENCE S98", type:"polluant", disponibilite:true, qualite:"passable", prix: 50},
+        // {id:3, carburant:"Carburant GPL", type:"anti-polluant", disponibilite:false, qualite:"acceptable", prix: 90},
+        // {id:4, carburant:"Essence SP 95", type:"polluant", disponibilite:true, qualite:"acceptable", prix: 35},
+        // {id:5, carburant:"DIESEL", type:"anti-polluant", disponibilite:false, qualite:"passable", prix: 130},
+        // {id:6, carburant:"DIESEL", type:"anti-polluant", disponibilite:false, qualite:"non-acceptable", prix: 150},
+        // {id:7, carburant:"Essence SP 98", type:"polluant", disponibilite:true, qualite:"acceptable", prix: 30},
+        // {id:8, carburant:"DIESEL", type:"polluant", disponibilite:true, qualite:"non-acceptable", prix: 40}
         ]
       }
+    },
+    mounted(){
+      console.log('we are in mounted');
+      this.getHeaders();
+    },
+    methods: {
+      getHeaders: function(){
+        axios.get('http://localhost:3005/headers/').then((response) => {
+          console.log('get headers', response);
+          if (response.data.error) {
+            app.errorMessage = response.data.message;
+          } else {
+            console.log('NO ERROR THIS HEADERS', this.small);
+            this.small = response.data.rows;
+            console.log('ligne 84');
+          }
+        })
+      },
+      selectUser(head){
+        console.log('on a clicke sur');
+        this.clickedHeader = head;
+        console.log(head);
+      },
+      createHeader: function(){
+        axios.post('http://localhost:3005/headers/', this.newHeader).then((response) => {
+          console.log('newHeader', response);
+          console.log('this.newHeader', this.newHeader);
+          this.newHeader = { carburant: '', type:'', disponibilite:'' , qualite:'', prix:'' };
+          if (response.data.error) {
+            console.log('========= ligne 167 =========');
+            app.errorMessage = response.data.message;
+          } else {
+            console.log('ligne 99');
+            this.getHeaders();
+          }
+        })
+      }
+
     }
   }
 </script>
 
-
-
 <style lang="css">
+
+#addModal table{
+  background: pink;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 2vw;
+}
+
+#addModal table input{
+  border-bottom: 1px solid black;
+  width: 25vw;
+}
+#addModal{
+  height: 55vh;
+  width: 35vw;
+  border: 2px solid red;
+}
 </style>

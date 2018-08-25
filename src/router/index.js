@@ -25,6 +25,7 @@ import Items from '@/components/Items'
 import './index2'
 import Auth from '@okta/okta-vue'
 import Carburants from  '@/components/Carburants'
+import App2 from  '@/components/App2'
 
 
 export default new Router({
@@ -138,6 +139,11 @@ export default new Router({
       path: '/Carburants',
       name: 'Carburants',
       component: Carburants
+    },
+    {
+      path: '/App2',
+      name: 'App2',
+      component: App2
     },
     {
       path: '/implicit/callback',

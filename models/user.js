@@ -2,7 +2,6 @@
 const db = require('./db')
 
 module.exports = {
-
   getUsers() {
     return db.query('SELECT * FROM users ORDER BY id')
   },

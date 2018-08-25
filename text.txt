@@ -1,3 +1,6 @@
+MAP =
+https://github.com/PDERAS/vue2-geocoder
+https://github.com/olefirenko/vue-google-autocomplete
 ////////////////////////////////////////////////////////////////
 just in case docker is doing pulling fs layer
 docker-machine restart
@@ -366,3 +369,104 @@ TOP BUTTONS ON logfillers
 <button  @click="showingAddModal = true" type="" name="button">
 <i class="fas fa-address-card fa-5x"></i>
 </button>
+
+///////////////////////////////////////////////////////////////////////////
+
+<template>
+  <div id="app">
+    <input ref="autocomplete"
+        placeholder="Search"
+        class="search-location"
+        onfocus="value = ''"
+        type="text" />
+  </div>
+</template>
+
+<script>
+export default {
+  mounted() {
+    this.autocomplete = new google.maps.places.Autocomplete(
+      (this.$refs.autocomplete),
+      {types: ['geocode']}
+    );
+    this.autocomplete.addListener('place_changed', () => {
+  let place = this.autocomplete.getPlace();
+  let ac = place.address_components;
+  let lat = place.geometry.location.lat();
+  let lon = place.geometry.location.lng();
+  let city = ac[0]["short_name"];
+  console.log(`The user picked ${city} with the coordinates ${lat}, ${lon}`);
+});
+  }
+}
+</script>
+
+<style>
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+  background-color: #dcdde1;
+  color: #2f3640;
+  padding: 3rem;
+}
+
+.search-location {
+  display: block;
+  width: 60vw;
+  margin: 0 auto;
+  margin-top: 5vw;
+  font-size: 20px;
+  font-weight: 400;
+  outline: none;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 10px;
+}
+</style>
+
+CREATE TABLE headers (
+id SERIAL PRIMARY KEY,
+carburant varchar(255),
+type varchar(255),
+disponibilite boolean,
+qualite varchar(255),
+Prix integer
+)
+
+/////////////////////////////////////////////////////////////////////////
+
+//         small: [
+// {id:1, carburant:"DIESEL", type:"polluant", disponibilite:true, qualite:"acceptable", prix: 35},
+// {id:2, carburant:"ESSENCE S98", type:"polluant", disponibilite:true, qualite:"passable", prix: 50},
+// {id:3, carburant:"Carburant GPL", type:"anti-polluant", disponibilite:false, qualite:"acceptable", prix: 90},
+// {id:4, carburant:"Essence SP 95", type:"polluant", disponibilite:true, qualite:"acceptable", prix: 35},
+// {id:5, carburant:"DIESEL", type:"anti-polluant", disponibilite:false, qualite:"passable", prix: 130},
+// {id:6, carburant:"DIESEL", type:"anti-polluant", disponibilite:false, qualite:"non-acceptable", prix: 150},
+// {id:7, carburant:"Essence SP 98", type:"polluant", disponibilite:true, qualite:"acceptable", prix: 30},
+// {id:8, carburant:"DIESEL", type:"polluant", disponibilite:true, qualite:"non-acceptable", prix: 40}
+// ]
+
+<table class="table">
+  <tr>
+    <th> ID </th>
+    <th> Carburant </th>
+    <th> Type </th>
+    <th> disponibilite </th>
+    <th> qualite </th>
+    <th> prix</th>
+  </tr>
+
+ <tr v-for="header in headers">
+<td>{{ header.id }}</td>
+<td>{{ header.carburant }}</td>
+<td>{{ header.type }}</td>
+<td>{{ header.disponibilite }}</td>
+<td>{{ header.qualite }}</td>
+<td>{{ header.prix }}</td>
+ </tr>
+</table>
