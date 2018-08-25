@@ -1,8 +1,12 @@
 <template>
   <div id="app">
-<nav>
+
+  <header class="grid-header">
+    <i v-on:click="showMobileMenu = !showMobileMenu" class="icon fa fa-bars fa-2x"> </i>
+    <nav class="nav-main">
     <div>
       <b-button-group>
+        <ul class="list">
         <b-dropdown right text="Home">
             <b-dropdown-item> <router-link tag="li" to="/"> <i class="fas fa-home fa-lg"></i> Home</router-link> </b-dropdown-item>
             <b-nav-item to="/posts-manager">Posts Manager</b-nav-item>
@@ -41,10 +45,54 @@
           <b-dropdown-divider></b-dropdown-divider>
           <b-dropdown-item> Admin </router-link> </b-dropdown-item>
         </b-dropdown>
+        </ul>
       </b-button-group>
     </div>
 </nav>
+  </header>
 
+  <nav class="nav-mobile" v-bind:class="{ active: showMobileMenu }">
+      <ul class="list">
+        <b-dropdown right text="Home">
+            <b-dropdown-item> <router-link tag="li" to="/"> <i class="fas fa-home fa-lg"></i> Home</router-link> </b-dropdown-item>
+            <b-nav-item to="/posts-manager">Posts Manager</b-nav-item>
+            <b-nav-item href="#" @click.prevent="login" v-if="!activeUser">Login</b-nav-item>
+            <b-nav-item href="#" @click.prevent="logout" v-else>Logout</b-nav-item>
+        </b-dropdown>
+        <b-dropdown right text="FulFill">
+          <b-dropdown-item> <router-link tag="li" to="/Localize"> Localize </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/Payez"> Payez </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/Pompez"> Pompez </router-link> </b-dropdown-item>
+          <b-dropdown-divider></b-dropdown-divider>
+          <b-dropdown-item> <router-link tag="li" to="/Maps"> Maps </router-link> </b-dropdown-item>
+
+        </b-dropdown>
+        <b-dropdown right text="Project">
+          <b-dropdown-item> <router-link tag="li" to="/NotreConcept"> Notre Concept </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/NotreProjet"> Notre Projet </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/Rejoidre"> Rejoindre </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/Reservez"> Reservez </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/Who"> Qui Sommes-nous </router-link> </b-dropdown-item>
+          <b-dropdown-divider></b-dropdown-divider>
+          <b-dropdown-item> <router-link tag="li" to="/Sign"> Sign Up </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/Sign"> Sign In </router-link> </b-dropdown-item>
+        </b-dropdown>
+        <b-dropdown right text="Admin">
+          <b-dropdown-item> <router-link tag="li" to="/Users"> Users </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/Fillers"> Fillers </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/Command"> Command </router-link> </b-dropdown-item>
+          <b-dropdown-divider></b-dropdown-divider>
+          <b-dropdown-item> <router-link tag="li" to="/Display"> Display </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/ReCommand"> ReCommand </router-link> </b-dropdown-item>
+        </b-dropdown>
+        <b-dropdown right text="Logged">
+          <b-dropdown-item> <router-link tag="li" to="/LogFillers"> LogFillers </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/LogUsers"> LogUsers </router-link> </b-dropdown-item>
+          <b-dropdown-divider></b-dropdown-divider>
+          <b-dropdown-item> Admin </router-link> </b-dropdown-item>
+        </b-dropdown>
+      </ul>
+  </nav>
 
   <!-- <div id="app">
     <b-navbar toggleable="md" type="dark" variant="dark">
@@ -62,8 +110,6 @@
   </div> -->
 
 
-
-
     <router-view/>
   </div>
 </template>
@@ -74,7 +120,8 @@ export default {
   name: 'app',
   data () {
     return {
-      activeUser: null
+      activeUser: null,
+      showMobileMenu: false
     }
   },
   async created () {
@@ -95,6 +142,9 @@ export default {
       await this.$auth.logout()
       await this.refreshActiveUser()
       this.$router.push('/')
+    },
+    handler: function(){
+      console.log('handler');
     }
   }
 }
@@ -116,5 +166,87 @@ nav{
   margin-top:-50px;
 }
 
+
+.icon {
+    cursor: pointer;
+}
+
+.icon:hover {
+    color: orange;
+}
+
+.is-hidden {
+    display: none;
+}
+
+.grid-header {
+    background: silver;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.grid-header .icon {
+    min-height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: inherit;
+}
+
+.nav-main {
+    flex: 1;
+    min-height: 60px;
+}
+
+.nav-mobile .list {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(-100%);
+    transition: transform 1s linear;
+}
+
+.nav-mobile.active .list {
+    transform: translateX(100%);
+}
+
+.nav-mobile .item {
+    height: 40px;
+    width: 100%;
+}
+
+[class^=nav-] .list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    min-height: inherit;
+    align-items: flex-start;
+    z-index: 100;
+}
+
+
+[class^=nav-] .item {
+    cursor: pointer;
+    flex: 1;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-height: inherit;
+}
+
+
+
+@media (min-width: 601px) {
+    .grid-header .icon {
+        display: none !important;
+    }
+}
+
+@media (max-width: 601px) {
+    .nav-main {
+        display: none;
+    }
+}
 
 </style>

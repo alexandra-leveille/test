@@ -177,8 +177,7 @@ export default {
 
 <style media="screen">
   .table{
-    border: 2px solid red;
-      font-size: 1.5vw;
+  font-size: 1.5vw;
   }
   .v-card__text {
     padding: 16px;
@@ -186,13 +185,12 @@ export default {
     height: 1.5vh;
 }
 #map{
-  border: 2px solid purple;
+    z-index: -1;
 }
 
 .middle{
   height: 50vh;
   width: auto;
-  border: 2px solid lime;
   background: url('../assets/pomp.png') 0 0 no-repeat;
   background-position: center;
 }

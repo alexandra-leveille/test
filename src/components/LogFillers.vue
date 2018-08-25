@@ -366,7 +366,7 @@ export default {
       app.sucessMessage = response.data.message;
     }
   })
-}
+  }
   }
 }
 </script>
