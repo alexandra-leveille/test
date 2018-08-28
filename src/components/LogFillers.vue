@@ -77,7 +77,6 @@
                 <p>{{item.price}} € </p>
               <p> <h6> Availability : {{item.dispo}} </h6> </p>
               </v-list-tile-content>
-
               <div class="bas">
                 <i class="fas fa-angle-right fa-3x"></i>
               </div>
@@ -379,7 +378,7 @@ div.map#map{
 }
 
 .mix{
-position: relative;
+  margin-right:2vw;
 }
 
 .mix p{
@@ -398,9 +397,6 @@ position: relative;
 .bloc p{
   margin-bottom:0;
   font-size: 0.9vw;
-}
-.bloc{
-  margin-left:5vw;
 }
 
 #addModal, #editModal, #deleteModal{
@@ -437,6 +433,10 @@ flex-direction: column;
   display: flex;
     justify-content: space-evenly;
     align-items: center;
+}
+
+.bloc{
+  display: grid;
 }
 
 </style>

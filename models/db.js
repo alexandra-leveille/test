@@ -1,4 +1,4 @@
-// jshit esversion:6
+// jshint esversion:6
 
 
 // login as such http://192.168.99.100:8089/ SOIT http://192.168.99.100:8089/

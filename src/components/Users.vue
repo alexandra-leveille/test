@@ -25,7 +25,7 @@
 </tr>
 
 <tr v-for="user in users">
-  <td> {{ user.id }} </td>
+  <td> {{user.id }} </td>
   <td> {{user.lastname }} </td>
   <td> {{user.firstname }} </td>
   <td> <button @click="showingEditModal = true; selectUser(user)" type="button" name="button"> <i class="fas fa-eraser"></i> </button>  </td>

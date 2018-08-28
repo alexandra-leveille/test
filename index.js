@@ -27,7 +27,6 @@ app.get('/', (req,res) => {
   res.send('Effectuated')
 })
 
-
 //////////// back end //////////////
 app.use('/users', require('./controllers/user.js'))
 app.use('/fillers', require('./controllers/filler.js'))

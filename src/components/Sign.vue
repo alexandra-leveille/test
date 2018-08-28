@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="signs">
-<router-link to="/Return"><i class="fa fa-home"></i></router-link>
+
 
 <div class="up">
   <button type="button" name="button"> Sign in </button>
@@ -54,17 +54,6 @@ export default {
 
 
 <style lang="css">
-.fa-home{
-  font-size: 40px;
-  left: 5px;
-  top: 0;
-  position:absolute;
-  transition:1s;
-}
-.fa-home:hover{
-  color: silver;
-  transition:1s;
-}
 
 h4{
   font-weight: 100;
@@ -127,6 +116,8 @@ text-align: left;
 p.fgt{
   text-align: center;
   font-size:1vw;
+  margin-right:16vw;
+  margin-top:1vh;
 }
 .left button{
   height: 7vh;

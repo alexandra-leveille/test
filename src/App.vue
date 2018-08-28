@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-
+<router-link to="/Return"><i class="fa fa-home"></i></router-link>
   <header class="grid-header">
-    <i v-on:click="showMobileMenu = !showMobileMenu" class="icon fa fa-bars fa-2x"> </i>
+    <i v-on:click="showMobileMenu = !showMobileMenu" id="bars" class="icon fa fa-bars fa-2x"> </i>
     <nav class="nav-main">
     <div>
       <b-button-group>
@@ -121,7 +121,7 @@ export default {
   data () {
     return {
       activeUser: null,
-      showMobileMenu: false
+      showMobileMenu: true
     }
   },
   async created () {
@@ -166,21 +166,34 @@ nav{
   margin-top:-50px;
 }
 
-
-.icon {
-    cursor: pointer;
+.fa-home{
+  font-size: 40px;
+  left: 5px;
+  top: 0;
+  position:absolute;
+  transition:1s;
+}
+.fa-home:hover{
+  color: silver;
+  transition:1s;
 }
 
-.icon:hover {
+#bars.icon {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 15px;
+}
+
+#bars.icon:hover {
     color: orange;
 }
 
-.is-hidden {
+#bars.is-hidden {
     display: none;
 }
 
 .grid-header {
-    background: silver;
     display: flex;
     justify-content: space-between;
     padding: 0 20px;
@@ -236,17 +249,34 @@ nav{
 }
 
 
-
+/* ///////////////// desktop format ///////////////// */
 @media (min-width: 601px) {
     .grid-header .icon {
         display: none !important;
     }
+
+    .nav-mobile{
+      display: none;
+    }
 }
 
+
+
+/* ///////////////// mobile format ///////////////// */
 @media (max-width: 601px) {
     .nav-main {
         display: none;
     }
+
+    .fa-home{
+      display: none;
+    }
+
+    .nav-mobile{
+      display: block;
+    }
+
+
 }
 
 </style>

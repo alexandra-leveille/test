@@ -56,7 +56,6 @@
       <template slot="items" slot-scope="props">
         <td> {{ props.item.id }} </td>
 
-
         <td class="text-xs-right">{{ props.item.carburant }}</td>
         <td class="text-xs-right">{{ props.item.type }}</td>
         <td class="text-xs-right">{{ props.item.disponibilite }}</td>

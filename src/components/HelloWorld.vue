@@ -35,6 +35,12 @@ a {
   color: #42b983;
 }
 
+div.hello{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 button{
   width: 12vw;
   height: 5vh;
