@@ -4,6 +4,9 @@
     <div class="container-fluid mt-4">
         <h1 class="h1">Posts Manager</h1>
         <p>Only authenticated users should see this page</p>
+
+
+        <img src="../assets/sorry2.jpg" alt="">
       </div>
 
 
@@ -17,4 +20,9 @@ export default {
 </script>
 
 <style lang="css">
+
+img{
+  max-width: 100%;
+  height: 30vh;
+}
 </style>

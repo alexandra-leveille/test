@@ -10,7 +10,7 @@ import Auth from '@okta/okta-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import * as VueGoogleMaps from 'vue2-google-maps'
-
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 Vue.config.productionTip = false
 
 Vue.use(BootstrapVue);
@@ -28,7 +28,8 @@ Vue.use(Vuetify, {
     primary: '#3f51b5',
     secondary: '#b0bec5',
     accent: '#8c9eff',
-    error: '#b71c1c'
+    error: '#b71c1c',
+    iconfont: 'mdi'
   }
 });
 

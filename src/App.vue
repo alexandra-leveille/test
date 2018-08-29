@@ -8,7 +8,7 @@
       <b-button-group>
         <ul class="list">
         <b-dropdown right text="Home">
-            <b-dropdown-item> <router-link tag="li" to="/"> <i class="fas fa-home fa-lg"></i> Home</router-link> </b-dropdown-item>
+            <b-dropdown-item> <router-link tag="li" to="/"> Home</router-link> </b-dropdown-item>
             <b-nav-item to="/posts-manager">Posts Manager</b-nav-item>
             <b-nav-item href="#" @click.prevent="login" v-if="!activeUser">Login</b-nav-item>
             <b-nav-item href="#" @click.prevent="logout" v-else>Logout</b-nav-item>
@@ -32,6 +32,9 @@
           <b-dropdown-item> <router-link tag="li" to="/Sign"> Sign In </router-link> </b-dropdown-item>
         </b-dropdown>
         <b-dropdown right text="Admin">
+          <b-nav-item to="/posts-manager">Posts Manager</b-nav-item>
+          <b-nav-item href="#" @click.prevent="login" v-if="!activeUser">Login</b-nav-item>
+          <b-nav-item href="#" @click.prevent="logout" v-else>Logout</b-nav-item>
           <b-dropdown-item> <router-link tag="li" to="/Users"> Users </router-link> </b-dropdown-item>
           <b-dropdown-item> <router-link tag="li" to="/Fillers"> Fillers </router-link> </b-dropdown-item>
           <b-dropdown-item> <router-link tag="li" to="/Command"> Command </router-link> </b-dropdown-item>

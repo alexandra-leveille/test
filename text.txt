@@ -13,6 +13,13 @@ docker-machine restart
 docker-machine env
 @FOR /f "tokens=*" %i IN ('docker-machine env') DO @%i
 
+
+
+- docker-machine  start default
+- docker-machine restart
+- docker machine env
+- @FOR /f "tokens=*" %i IN ('docker-machine env') DO @%i
+
 Username: assdin504@gmail.com
   Temporary password: ANx6g2PJ // Holysmartness407
 
@@ -555,3 +562,24 @@ Prix integer
       </v-layout>
     </v-container>
   </template>
+
+
+  ////////////////////////////////// iframe ////////////////////////////////////
+  <div class="video">
+    <iframe class="iframe" src="https://giphy.com/embed/2rQh6ESbvzQC4" allowFullScreen></iframe>
+  </div>
+
+  .video{
+    height: 30vh;
+    width:55vw;
+    margin: auto;
+    border: 2px solid orangered;
+  }
+  .iframe{
+    width: 55vw;
+    height: 30vh;
+  }
+
+
+  /////////////////// import icons ////////////////////////
+  https://vuetifyjs.com/en/framework/icons#using-custom-icons
