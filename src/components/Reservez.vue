@@ -113,7 +113,7 @@
               large
               target="_blank"
             >
-              <v-icon large> Prepare your order </v-icon>
+            <i class="fas fa-gas-pump fa-5x"></i>
             </v-btn>
             <span>Source</span>
           </v-tooltip>
