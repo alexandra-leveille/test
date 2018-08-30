@@ -22,6 +22,7 @@ import LogUsers from '@/components/LogUsers'
 import Hello from '@/components/Hello'
 import PostsManager from '@/components/PostsManager'
 import Items from '@/components/Items'
+import ItemsId from '@/components/ItemsId'
 import './index2'
 import Auth from '@okta/okta-vue'
 import Carburants from  '@/components/Carburants'
@@ -119,6 +120,11 @@ export default new Router({
       path: '/Items',
       name: 'Items',
       component: Items
+    },
+    {
+      path: '/ItemsId',
+      name: 'ItemsId',
+      component: ItemsId
     },
     {
       path: '/LogUsers',

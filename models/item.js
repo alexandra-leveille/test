@@ -6,9 +6,12 @@ module.exports = {
   getItems(){
     return db.query('SELECT * FROM items ORDER BY id')
   },
+  getItemsById(id){
+    return db.query(`SELECT * FROM items WHERE id=${id}`)
+  },
   createItem({ name, type, title, activity, price, dispo }) {
     return db.query(`
-      INSERT INTO items (name, type, title, activity, price, dispo) VALUES 
+      INSERT INTO items (name, type, title, activity, price, dispo) VALUES
       ('${name}','${type}','${title}','${activity}','${price}','${dispo}')`)
   },
   updateItem({id, name, type, title, activity, price, dispo }){

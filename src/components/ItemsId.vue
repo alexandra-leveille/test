@@ -1,24 +1,12 @@
-
 <template lang="html">
   <div class="item">
-    <v-parallax
-      dark
-      src="https://picsum.photos/900/250/?image=250"
-      style="height:550px; margin-bottom:0"
-    >
-      <v-layout
-        align-center
-        column
-        justify-center
-      >
-        <h1 class="display-2 font-weight-thin mb-3"> The adventure starts Now </h1>
-        <h4 class="subheading"> Come and join us for this incredible journey </h4>
-      </v-layout>
-    </v-parallax>
+
+<h2> Welcome {{LogItems[0].name}}, You have now the right to make orders according to your preferences </h2>
+    <button @click="showingAddModal = true; createItem()" type="button" name="button">ADD</button>
 
     <table class="table">
       <tr>
-        <th>ID <button @click="showingAddModal = true; createItem()" type="button" name="button"><i class="fas fa-address-book"></i></button> </th>
+        <th>ID </th>
         <th>NAME</th>
         <th>TYPE</th>
         <th>DATE</th>
@@ -29,20 +17,19 @@
         <th>DELETE</th>
       </tr>
 
-      <tr v-for="item in items">
-        <td>{{item.id}}</td>
-        <td>{{item.name}}</td>
-        <td>{{item.type}}</td>
-        <td>{{item.title}}</td>
-        <td>{{item.activity}}</td>
-        <td>{{item.price}}</td>
-        <td>{{item.dispo}}</td>
-        <td><button @click="showingEditModal = true ;select(item)" type="button" name="button"> EDIT </button> </td>
-        <td><button @click="showingDeleteModal = true;select(item)" type="button" name="button"> DELETE </button> </td>
+      <tr v-for="LogItem in LogItems">
+        <td>{{LogItem.id}}</td>
+        <td>{{LogItem.name}}</td>
+        <td>{{LogItem.type}}</td>
+        <td>{{LogItem.title}}</td>
+        <td>{{LogItem.activity}}</td>
+        <td>{{LogItem.price}}</td>
+        <td>{{LogItem.dispo}}</td>
+        <td><button @click="showingEditModal = true ;select(LogItem)" type="button" name="button"> EDIT </button> </td>
+        <td><button @click="showingDeleteModal = true;select(LogItem)" type="button" name="button"> DELETE </button> </td>
       </tr>
+
     </table>
-
-
 
     <div id="addModal" v-if="showingAddModal">
       <b-card title=" Add a New UserCommand"
@@ -59,9 +46,8 @@
           <div>
     <button class="fright close" @click="showingAddModal = false"> CLOSE </button>
     <table class="table">
-
     <label for="">Name</label>
-    <input type="text" name="Firstname" value="Firstname" v-model="newItem.name">
+    <input type="text" name="Firstname" value="Firstname" :placeholder="LogItems[0].name" v-model="newItem.name">
     <label for="">type</label>
     <input type="text" name="" value="type" v-model="newItem.type">
     <select  v-model="newItem.type" class="" name="activite">
@@ -70,8 +56,11 @@
       <option   value="Essence SP 95"> Essence SP 95 </option>
       <option   value="Carburant GPL"> Carburant GPL </option>
     </select>
+
+
     <label for="">date</label>
     <input type="date" name="" value="title" v-model="newItem.title">
+
     <label for="">activity</label>
     <input type="text" name="" value="activity" v-model="newItem.activity">
     <select v-model="newItem.activity" class="" name="activite">
@@ -79,9 +68,11 @@
       <option value="Faire le 1/2"> Faire le 1/2 </option>
       <option value="Faire le 1/4"> Faire le 1/4 </option>
     </select>
+
     <label for="">price</label>
     <input type="text" name="" value="prix" v-model="newItem.price">
     <input type="range" name="points" min="0" max="300" v-model="newItem.price">
+
     <label for="">dispo</label>
     <input type="text" name="" value="disponibilite" v-model="newItem.dispo">
     <select v-model="newItem.dispo"  name="">
@@ -95,7 +86,6 @@
         </p>
       </b-card>
     </div>
-
 
 <!-- /////////////////////////////////////////////////////////////// -->
 
@@ -114,35 +104,42 @@
 
       <div class="card">
         <label for="">Name</label>
-        <input type="text" name="" value="" v-model="clickedUsersNameCommand.name">
+        <input type="text" name="Firstname" value="Firstname" :placeholder="LogItems[0].name" v-model="clickedUsersNameCommand.name">
         <label for="">type</label>
         <input type="text" name="" value="" v-model="clickedUsersNameCommand.type">
-        <select  v-model="clickedUsersNameCommand.type" class="" name="activite">
-            <option   value="DIESEL"> DIESEL </option>
-          <option   value="Essence SP 98"> Essence SP 98 </option>
-          <option   value="Essence SP 95"> Essence SP 95 </option>
-          <option   value="Carburant GPL"> Carburant GPL </option>
-        </select>
+    <select  v-model="clickedUsersNameCommand.type" class="" name="activite">
+        <option   value="DIESEL"> DIESEL </option>
+      <option   value="Essence SP 98"> Essence SP 98 </option>
+      <option   value="Essence SP 95"> Essence SP 95 </option>
+      <option   value="Carburant GPL"> Carburant GPL </option>
+    </select>
 
-        <label for="">title</label>
+        <label for="">Date</label>
         <input type="date" name="" value="" v-model="clickedUsersNameCommand.title">
         <label for="">activity</label>
         <input type="text" name="" value="" v-model="clickedUsersNameCommand.activity">
+
         <select v-model="clickedUsersNameCommand.activity" class="" name="activite">
       <option value="Faire le  Plein"> Faire le  Plein </option>
       <option value="Faire le 1/2"> Faire le 1/2 </option>
       <option value="Faire le 1/4"> Faire le 1/4 </option>
     </select>
+
         <label for="">price</label>
         <input type="text" name="" value="" v-model="clickedUsersNameCommand.price">
-        <input type="range" name="points" min="0" max="300" v-model="clickedUsersNameCommand.price">
+    <input type="range" name="points" min="0" max="300" v-model="clickedUsersNameCommand.price">
 
         <label for="">dispo</label>
         <input type="text" name="" value="" v-model="clickedUsersNameCommand.dispo">
+
         <select v-model="clickedUsersNameCommand.dispo"  name="">
               <option value="YES"> YES </option>
               <option value="NO"> NO </option>
             </select>
+
+
+
+
 <button @click="updateItem();showingEditModal= false" type="button" name="button"> EDIT </button>
 </div>
     </p>
@@ -189,44 +186,57 @@ export default {
       showingDeleteModal:false,
       items: [],
       newItem: {name:'', type:'', title:'', activity:'', price:'', dispo:''},
-      clickedUsersNameCommand:{}
+      clickedUsersNameCommand:{},
+      LogItems: [],
     }
   },
   mounted: function() {
     console.log('mounted');
-    this.getItems();
+    //this.getItems();
+    this.getItemsById();
   },
   methods: {
-    getItems:function(){
-      axios.get('http://localhost:3005/items/').then((response) => {
-        console.log('getItems', response);
+    getItemsById:function(id){
+      axios.get('http://localhost:3005/items/'+ sessionStorage.item).then((response) => {
         if (response.data.error) {
-          console.log('ERROR GETITEMS');
+          console.log('items by id ERROR');
         } else {
-          console.log('NO ERROR getItems',this.items);
-          this.items = response.data.rows;
+          console.log('SUCESS SO itemId is :', response.data.rows);
+        console.log(response.data.rows);
+        this.LogItems = response.data.rows;
         }
       })
     },
+    // getItems:function(){
+    //   axios.get('http://localhost:3005/items/').then((response) => {
+    //     console.log('getItems', response);
+    //     if (response.data.error) {
+    //       console.log('ERROR GETITEMS');
+    //     } else {
+    //       console.log('NO ERROR getItems',this.items);
+    //       this.items = response.data.rows;
+    //     }
+    //   })
+    // },
     createItem: function(){
-      console.log('create Filler');
+      console.log('create Item');
       axios.post('http://localhost:3005/items/', this.newItem).then((response) => {
-        console.log('filler', response);
-        console.log('this.newFiller', this.newItem);
+        console.log('ITEM', response);
+        console.log('this.newItem', this.newItem);
         this.newItem = {name:'', type:'', title:'', activity:'', price:'', dispo:''};
         if (response.data.error) {
           console.log('=== ligne 67 ===');
           app.errorMessage = response.data.message;
         } else {
           console.log('/// ligne 70 ///');
-          this.getItems();
+          this.getItemsById();
         }
       })
     },
-    select(item){
-      this.clickedUsersNameCommand = item;
-      console.log('clicke sur', item);
-      console.log('item name', item.name);
+    select(LogItem){
+      this.clickedUsersNameCommand = LogItem;
+      console.log('clicke sur', LogItem);
+      console.log('item name', LogItem.name);
     },
     updateItem: function(){
       console.log(this.clickedUsersNameCommand.id);
@@ -278,7 +288,7 @@ align-items: flex-start
 }
 
 .table th{
-  background: lime;
+  background: red;
 }
 
 #addModal .table{
@@ -293,7 +303,7 @@ align-items: flex-start
 }
 
 #addModal .table select{
-  background: lightpink;
+  background: rgba(239,212,212,0.5);
 }
 
 </style>

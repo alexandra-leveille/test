@@ -20,7 +20,8 @@ Vue.use(Vuetify, {
     secondary: colors.grey.darken1,
     accent: colors.shades.black,
     error: colors.red.accent3
-  }
+  },
+  name: 'v-img'
 })
 
 Vue.use(Vuetify, {

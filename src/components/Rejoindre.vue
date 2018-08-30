@@ -2,7 +2,7 @@
 <template>
   <v-card>
     <v-card-title>
-      Nutrition
+      Gas Refuiling order
       <i @click="showingAddModal = true;" class="far fa-plus-square fa-2x"></i>
     <div id="addModal" class="addModal" v-if="showingAddModal">
       <button @click="showingAddModal = false" type="button" name="button"> CLOSE </button>

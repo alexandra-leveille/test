@@ -9,6 +9,12 @@ module.exports = express.Router()
   .catch(err => res.json(err))
 })
 
+.get('/:id', (req, res) => {
+    const {id} = req.params;
+  model.getItemsById(id)
+  .then(result => res.json(result))
+  .catch(err => res.json(err))
+})
 .post('/',(req, res) => {
   const { name, type, title, activity, price, dispo } = req.body;
   model.createItem({ name, type, title, activity, price, dispo })
