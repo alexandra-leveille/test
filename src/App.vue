@@ -15,18 +15,18 @@
         </b-dropdown>
         <b-dropdown right text="FulFill">
           <b-dropdown-item> <router-link tag="li" to="/Localize"> Localize </router-link> </b-dropdown-item>
-          <b-dropdown-item> <router-link tag="li" to="/Payez"> Payez </router-link> </b-dropdown-item>
-          <b-dropdown-item> <router-link tag="li" to="/Pompez"> Pompez </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/Payez"> Pay </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/Pompez"> Pomp </router-link> </b-dropdown-item>
           <b-dropdown-divider></b-dropdown-divider>
           <b-dropdown-item> <router-link tag="li" to="/Maps"> Maps </router-link> </b-dropdown-item>
 
         </b-dropdown>
         <b-dropdown right text="Project">
-          <b-dropdown-item> <router-link tag="li" to="/NotreConcept"> Notre Concept </router-link> </b-dropdown-item>
-          <b-dropdown-item> <router-link tag="li" to="/NotreProjet"> Notre Projet </router-link> </b-dropdown-item>
-          <b-dropdown-item> <router-link tag="li" to="/Rejoidre"> Rejoindre </router-link> </b-dropdown-item>
-          <b-dropdown-item> <router-link tag="li" to="/Reservez"> Reservez </router-link> </b-dropdown-item>
-          <b-dropdown-item> <router-link tag="li" to="/Who"> Qui Sommes-nous </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/NotreConcept"> Our Concept </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/NotreProjet"> Our Projet </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/Rejoidre"> Join </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/Reservez"> Order </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/Who"> Who are we ? </router-link> </b-dropdown-item>
           <b-dropdown-divider></b-dropdown-divider>
           <b-dropdown-item> <router-link tag="li" to="/Sign"> Sign Up </router-link> </b-dropdown-item>
           <b-dropdown-item> <router-link tag="li" to="/Sign"> Sign In </router-link> </b-dropdown-item>
@@ -64,18 +64,18 @@
         </b-dropdown>
         <b-dropdown right text="FulFill">
           <b-dropdown-item> <router-link tag="li" to="/Localize"> Localize </router-link> </b-dropdown-item>
-          <b-dropdown-item> <router-link tag="li" to="/Payez"> Payez </router-link> </b-dropdown-item>
-          <b-dropdown-item> <router-link tag="li" to="/Pompez"> Pompez </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/Payez"> Pay </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/Pompez"> Pomp </router-link> </b-dropdown-item>
           <b-dropdown-divider></b-dropdown-divider>
           <b-dropdown-item> <router-link tag="li" to="/Maps"> Maps </router-link> </b-dropdown-item>
 
         </b-dropdown>
         <b-dropdown right text="Project">
-          <b-dropdown-item> <router-link tag="li" to="/NotreConcept"> Notre Concept </router-link> </b-dropdown-item>
-          <b-dropdown-item> <router-link tag="li" to="/NotreProjet"> Notre Projet </router-link> </b-dropdown-item>
-          <b-dropdown-item> <router-link tag="li" to="/Rejoidre"> Rejoindre </router-link> </b-dropdown-item>
-          <b-dropdown-item> <router-link tag="li" to="/Reservez"> Reservez </router-link> </b-dropdown-item>
-          <b-dropdown-item> <router-link tag="li" to="/Who"> Qui Sommes-nous </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/NotreConcept"> OurConcept </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/NotreProjet"> Our Projet </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/Rejoidre"> Join </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/Reservez"> Order </router-link> </b-dropdown-item>
+          <b-dropdown-item> <router-link tag="li" to="/Who"> Who are we ? </router-link> </b-dropdown-item>
           <b-dropdown-divider></b-dropdown-divider>
           <b-dropdown-item> <router-link tag="li" to="/Sign"> Sign Up </router-link> </b-dropdown-item>
           <b-dropdown-item> <router-link tag="li" to="/Sign"> Sign In </router-link> </b-dropdown-item>

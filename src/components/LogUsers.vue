@@ -1,9 +1,11 @@
 <template lang="html">
   <div class="logusers">
-
-<div class="avatar">
-
-</div>
+      <v-avatar size="70px" tile>
+        <img
+          src="../assets/avatar/flora.png"
+          alt="Vuetify"
+        >
+      </v-avatar>
 
 <h2> Hello <span class="gold"> {{this.logUsers[0].user_name}} </span> </h2>
 
@@ -73,12 +75,108 @@
           <td> {{log.user_name}} </td>
           <td> {{log.command}}</td>
           <td> <i class="fas fa-plus-square" @click="showingAddModal = true;"></i></td>
-          <td> <i class="fas fa-pen-square" @click="showingEditModal = true; selectUser(user)"></i></td>
-          <td> <i class="fas fa-times" @click="showingDeleteModal = true; selectUser(user)"></i> </td>
+          <td> <i class="fas fa-pen-square" @click="showingEditModal = true; selectUser(log)"></i></td>
+          <td> <i class="fas fa-times" @click="showingDeleteModal = true; selectUser(log)"></i> </td>
         </tr>
     </table>
 
       <!-- /////////////////////////// AddModal ///////////////////////// -->
+
+
+      <template>
+
+        <template>
+          <v-layout
+            wrap
+            style="height: 5px;"
+          >
+
+            <v-navigation-drawer style ="background:rgba(250,250, 250,0.5); position: abloslute; top:90vh"
+              v-model="drawer"
+              absolute
+              temporary
+            >
+              <v-list class="pa-1">
+                <v-list-tile avatar>
+                  <v-list-tile-avatar>
+                    <img src="../assets/avatar/marc.png">
+                  </v-list-tile-avatar>
+
+                  <v-list-tile-content>
+                    <v-list-tile-title>Marc Leider</v-list-tile-title>
+                    <v-list-tile-title> will be available in 20 minutes</v-list-tile-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+              </v-list>
+
+              <v-list class="pt-0" dense>
+                <v-divider></v-divider>
+
+                <v-list-tile
+                  v-for="item in items"
+                  :key="item.title"
+                  @click=""
+                >
+                  <v-list-tile-action>
+                    <v-icon>{{ item.icon }}</v-icon>
+                  </v-list-tile-action>
+
+                  <v-list-tile-content>
+                    <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+              </v-list>
+            </v-navigation-drawer>
+          </v-layout>
+        </template>
+
+
+          <!-- /////////////////////// map ///////////////// -->
+
+          <template>
+            <v-card
+              class="pa-3"
+              flat
+              height="300px"
+              img="https://cdn.vuetifyjs.com/images/toolbar/map.jpg"
+            >
+              <v-toolbar
+                dense
+                floating
+              >
+                <v-text-field
+                  hide-details
+                  prepend-icon="search"
+                  single-line
+                ></v-text-field>
+
+                <v-btn icon>
+                  <v-icon>my_location</v-icon>
+                </v-btn>
+
+                <v-btn icon>
+                  <v-icon>more_vert</v-icon>
+                </v-btn>
+              </v-toolbar>
+
+              <v-container>
+                <v-layout justify-center>
+                  <v-btn
+                    color="pink"
+                    dark
+                    @click.stop="drawer = !drawer"
+                  >
+                    Find a filler
+                  </v-btn>
+                </v-layout>
+              </v-container>
+            </v-card>
+
+          </template>
+        </v-card>
+      </template>
+
+
 
     <div id="addModal" v-if="showingAddModal">
       <b-card title=" Add a New UserCommand"
@@ -144,7 +242,14 @@
       <!-- ////////////////////////////////////////////////////////////////////// -->
 
   </div>
+
+
+
+
+
 </template>
+
+
 
 <script>
 import axios from 'axios'
@@ -174,7 +279,12 @@ export default {
               {path:"../assets/avatar/daniel.png"},
               {path:"../assets/avatar/celine.png"},
               {path:"../assets/avatar/marc.png"},
-              {path:"../assets/avatar/flora.png"}]
+              {path:"../assets/avatar/flora.png"}],
+              drawer:null,
+              items: [
+                { title: 'Home', icon: 'dashboard' },
+                { title: 'About', icon: 'question_answer' }
+              ]
     }
   },
   mounted: function(){
@@ -218,7 +328,7 @@ export default {
         }
       })
     },
-    selectUser(user) {
+    selectUser(log) {
       this.clickedUsersNameCommand = user;
     },
     createUserCommandName2: function(){
@@ -269,17 +379,6 @@ p.straight{
   display:inline-block;
 }
 
-div.avatar{
-  height:200px;
-  width: 200px;
-  border-radius: 50%;
-  border: 2px solid blue;
-  background: cyan;
-  position:absolute;
-  top: 10vh;
-  right: 0;
-  background: url('../assets/avatar/albertino.png') no-repeat center 50%
-}
 img{
   max-width: 100%;
   height: auto;

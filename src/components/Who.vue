@@ -1,6 +1,6 @@
 <template lang="html">
 <div class="reservez">
-  <h1> Who are we </h1>
+  <h1> Who are we ? </h1>
 
   <v-app light>
    <v-toolbar class="white">
@@ -11,7 +11,7 @@
        <template>
   <v-parallax
     dark
-    src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+    src="https://picsum.photos/650/350"
   >
     <v-layout
       align-center
@@ -89,9 +89,9 @@
      </section>
 
      <section>
-       <v-parallax src="assets/section.jpg" height="380">
+       <v-parallax src="https://picsum.photos/600/300/?image=09" height="380">
          <v-layout column align-center justify-center>
-           <div class="headline white--text mb-3 text-xs-center">Web development has never been easier</div>
+           <div class="headline white--text mb-3 text-xs-center"> Renew your Gas station experience </div>
            <em>Kick-start your application today</em>
            <v-btn
              class="blue lighten-2 mt-5"
@@ -183,14 +183,14 @@ export default {
   data () {
     return {
     title : 'Welcome to your web interface',
-    simple: 'Simple et pratique',
-    simple1: 'Vos véhicules sont ravitaillés sans bouger: indiquez simplement le lieu, le créneau et le type de carburant que vous souhaitez (Diesel, SP95, SP98).',
-    securise: 'Securise',
-    securise1: 'Nos équipements sont conformes à la réglementation européenne et nos Pompistes sont titulaires d’une certification d’état officielle.',
-    prix:'Prix compétitifs',
-    prix1: 'Vous ne dépenserez pas plus grâce à nos prix indexés sur les prix du marché et suivez votre consommation sur votre tableau de bord.',
-    gain: 'Gain de temps',
-    gain1: 'C’est la fin des détours et des pertes de temps pour faire le plein. Nos clients sont heureux et les entreprises gagnent en productivité.',
+    simple: 'Fast and practical',
+    simple1: 'Your vehicles are refueled without moving: simply indicate the location, the availability and the type of fuel you want (Diesel, SP95, SP98).',
+    securise: 'Safe',
+    securise1: 'Our equipment complies with European regulations and our Pompists are officially certified.',
+    prix:'Competitive Prices',
+    prix1: 'You will not spend more on our market price indexed prices and track your consumption on your dashboard.',
+    gain: 'Time saving',
+    gain1: 'It s the end of detours and wastes of time to refuel. Our customers are happy and businesses are gaining in productivity',
     contact: 'contact',
     contactus: 'Feel free to contact us now. and leave your input on our service'
       }
