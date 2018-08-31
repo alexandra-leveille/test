@@ -1,5 +1,6 @@
-<template>
-  <v-card
+<template lang="html">
+  <div class="proj">
+    <v-card
     class="mx-auto hide-overflow"
     style="max-width: 600px;"
   >
@@ -118,11 +119,12 @@
       <em>Portions of the materials used are trademarks and/or copyrighted works of Epic Games, Inc. All rights reserved by Epic. This material is not official and is not endorsed by Epic.</em>
     </div>
   </v-card>
+  </div>
 </template>
 
 <script>
   export default {
-    name: 'v-img',
+    name:'proj',
     data: () => ({
       copied: false,
       dialog: false,
@@ -139,8 +141,6 @@
     }
   }
 </script>
-<codepen-resources lang="json">
-  {
-    "css": ["https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css"]
-  }
-</codepen-resources>
+
+<style lang="css">
+</style>

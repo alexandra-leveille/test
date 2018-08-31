@@ -400,7 +400,6 @@ div.map#map{
 }
 
 #addModal, #editModal, #deleteModal{
-  border: 3px solid lime;
   width: 35vw;
   position: fixed;
   top: 0;
@@ -409,8 +408,7 @@ div.map#map{
 }
 
 #addModal table.table, #editModal table.table {
-  display: flex;
-  border: 2px solid;
+display: flex;
 justify-content: flex-start;
 align-items: flex-start;
 flex-direction: column;

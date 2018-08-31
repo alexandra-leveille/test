@@ -19,28 +19,26 @@
 <div class="middle">
 
 </div>
-
-
       <v-container fluid class="table">
         <v-layout row>
-          <v-flex xs2 order-lg2>
-            <v-card dark tile flat style="background:pink">
-              <v-card-text style="font-size:1.5vw; font-weight:600"> Diesel </v-card-text>
+          <v-flex xs1 order-lg2>
+            <v-card dark tile flat style="background:none">
+              <v-card-text style="font-size:1.5vw; font-weight:600; color:black;"> Diesel </v-card-text>
             </v-card>
           </v-flex>
         </v-layout>
         <v-layout row>
-          <v-flex xs2 order-md2 order-xs1>
-            <v-card dark tile flat  >
+          <v-flex xs1 order-md1 order-xs1 >
+            <v-card dark tile flat >
               <v-card-text style="color:lightgrey"> Quart </v-card-text>
             </v-card>
           </v-flex>
-          <v-flex xs2 order-md2 order-xs1>
+          <v-flex xs1 order-md1 order-xs1>
             <v-card dark tile flat >
               <v-card-text style="color:lightgrey"> Moitie </v-card-text>
             </v-card>
           </v-flex>
-          <v-flex xs2 order-md2 order-xs1>
+          <v-flex xs1 order-md1 order-xs1>
             <v-card dark tile flat>
               <v-card-text style="color:lightgrey"> Plein </v-card-text>
             </v-card>
@@ -48,24 +46,24 @@
         </v-layout>
         <hr>
         <v-layout row>
-          <v-flex xs3 order-lg2>
-            <v-card dark tile flat style="background:pink">
-              <v-card-text style="font-size:1.5vw; font-weight:600"> Essence SP 98 </v-card-text>
+          <v-flex xs1 order-lg2>
+            <v-card dark tile flat style="background:none">
+              <v-card-text style="font-size:1.5vw; font-weight:600; color:black"> Essence SP 98 </v-card-text>
             </v-card>
           </v-flex>
         </v-layout>
         <v-layout row>
-          <v-flex xs2 order-md2 order-xs1>
+          <v-flex xs1 order-md1 order-xs1>
             <v-card dark tile flat>
               <v-card-text style="color:lightgrey"> Quart </v-card-text>
             </v-card>
           </v-flex>
-          <v-flex xs2 order-md2 order-xs1>
+          <v-flex xs1 order-md1 order-xs1>
             <v-card dark tile flat>
               <v-card-text style="color:lightgrey"> Moitie </v-card-text>
             </v-card>
           </v-flex>
-          <v-flex xs2 order-md2 order-xs1>
+          <v-flex xs1 order-md1 order-xs1>
             <v-card dark tile flat>
               <v-card-text style="color:lightgrey"> Plein </v-card-text>
             </v-card>
@@ -73,24 +71,24 @@
         </v-layout>
       <hr>
         <v-layout row>
-          <v-flex xs3 order-lg2>
-            <v-card dark tile flat style="background:pink">
-              <v-card-text style="font-size:1.5vw; font-weight:600"> Essence SP 95 </v-card-text>
+          <v-flex xs1 order-lg2>
+            <v-card dark tile flat style="background:none">
+              <v-card-text style="font-size:1.5vw; font-weight:600; color:black"> Essence SP 95 </v-card-text>
             </v-card>
           </v-flex>
         </v-layout>
         <v-layout row>
-          <v-flex xs2 order-md2 order-xs1>
+          <v-flex xs1 order-md1 order-xs1>
             <v-card dark tile flat>
               <v-card-text style="color:orange;"> Moitie </v-card-text>
             </v-card>
           </v-flex>
-          <v-flex xs2 order-m2 order-xs1>
+          <v-flex xs1 order-m1 order-xs1>
             <v-card dark tile flat >
               <v-card-text> Quart </v-card-text>
             </v-card>
           </v-flex>
-          <v-flex xs2 order-md2 order-xs1>
+          <v-flex xs1 order-md1 order-xs1>
             <v-card dark tile flat >
               <v-card-text> Plein </v-card-text>
             </v-card>
@@ -98,24 +96,24 @@
         </v-layout>
       <hr>
         <v-layout row>
-          <v-flex xs3 order-lg2>
-            <v-card dark tile flat style="background:pink">
-              <v-card-text style="font-size:1.5vw; font-weight:600"> CarburantGPL </v-card-text>
+          <v-flex xs1 order-lg2>
+            <v-card dark tile flat style="background:none">
+              <v-card-text style="font-size:1.5vw; font-weight:600; color:black"> CarburantGPL </v-card-text>
             </v-card>
           </v-flex>
         </v-layout>
         <v-layout row>
-          <v-flex xs2 order-md2 order-xs1>
+          <v-flex xs1 order-md1 order-xs1>
             <v-card dark tile flat >
               <v-card-text style="color:lightgrey"> Quart </v-card-text>
             </v-card>
           </v-flex>
-          <v-flex xs2 order-md2 order-xs1>
+          <v-flex xs1 order-md1 order-xs1>
             <v-card dark tile flat>
               <v-card-text style="color:lightgrey"> Moitie </v-card-text>
             </v-card>
           </v-flex>
-          <v-flex xs2 order-md2 order-xs1>
+          <v-flex xs1 order-md1 order-xs1>
             <v-card dark tile flat >
               <v-card-text style="color:lightgrey"> Plein </v-card-text>
             </v-card>
@@ -202,5 +200,10 @@ button.button{
   margin: auto;
   font-weight: 800;
   color: white;
+}
+
+.table{
+  margin-left:8vw;
+  overflow-y: hidden;
 }
 </style>
