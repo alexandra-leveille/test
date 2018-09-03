@@ -1,5 +1,5 @@
 <template lang="html">
-<div class="reservez">
+<div class="who">
   <h1> Who are we ? </h1>
 
   <v-app light>
@@ -179,7 +179,7 @@
 
 <script>
 export default {
-  name: 'Who are we',
+  name: 'who',
   data () {
     return {
     title : 'Welcome to your web interface',

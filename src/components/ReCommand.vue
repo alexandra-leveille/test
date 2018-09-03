@@ -40,7 +40,7 @@
 
 <div id="addModal" v-if="showingAddModal">
   <b-card title="Add a New UserCommand"
-          img-src="https://picsum.photos/600/300/?image=25"
+          img-src="https://picsum.photos/600/300/?image=43"
           img-alt="Image"
           img-top
           tag="article"

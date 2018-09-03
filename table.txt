@@ -1,0 +1,102 @@
+<v-container fluid class="table">
+  <v-layout row>
+    <v-flex xs1 order-lg2>
+      <v-card dark tile flat style="background:none">
+        <v-card-text style="font-size:1.5vw; font-weight:600; color:black;"> Diesel </v-card-text>
+      </v-card>
+    </v-flex>
+  </v-layout>
+  <v-layout row>
+    <v-flex xs1 order-md1 order-xs1 >
+      <v-card dark tile flat >
+        <v-card-text style="color:lightgrey"> Quart </v-card-text>
+      </v-card>
+    </v-flex>
+    <v-flex xs1 order-md1 order-xs1>
+      <v-card dark tile flat >
+        <v-card-text style="color:lightgrey"> Moitie </v-card-text>
+      </v-card>
+    </v-flex>
+    <v-flex xs1 order-md1 order-xs1>
+      <v-card dark tile flat>
+        <v-card-text style="color:lightgrey"> Plein </v-card-text>
+      </v-card>
+    </v-flex>
+  </v-layout>
+  <hr>
+  <v-layout row>
+    <v-flex xs1 order-lg2>
+      <v-card dark tile flat style="background:none">
+        <v-card-text style="font-size:1.5vw; font-weight:600; color:black"> Essence SP 98 </v-card-text>
+      </v-card>
+    </v-flex>
+  </v-layout>
+  <v-layout row>
+    <v-flex xs1 order-md1 order-xs1>
+      <v-card dark tile flat>
+        <v-card-text style="color:lightgrey"> Quart </v-card-text>
+      </v-card>
+    </v-flex>
+    <v-flex xs1 order-md1 order-xs1>
+      <v-card dark tile flat>
+        <v-card-text style="color:lightgrey"> Moitie </v-card-text>
+      </v-card>
+    </v-flex>
+    <v-flex xs1 order-md1 order-xs1>
+      <v-card dark tile flat>
+        <v-card-text style="color:lightgrey"> Plein </v-card-text>
+      </v-card>
+    </v-flex>
+  </v-layout>
+<hr>
+  <v-layout row>
+    <v-flex xs1 order-lg2>
+      <v-card dark tile flat style="background:none">
+        <v-card-text style="font-size:1.5vw; font-weight:600; color:black"> Essence SP 95 </v-card-text>
+      </v-card>
+    </v-flex>
+  </v-layout>
+  <v-layout row>
+    <v-flex xs1 order-md1 order-xs1>
+      <v-card dark tile flat>
+        <v-card-text style="color:orange;"> Moitie </v-card-text>
+      </v-card>
+    </v-flex>
+    <v-flex xs1 order-m1 order-xs1>
+      <v-card dark tile flat >
+        <v-card-text> Quart </v-card-text>
+      </v-card>
+    </v-flex>
+    <v-flex xs1 order-md1 order-xs1>
+      <v-card dark tile flat >
+        <v-card-text> Plein </v-card-text>
+      </v-card>
+    </v-flex>
+  </v-layout>
+<hr>
+  <v-layout row>
+    <v-flex xs1 order-lg2>
+      <v-card dark tile flat style="background:none">
+        <v-card-text style="font-size:1.5vw; font-weight:600; color:black"> CarburantGPL </v-card-text>
+      </v-card>
+    </v-flex>
+  </v-layout>
+  <v-layout row>
+    <v-flex xs1 order-md1 order-xs1>
+      <v-card dark tile flat >
+        <v-card-text style="color:lightgrey"> Quart </v-card-text>
+      </v-card>
+    </v-flex>
+    <v-flex xs1 order-md1 order-xs1>
+      <v-card dark tile flat>
+        <v-card-text style="color:lightgrey"> Moitie </v-card-text>
+      </v-card>
+    </v-flex>
+    <v-flex xs1 order-md1 order-xs1>
+      <v-card dark tile flat >
+        <v-card-text style="color:lightgrey"> Plein </v-card-text>
+      </v-card>
+    </v-flex>
+  </v-layout>
+<hr>
+</v-container>

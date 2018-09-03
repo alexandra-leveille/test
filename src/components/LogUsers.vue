@@ -19,6 +19,7 @@
                 <li class="infos"> Your are Currently logged in as User Number <span> {{this.logUsers[0].user_id}} </span> </li>
                 <li class="infos"> Your name is {{this.logUsers[0].user_name}} </li>
                 <li class="infos"> Your command total is {{total}}</li>
+                <li class="infos"> If you wish to plan your next order <router-link to="/Rejoindre"><i class="far fa-calendar-plus fa-3x"></i></router-link></li>
 
               </v-card-text>
             </v-card>
@@ -39,7 +40,7 @@
                     xs12
                   >
                     <v-card
-                      color="grey lighten-4"
+                      color="blue-grey lighten-4"
                       dark
                     >
                       <v-card-text>{{ amount }} </v-card-text>
@@ -329,7 +330,7 @@ export default {
       })
     },
     selectUser(log) {
-      this.clickedUsersNameCommand = user;
+      this.clickedUsersNameCommand = log;
     },
     createUserCommandName2: function(){
       console.log('create command');

@@ -6,8 +6,8 @@
             img-src="https://picsum.photos/900/250/?image=1"
             img-alt="Card Image"
             text-variant="white"
-            title="Image Overlay"
-            sub-title="Recapitulatif de command">
+            title="Listing of all Fillers"
+            sub-title="Fillers availble today">
       <h1> Fillers available today </h1>
     </b-card>
   </div>
@@ -38,9 +38,10 @@ To register as a filler
 
 <div id="addModal" v-if="showingAddModal">
     <b-card-group deck>
-        <b-card img-src="https://placekitten.com/1008/305"
+        <b-card img-src="https://picsum.photos/600/300/?image=09"
                 img-alt="Card image"
-                img-top>
+                img-top
+                 title="Add a new filler">
             <p class="card-text">
               <div>
                 <button @click="showingAddModal = false" type="button" name="button" class="close">
@@ -78,9 +79,10 @@ To register as a filler
 
 <div id="editModal" v-if="showingEditModal">
     <b-card-group deck>
-        <b-card img-src="https://placekitten.com/1003/200"
+        <b-card img-src="https://picsum.photos/600/300/?image=06"
                 img-alt="Card image"
-                img-top>
+                img-top
+                 title="Edit a filler">
             <p class="card-text">
               <div>
                 <button @click="showingEditModal = false" type="button" name="button" class="close">
@@ -117,9 +119,10 @@ To register as a filler
 <!-- /////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
 <div id="deleteModal" v-if="showingDeleteModal">
     <b-card-group deck>
-        <b-card img-src="https://placekitten.com/1000/300"
+        <b-card img-src="https://picsum.photos/600/300/?image=20"
                 img-alt="Card image"
-                img-bottom>
+                img-bottom
+                 title="Delete a filler">
             <p class="card-text">
               <div>
                 <button @click="showingDeleteModal = false" type="button" name="button" class="close">

@@ -10,7 +10,7 @@
     </v-stepper-step>
 
     <v-stepper-content step="1">
-      <v-card color="indigo lighten-2" class="mb-5" height="400px" width="850px">
+      <v-card color="grey lighten-5" class="mb-5" height="400px" width="850px">
           <img class="resp" v-img:name src="../assets/register.jpg">
       </v-card>
       <v-btn color="blue lighten-1" @click="e6 = 2">Continue</v-btn>
@@ -20,7 +20,7 @@
     <v-stepper-step :complete="e6 > 2" step="2"> Enter your personal informations to resgister </v-stepper-step>
 
     <v-stepper-content step="2">
-      <v-card color="grey lighten-1" class="mb-5" height="400px" width="850px">
+      <v-card color="grey lighten-5" class="mb-5" height="400px" width="850px">
         <img class="resp" v-img:name src="../assets/infos.jpg">
       </v-card>
       <v-btn color="blue lighten-1" @click="e6 = 3">Continue</v-btn>
@@ -39,8 +39,8 @@
     </v-stepper-content>
 
     <v-stepper-step step="4"> Receive your order on time (validated by a text message) </v-stepper-step>
-    <v-stepper-content step="4"
-      <v-card color="grey lighten-1" class="mb-5" height="400px" width="850px">
+    <v-stepper-content step="4">
+      <v-card color="grey lighten-5" class="mb-5" height="400px" width="850px">
           <img class="resp" v-img:name src="../assets/sms.jpg">
       </v-card>
       <v-btn color="blue lighten-1" @click="e6 = 1">Continue</v-btn>

@@ -5,8 +5,8 @@
             img-src="https://picsum.photos/900/250/?image=05"
             img-alt="Card Image"
             text-variant="white"
-            title="Image Overlay"
-            sub-title="Recapitulatif of Users">
+            title="Users present"
+            sub-title="Listing of All Users">
     <h1> Users available today </h1>
     </b-card>
   </div>
@@ -39,8 +39,8 @@
 <!-- ////////////////////// showingAdd Modal ////////////////////////// -->
 
 <div id="addModal" v-if="showingAddModal">
-  <b-card title="Card Title"
-          img-src="https://picsum.photos/600/300/?image=23"
+  <b-card title="Add a new user"
+          img-src="https://picsum.photos/600/300/?image=43"
           img-alt="Image"
           img-top
           tag="article"
@@ -82,8 +82,8 @@
 <!-- ////////////////////////////////////showingEditModal \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
 
 <div id="editModal" v-if="showingEditModal">
-  <b-card title="Card Title"
-          img-src="https://picsum.photos/600/300/?image=24"
+  <b-card title="Edit a user"
+          img-src="https://picsum.photos/600/300/?image=48"
           img-alt="Image"
           img-top
           tag="article"
@@ -127,8 +127,8 @@
 
 
 <div id="deleteModal" v-if="showingDeleteModal">
-  <b-card title="Card Title"
-          img-src="https://picsum.photos/600/300/?image=25"
+  <b-card title="Delete a user"
+          img-src="https://picsum.photos/600/300/?image=60"
           img-alt="Image"
           img-top
           tag="article"

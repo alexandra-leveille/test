@@ -18,108 +18,42 @@
 
 <div class="middle">
 </div>
-      <v-container fluid class="table">
-        <v-layout row>
-          <v-flex xs1 order-lg2>
-            <v-card dark tile flat style="background:none">
-              <v-card-text style="font-size:1.5vw; font-weight:600; color:black;"> Diesel </v-card-text>
-            </v-card>
-          </v-flex>
-        </v-layout>
-        <v-layout row>
-          <v-flex xs1 order-md1 order-xs1 >
-            <v-card dark tile flat >
-              <v-card-text style="color:lightgrey"> Quart </v-card-text>
-            </v-card>
-          </v-flex>
-          <v-flex xs1 order-md1 order-xs1>
-            <v-card dark tile flat >
-              <v-card-text style="color:lightgrey"> Moitie </v-card-text>
-            </v-card>
-          </v-flex>
-          <v-flex xs1 order-md1 order-xs1>
-            <v-card dark tile flat>
-              <v-card-text style="color:lightgrey"> Plein </v-card-text>
-            </v-card>
-          </v-flex>
-        </v-layout>
-        <hr>
-        <v-layout row>
-          <v-flex xs1 order-lg2>
-            <v-card dark tile flat style="background:none">
-              <v-card-text style="font-size:1.5vw; font-weight:600; color:black"> Essence SP 98 </v-card-text>
-            </v-card>
-          </v-flex>
-        </v-layout>
-        <v-layout row>
-          <v-flex xs1 order-md1 order-xs1>
-            <v-card dark tile flat>
-              <v-card-text style="color:lightgrey"> Quart </v-card-text>
-            </v-card>
-          </v-flex>
-          <v-flex xs1 order-md1 order-xs1>
-            <v-card dark tile flat>
-              <v-card-text style="color:lightgrey"> Moitie </v-card-text>
-            </v-card>
-          </v-flex>
-          <v-flex xs1 order-md1 order-xs1>
-            <v-card dark tile flat>
-              <v-card-text style="color:lightgrey"> Plein </v-card-text>
-            </v-card>
-          </v-flex>
-        </v-layout>
-      <hr>
-        <v-layout row>
-          <v-flex xs1 order-lg2>
-            <v-card dark tile flat style="background:none">
-              <v-card-text style="font-size:1.5vw; font-weight:600; color:black"> Essence SP 95 </v-card-text>
-            </v-card>
-          </v-flex>
-        </v-layout>
-        <v-layout row>
-          <v-flex xs1 order-md1 order-xs1>
-            <v-card dark tile flat>
-              <v-card-text style="color:orange;"> Moitie </v-card-text>
-            </v-card>
-          </v-flex>
-          <v-flex xs1 order-m1 order-xs1>
-            <v-card dark tile flat >
-              <v-card-text> Quart </v-card-text>
-            </v-card>
-          </v-flex>
-          <v-flex xs1 order-md1 order-xs1>
-            <v-card dark tile flat >
-              <v-card-text> Plein </v-card-text>
-            </v-card>
-          </v-flex>
-        </v-layout>
-      <hr>
-        <v-layout row>
-          <v-flex xs1 order-lg2>
-            <v-card dark tile flat style="background:none">
-              <v-card-text style="font-size:1.5vw; font-weight:600; color:black"> CarburantGPL </v-card-text>
-            </v-card>
-          </v-flex>
-        </v-layout>
-        <v-layout row>
-          <v-flex xs1 order-md1 order-xs1>
-            <v-card dark tile flat >
-              <v-card-text style="color:lightgrey"> Quart </v-card-text>
-            </v-card>
-          </v-flex>
-          <v-flex xs1 order-md1 order-xs1>
-            <v-card dark tile flat>
-              <v-card-text style="color:lightgrey"> Moitie </v-card-text>
-            </v-card>
-          </v-flex>
-          <v-flex xs1 order-md1 order-xs1>
-            <v-card dark tile flat >
-              <v-card-text style="color:lightgrey"> Plein </v-card-text>
-            </v-card>
-          </v-flex>
-        </v-layout>
-      <hr>
-      </v-container>
+      <template>
+        <v-data-table id="table"
+          :items="desserts"
+          :loading="true"
+          class="elevation-1"
+        >
+
+          <v-progress-linear slot="progress" color="red" indeterminate></v-progress-linear>
+          <template slot="items" slot-scope="props">
+            <td>{{ props.item.name }}</td>
+
+          <td> <v-flex xs1 order-md1 order-xs1>
+              <v-card>
+                <v-card-text style="color:lightgrey"> Quart </v-card-text>
+              </v-card>
+            </v-flex>
+          </td>
+
+        <td> <v-flex xs1 order-md1 order-xs1>
+              <v-card gold tile flat>
+                <v-card-text style="color:lightgrey"> Moitie </v-card-text>
+              </v-card>
+            </v-flex>
+          </td>
+
+          <td> <v-flex xs1 order-md1 order-xs1>
+              <v-card>
+                <v-card-text style="color:lightgrey"> Plein </v-card-text>
+              </v-card>
+            </v-flex>
+          </td>
+
+          </template>
+        </v-data-table>
+      </template>
+
 <button class="button" type="button" name="button"> Connection </button>
   </div>
 </template>
@@ -134,7 +68,58 @@ export default {
       center: { lat: 45.508, lng: -73.587 },
       markers: [],
       places: [],
-      currentPlace: null
+      currentPlace: null,
+      headers: [
+          {
+            text: 'Dessert (100g serving)',
+            align: 'left',
+            sortable: false,
+            value: 'name'
+          },
+          { text: 'Calories', value: 'calories' },
+          { text: 'Fat (g)', value: 'fat' },
+          { text: 'Carbs (g)', value: 'carbs' },
+          { text: 'Protein (g)', value: 'protein' },
+          { text: 'Iron (%)', value: 'iron' }
+        ],
+        desserts: [
+          {
+            value: false,
+            name: 'Diesel',
+            calories: '' ,
+            fat:'' ,
+            carbs:'' ,
+            protein:'' ,
+            iron: ''
+          },
+          {
+            value: false,
+            name: 'Essence SP 98',
+            calories: '',
+            fat: '',
+            carbs: '',
+            protein: '',
+            iron: ''
+          },
+          {
+            value: false,
+            name: 'Essence SP 95',
+            calories: '',
+            fat: '',
+            carbs: '',
+            protein: '',
+            iron: ''
+          },
+          {
+            value: false,
+            name: 'Carburant GPL',
+            calories: '',
+            fat: '',
+            carbs: '',
+            protein: '',
+            iron: ''
+          }
+        ]
     };
   },
 
@@ -189,12 +174,12 @@ export default {
   width: 100%;
   background: url('../assets/pomp.png') 0 0 no-repeat;
   background-position: center;
-  background-size:  70%  100%;
+  background-size: 70% 100%;
 }
 
 button.button{
   background: rgba(90,86,86,1);
-  width: 15vw;
+  width: 25vw;
   height: 5vh;
   margin: auto;
   font-weight: 800;
@@ -205,4 +190,6 @@ button.button{
   margin-left:8vw;
   overflow-y: hidden;
 }
+
+
 </style>

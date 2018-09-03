@@ -3,6 +3,7 @@
     <div>
       <h2>Search and add a pin</h2>
       <label>
+
         <gmap-autocomplete
           @place_changed="setPlace">
         </gmap-autocomplete>

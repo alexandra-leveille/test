@@ -1,8 +1,16 @@
 <template>
   <v-card>
     <v-card-title>
-      Gas Refuiling order
+
+<section>
+    Gas Refuiling order
       <i @click="showingAddModal = true;" class="far fa-plus-square fa-2x"></i>
+</section>
+
+      <section>
+      <p> Go back to your user page <router-link to="/LogUsers"><i class="fas fa-hand-point-left fa-2x"></i></router-link></li></p>
+      </section>
+
     <div id="addModal" class="addModal" v-if="showingAddModal">
       <b-card title=" Add a New UserCommand"
               img-src="https://picsum.photos/600/300/?image=20"
@@ -164,6 +172,9 @@
       </v-alert>
     </v-data-table>
   </v-card>
+
+
+
 </template>
 
 
@@ -288,10 +299,18 @@ import axios from 'axios'
 
 #addModal table input, #editModal table input{
   border-bottom: 1px solid black;
-  width: 25vw;
+  width: 15vw;
+}
+
+#addModal table select, #editModal table select{
+  background: pink
 }
 #addModal, #editModal{
   height: 55vh;
   width: 35vw;
+}
+
+section{
+  margin-right: 7vw;
 }
 </style>
