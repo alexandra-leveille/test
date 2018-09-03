@@ -17,7 +17,6 @@
 
 
 <div class="middle">
-
 </div>
       <v-container fluid class="table">
         <v-layout row>
@@ -122,7 +121,6 @@
       <hr>
       </v-container>
 <button class="button" type="button" name="button"> Connection </button>
-
   </div>
 </template>
 
@@ -188,9 +186,10 @@ export default {
 
 .middle{
   height: 50vh;
-  width: auto;
+  width: 100%;
   background: url('../assets/pomp.png') 0 0 no-repeat;
   background-position: center;
+  background-size:  70%  100%;
 }
 
 button.button{

@@ -1,146 +1,69 @@
-<template lang="html">
+
+<template>
   <div class="proj">
-    <v-card
-    class="mx-auto hide-overflow"
-    style="max-width: 600px;"
-  >
-    <v-layout>
-      <v-flex xs6 d-flex>
-        <v-img
-          src="https://cdn.vuetifyjs.com/images/ratings/fortnite1.png"
-        ></v-img>
-      </v-flex>
-      <v-flex xs6>
-        <v-container
-          grid-list-md
-          pa-0
-          pl-2
-          style="margin: -4px 0"
-        >
-          <v-layout wrap>
-            <v-flex xs7 d-flex>
-              <v-img
-                src="https://cdn.vuetifyjs.com/images/ratings/fortnite2.png"
-              ></v-img>
-            </v-flex>
-            <v-flex xs5 d-flex>
-              <v-img
-                src="https://cdn.vuetifyjs.com/images/ratings/fortnite3.png"
-              ></v-img>
-            </v-flex>
-            <v-flex xs5 d-flex>
-              <v-img
-                src="https://cdn.vuetifyjs.com/images/ratings/fortnite4.png"
-              ></v-img>
-            </v-flex>
-            <v-flex xs7 d-flex>
-              <v-img
-                src="https://cdn.vuetifyjs.com/images/ratings/fortnite5.png"
-              ></v-img>
-            </v-flex>
-          </v-layout>
-        </v-container>
-      </v-flex>
-    </v-layout>
-    <v-card-title class="align-start">
-      <div>
-        <span class="headline">FORTNITE</span>
-        <div class="grey--text font-weight-light">Video game</div>
-      </div>
-      <v-spacer></v-spacer>
-      <v-dialog
-        v-model="dialog"
-        width="400"
-      >
-        <v-icon slot="activator">
-          mdi-share-variant
-        </v-icon>
-        <v-card>
-          <v-card-title>
-            <span class="title font-weight-bold">Share</span>
-            <v-spacer></v-spacer>
-            <v-btn
-              class="mx-0"
-              icon
-              @click="dialog = false"
-            >
-              <v-icon>mdi-close-circle-outline</v-icon>
-            </v-btn>
-          </v-card-title>
-          <v-list>
-            <v-list-tile @click="">
-              <v-list-tile-action>
-                <v-icon color="indigo">mdi-facebook-box</v-icon>
-              </v-list-tile-action>
-              <v-card-title>Facebook</v-card-title>
-            </v-list-tile>
-            <v-list-tile @click="">
-              <v-list-tile-action>
-                <v-icon color="cyan">mdi-twitter-box</v-icon>
-              </v-list-tile-action>
-              <v-card-title>Twitter</v-card-title>
-            </v-list-tile>
-            <v-list-tile @click="">
-              <v-list-tile-action>
-                <v-icon>mdi-email</v-icon>
-              </v-list-tile-action>
-              <v-card-title>Email</v-card-title>
-            </v-list-tile>
-          </v-list>
-          <v-text-field
-            ref="link"
-            :label="copied ? 'Link copied' : 'Click to copy link'"
-            class="pa-3"
-            readonly
-            value="https://g.co/kgs/nkrK43"
-            @click="copy"
-          ></v-text-field>
-        </v-card>
-      </v-dialog>
-    </v-card-title>
-    <v-divider></v-divider>
-    <v-card-actions>
-      <span class="pl-2 grey--text text--darken-2 font-weight-light caption">16,544 reviews</span>
-      <v-spacer></v-spacer>
-      <v-rating
-        v-model="rating"
-        length="10"
-        readonly
-      >
-        <v-icon
-          slot="item"
-          slot-scope="props"
-          :color="props.isFilled ? 'purple darken-4' : ''"
-          v-text="`mdi-numeric-${props.index}-box`"
-        ></v-icon>
-      </v-rating>
-    </v-card-actions>
-    <div class="pa-3 pt-0 caption">
-      <em>Portions of the materials used are trademarks and/or copyrighted works of Epic Games, Inc. All rights reserved by Epic. This material is not official and is not endorsed by Epic.</em>
+
+    <h2> Disover the core purpose of our app </h2>
+  <v-stepper v-model="e6" vertical>
+    <v-stepper-step :complete="e6 > 1" step="1">
+      Register as a User of Filler
+      <small> Just follow our simple instructions </small>
+    </v-stepper-step>
+
+    <v-stepper-content step="1">
+      <v-card color="indigo lighten-2" class="mb-5" height="400px" width="850px">
+          <img class="resp" v-img:name src="../assets/register.jpg">
+      </v-card>
+      <v-btn color="blue lighten-1" @click="e6 = 2">Continue</v-btn>
+      <v-btn color="orange darken-4">Cancel</v-btn>
+    </v-stepper-content>
+
+    <v-stepper-step :complete="e6 > 2" step="2"> Enter your personal informations to resgister </v-stepper-step>
+
+    <v-stepper-content step="2">
+      <v-card color="grey lighten-1" class="mb-5" height="400px" width="850px">
+        <img class="resp" v-img:name src="../assets/infos.jpg">
+      </v-card>
+      <v-btn color="blue lighten-1" @click="e6 = 3">Continue</v-btn>
+      <v-btn color="orange darken-4">Cancel</v-btn>
+    </v-stepper-content>
+
+    <v-stepper-step :complete="e6 > 3" step="3">Select an appropriate time slot </v-stepper-step>
+
+    <v-stepper-content step="3">
+      <v-card class="mb-5" height="400px" width="850px">
+<img  class="resp" v-img:name src="../assets/time.jpg">
+
+      </v-card>
+      <v-btn color="blue lighten-1" @click="e6 = 4">Continue</v-btn>
+      <v-btn color="orange darken-4">Cancel</v-btn>
+    </v-stepper-content>
+
+    <v-stepper-step step="4"> Receive your order on time (validated by a text message) </v-stepper-step>
+    <v-stepper-content step="4"
+      <v-card color="grey lighten-1" class="mb-5" height="400px" width="850px">
+          <img class="resp" v-img:name src="../assets/sms.jpg">
+      </v-card>
+      <v-btn color="blue lighten-1" @click="e6 = 1">Continue</v-btn>
+      <v-btn color="orange darken-4">Cancel</v-btn>
+    </v-stepper-content>
+  </v-stepper>
     </div>
-  </v-card>
-  </div>
 </template>
 
 <script>
   export default {
     name:'proj',
-    data: () => ({
-      copied: false,
-      dialog: false,
-      rating: 10
-    }),
-
-    methods: {
-      copy () {
-        const markup = this.$refs.link
-        markup.focus()
-        document.execCommand('selectAll', false, null)
-        this.copied = document.execCommand('copy')
+    data () {
+      return {
+        e6: 1
       }
     }
   }
 </script>
 
-<style lang="css">
+<style>
+.resp{
+  max-width:100%;
+  height: auto;
+}
 </style>

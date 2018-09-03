@@ -1,0 +1,124 @@
+////////////////////////////// users ///////////////////////////////
+
+CREATE TABLE users
+(
+id SERIAL PRIMARY KEY,
+lastname VARCHAR(255),
+firstname VARCHAR(255),
+);
+
+INSERT INTO users
+(lastname, firstname) VALUES
+('Leveille', 'Alphonse'),
+('Daubrand', 'Bernard'),
+('Allios','Christophe'),
+('Bospard', 'Danielle'),
+('Gousouf', 'Etienne'),
+('Locas', 'Frederic');
+
+////////////////////////////// fillers ///////////////////////////////
+
+CREATE TABLE fillers (
+Id SERIAL PRIMARY KEY,
+Lastname varchar (255),
+Firstname varchar (255)
+);
+
+INSERT INTO fillers
+(lastname, firstname) VALUES
+('VTC','one'),
+('VTC','two'),
+('VTC','three'),
+('VTC','four');
+
+////////////////////////////// command ///////////////////////////////
+
+CREATE TABLE command (
+Id SERIAL PRIMARY KEY,
+name varchar (255),
+lieux varchar (255)
+);
+
+INSERT INTO command (name, lieux) VALUES
+('Alpha','Gare du Nord'),
+('Beta','Gare de l’est'),
+('Ceta','Gare de Lyon'),
+('Delta','Gare Montparnasse');
+
+///////////////////////// users-command ///////////////////////////////
+
+CREATE TABLE users_command (
+User_id integer REFERENCES users ON DELETE CASCADE,
+Command_id integer REFERENCES command ON DELETE CASCADE,
+PRIMARY KEY (user_id, command_id)
+);
+
+INSERT INTO users_command (user_id, command_id) VALUES
+(1, 3), (1, 1),(1, 4),(2, 1),
+(3, 4),(3, 1),(2, 2),(2, 3);
+
+
+
+/////////////////////// display 2 ////////////////////
+CREATE TABLE display2_command (
+User_id integer REFERENCES users ON DELETE CASCADE,
+User_name varchar (255),
+Command_name varchar (255),
+PRIMARY KEY (user_id)
+);
+
+INSERT INTO display2_command
+SELECT users.id,
+CONCAT(users.lastname,' ', users.firstname)
+as name,
+json_agg(json_build_object('id', users_command.command_id, 'name', command.name)) as command
+FROM users
+JOIN users_command ON users.id = users_command.user_id
+JOIN command ON command.id = users_command.command_id
+GROUP BY users.id
+
+/////////////////////////////// items ///////////////////////////////
+CREATE TABLE items
+(
+id SERIAL PRIMARY KEY,
+name VARCHAR(255),
+type VARCHAR(255),
+title VARCHAR(255),
+activity VARCHAR(255),
+price integer,
+dispo boolean
+);
+
+
+INSERT INTO items
+(name, type, title, activity, price, dispo)
+VALUES
+('Alphonse', 'Wolkswagen', '2018-04-04', 'Faire le plein', 35, '0'),
+('Bernard', 'Lexus', '2018-03-03', 'Faire le 1/2', 35, '1'),
+('Celine', 'Mercedes', '2018-02-02', 'Faire le 1/4', 15, '1'),
+('Daniel', 'Wolkswagen', '2018-07-07', 'Faire le 1/2', 35, '0'),
+('Etienne', 'Wolkswagen', '2018-08-08', 'Faire le plein', 55, '0');
+
+////////////////////////// headers /////////////////////////
+CREATE TABLE headers
+(
+id SERIAL PRIMARY KEY,
+carburant VARCHAR(255),
+type VARCHAR(255),
+dispo boolean,
+qualite VARCHAR(255),
+price integer
+);
+
+INSERT INTO headers
+(carburant, type, dispo, qualite, price)
+VALUES
+('ESSENCE S98', 'BIO', true, 'acceptable', 76),
+('ESSENCE S98', 'polluant', true, 'passable', 50),
+('DIESEL', 'anti-polluant', false, 'passable', 130),
+('ESSENCE S95', 'NO-polluant', true, 'acceptable-not', 150),
+('Carburant', 'NO-polluant', true, 'anti-polluant', 34),
+('Carburant', 'type', true, 'anti-polluant', 56),
+('ESSENCE S98', 'NO-polluant', false, 'acceptable-not', 100),
+('DIESEL', 'Polluant', true, 'acceptable', 59),
+('DIESEL', 'Polluant', true, 'acceptable', 77)

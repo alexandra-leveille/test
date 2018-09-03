@@ -3,6 +3,8 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import VueImg from 'v-img'
+import VueRating from 'v-rating'
 import Vuetify from 'vuetify'
 import colors from 'vuetify/es5/util/colors'
 import BootstrapVue from 'bootstrap-vue'
@@ -11,17 +13,19 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
+import Rating from 'v-rating';
+
 Vue.config.productionTip = false
 
 Vue.use(BootstrapVue);
+
 Vue.use(Vuetify, {
   theme: {
     primary: colors.purple.base,
     secondary: colors.grey.darken1,
     accent: colors.shades.black,
     error: colors.red.accent3
-  },
-  name: 'v-img'
+  }
 })
 
 Vue.use(Vuetify, {
@@ -33,6 +37,11 @@ Vue.use(Vuetify, {
     iconfont: 'mdi'
   }
 });
+
+
+Vue.component('Rating', require('v-rating'));
+Vue.use(VueImg)
+Vue.use(VueRating)
 
 Vue.use(VueGoogleMaps, {
   load: {

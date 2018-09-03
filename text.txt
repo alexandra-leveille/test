@@ -768,3 +768,12 @@ Prix integer
   <td><button @click="showingEditModal = true ;select(item)" type="button" name="button"> EDIT </button> </td>
   <td><button @click="showingDeleteModal = true;select(item)" type="button" name="button"> DELETE </button> </td>
 </tr>
+
+
+//////////////////////////// Vue img and vue rating //////////////////////
+- vue img : https://www.npmjs.com/package/v-img
+- vue img - https://github.com/crowdbotics/v-img
+- vue rating : https://www.npmjs.com/package/v-rating
+https://www.jsdelivr.com/package/npm/vue-star-rating
+https://www.npmjs.com/package/v-rating
+cdn - https://cdn.jsdelivr.net/npm/vue-star-rating@1.6.0/dist/star-rating.min.js

@@ -154,6 +154,10 @@ export default {
 </script>
 
 <style>
+
+body{
+  overflow-x: hidden;
+}
 #app {
   font-family: 'Oxygen', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -224,7 +228,7 @@ nav{
 }
 
 .nav-mobile.active .list {
-    transform: translateX(100%);
+    transform: translateX(220%);
 }
 
 .nav-mobile .item {

@@ -1,7 +1,17 @@
 <template lang="html">
   <div class="item">
 
-<h2> Welcome {{LogItems[0].name}}, You have now the right to make orders according to your preferences </h2>
+    <v-btn icon large style="float:right">
+      <v-avatar size="60px" tile>
+        <img
+          src="../assets/avatar/albertino.png"
+          alt="Vuetify"
+        >
+      </v-avatar>
+    </v-btn>
+
+
+<h4> Welcome <span>{{LogItems[0].name}}</span>, You have now the right to make orders according to your preferences </h4>
     <button @click="showingAddModal = true; createItem()" type="button" name="button">ADD</button>
 
     <table class="table">
@@ -305,5 +315,8 @@ align-items: flex-start
 #addModal .table select{
   background: rgba(239,212,212,0.5);
 }
-
+ h4 span {
+   color: purple;
+   font-weight: 600;
+ }
 </style>

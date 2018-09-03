@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="localize">
-<h1> Payez </h1>
+<h1> Pay </h1>
 
   <gmap-map
       :center="center"
@@ -21,6 +21,7 @@
 </div>
 
       <div class="bottom">
+
         <button class="button" @click="addMarker">Connect</button>
       </div>
 
@@ -110,10 +111,12 @@ section.box img{
 .middle{
   background: center;
   height: 35vh;
-  width: auto;
+  width: 100%;
   background: url('../assets/pay.png') 0 0 no-repeat;
   background-position: center;
+  background-size:auto;
   opacity: 0.5;
+  background-size:  50%  100%;
 }
 
 .bottom{
@@ -138,17 +141,22 @@ section.box img{
 .bottom{
   background: url('../assets/paiement.png') 0 0 no-repeat;
   background-position: center;
-  width: auto;
+  background-size:auto;
+  width: 100%;
   height: 30vh;
+  background-size:  50%  100%;
 }
 
 button.button{
   background: rgba(90,86,86,1);
   width: 15vw;
-  height: 5vh;
+  height: 10vh;
   margin: auto;
   font-weight: 800;
   color: white;
   margin-top: 25vh;
+  font-size: 2vw;
 }
+
+
 </style>

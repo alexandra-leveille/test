@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="localize">
-<h1> Localisez </h1>
+<h1> Locate </h1>
 
 
   <gmap-map
@@ -20,20 +20,20 @@
 
 </div>
       <div class="bottom">
- <p> Decrivez votre situation </p>
+ <p> Describe your situation </p>
 
  <div class="midbottom">
-<h4> <label for=""> Je me trouve : </label> <input type="text" name="" value="" v-model="trouve">
+<h4> <label for=""> I am : </label> <input type="text" name="" value="" v-model="trouve">
 
 </h4>
 
-  <h4>  <label for=""> Rue :  </label>
+  <h4>  <label for=""> street :  </label>
   <gmap-autocomplete
     @place_changed="setPlace">
   </gmap-autocomplete>
 </h4>
 
-      <h4> <p> mon emplacement se trouve : {{trouve}}</p> </h4>
+      <h4> <p> my localization is : {{trouve}}</p> </h4>
   </div>
         <button class="button" @click="addMarker">Connect</button>
       </div>
@@ -153,5 +153,14 @@ button.button{
   margin: auto;
   font-weight: 800;
   color: white;
+  font-size:4vw;
 }
+
+@media (max-width: 427px) {
+  .midbottom h4{
+    display: flex;
+    font-size:4vw;
+  }
+}
+
 </style>
