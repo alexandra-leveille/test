@@ -56,6 +56,17 @@
         <input type="text" name="" value="" v-model="newHeader.prix">
         <input type="range" name="points" min="0" max="300" v-model="newHeader.prix">
 
+        <label for="">date</label>
+        <input type="date" name="" value="" v-model="newHeader.date">
+
+        <label for=""> activity</label>
+        <input type="text" name="" value="activity" v-model="newHeader.activity">
+        <select v-model="newHeader.activity" class="" name="activite">
+          <option value="Faire le  Plein"> Faire le  Plein </option>
+          <option value="Faire le 1/2"> Faire le 1/2 </option>
+          <option value="Faire le 1/4"> Faire le 1/4 </option>
+        </select>
+
       </table>
         <button @click="showingAddModal = false; createHeader()" type="button" name="button"> CREATE </button>
       </p>
@@ -111,6 +122,22 @@
         <label for=""> Prix </label>
         <input type="text" name="" value="" v-model="clickedHeader.prix">
         <input type="range" name="points" min="0" max="300" v-model="clickedHeader.prix">
+
+        <label for="">date</label>
+        <input type="date" name="" value="" v-model="clickedHeader.date">
+
+        <label for=""> activity</label>
+        <input type="text" name="" value="activity" v-model="clickedHeader.activity">
+        <select v-model="clickedHeader.activity" class="" name="activite">
+          <option value="Faire le  Plein"> Faire le  Plein </option>
+          <option value="Faire le 1/2"> Faire le 1/2 </option>
+          <option value="Faire le 1/4"> Faire le 1/4 </option>
+        </select>
+
+
+
+
+
       </table>
         <button @click="showingAddModal = false; updateHeader()" type="button" name="button"> UPDATE</button>
       </p>
@@ -164,6 +191,8 @@
         <td class="text-xs-right">{{ props.item.disponibilite }}</td>
         <td class="text-xs-right">{{ props.item.qualite }}</td>
         <td class="text-xs-right">{{ props.item.prix }}</td>
+        <td class="text-xs-right">{{ props.item.date }}</td>
+        <td class="text-xs-right">{{ props.item.activity }}</td>
         <td> <i @click="showingEditModal = true; selectUser(props.item)" class="fas fa-pen-square fa-2x"></i> </td>
         <td> <i @click="showingDeleteModal = true; selectUser(props.item)" class="fas fa-trash-alt fa-2x"></i> </td>
       </template>
@@ -188,7 +217,7 @@ import axios from 'axios'
         showingAddModal: false,
         showingEditModal:false,
         showingDeleteModal: false,
-        newHeader: {carburant:'', type:'', disponibilite:'' , qualite:'', prix:''},
+        newHeader: {carburant:'', type:'', disponibilite:'' , qualite:'', prix:'', date:'', activity:''},
         clickedHeader: {},
         headers: [
           {
@@ -202,6 +231,8 @@ import axios from 'axios'
           { text: 'Disponibilite', value: 'carbs' },
           { text: 'Qualite', value: 'protein' },
           { text: 'Prix', value: 'iron' },
+          { text: 'Date', value: 'iron' },
+          { text: 'activity', value: 'iron' },
           { text: 'EDIT', value: 'iron' },
           { text: 'DELETE', value: 'iron' }
         ],
@@ -243,7 +274,7 @@ import axios from 'axios'
         axios.post('http://localhost:3005/headers/', this.newHeader).then((response) => {
           console.log('newHeader', response);
           console.log('this.newHeader', this.newHeader);
-          this.newHeader = { carburant: '', type:'', disponibilite:'' , qualite:'', prix:'' };
+          this.newHeader = { carburant: '', type:'', disponibilite:'' , qualite:'', prix:'', date:'', activity:'' };
           if (response.data.error) {
             console.log('========= ligne 167 =========');
             app.errorMessage = response.data.message;

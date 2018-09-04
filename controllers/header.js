@@ -9,16 +9,16 @@ module.exports = express.Router()
 })
 
 .post('/', (req, res) => {
-  const { carburant, type, disponibilite, qualite, prix } = req.body;
-  model.createHeader({ carburant, type, disponibilite, qualite, prix })
+  const { carburant, type, disponibilite, qualite, prix, date, activity } = req.body;
+  model.createHeader({ carburant, type, disponibilite, qualite, prix, date, activity })
   .then(result => res.json(result))
   .catch(err => console.log(err))
 })
 
 .put('/:id', (req, res) => {
   const { id } = req.params;
-  const { carburant, type, disponibilite, qualite, prix } = req.body;
-  model.updateHeader({ id, carburant, type, disponibilite, qualite, prix })
+  const { carburant, type, disponibilite, qualite, prix, date, activity } = req.body;
+  model.updateHeader({ id, carburant, type, disponibilite, qualite, prix, date, activity })
   .then(result => res.json(result))
   .catch(err => res.json(err))
 })

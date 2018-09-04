@@ -107,18 +107,20 @@ carburant VARCHAR(255),
 type VARCHAR(255),
 dispo boolean,
 qualite VARCHAR(255),
-price integer
+price integer,
+date VARCHAR(255),
+activity VARCHAR(255),
 );
 
 INSERT INTO headers
-(carburant, type, dispo, qualite, price)
+(carburant, type, dispo, qualite, price, date, activity)
 VALUES
-('ESSENCE S98', 'BIO', true, 'acceptable', 76),
-('ESSENCE S98', 'polluant', true, 'passable', 50),
-('DIESEL', 'anti-polluant', false, 'passable', 130),
-('ESSENCE S95', 'NO-polluant', true, 'acceptable-not', 150),
-('Carburant', 'NO-polluant', true, 'anti-polluant', 34),
-('Carburant', 'type', true, 'anti-polluant', 56),
-('ESSENCE S98', 'NO-polluant', false, 'acceptable-not', 100),
-('DIESEL', 'Polluant', true, 'acceptable', 59),
-('DIESEL', 'Polluant', true, 'acceptable', 77)
+('ESSENCE S98', 'BIO', true, 'acceptable', 76, '2018-08-08', 'Faire le plein' ),
+('ESSENCE S98', 'polluant', true, 'passable', 50, '2018-08-08', 'Faire le 1/2'),
+('DIESEL', 'anti-polluant', false, 'passable', 130, '2018-08-08', 'Faire le plein'),
+('ESSENCE S95', 'NO-polluant', true, 'acceptable-not', 150, '2018-08-08', 'Faire le 1/4'),
+('Carburant', 'NO-polluant', true, 'anti-polluant', 34, '2018-08-08', 'Faire le plein'),
+('Carburant', 'type', true, 'anti-polluant', 56, '2018-08-08', 'Faire le plein'),
+('ESSENCE S98', 'NO-polluant', false, 'acceptable-not', 100, '2018-08-08', 'Faire le plein'),
+('DIESEL', 'Polluant', true, 'acceptable', 59, '2018-08-08', 'Faire le plein'),
+('DIESEL', 'Polluant', true, 'acceptable', 77,'2018-08-08', 'Faire le 1/2')
