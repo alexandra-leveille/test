@@ -95,8 +95,7 @@
       </tr>
 
       <tr v-for="sml in small">
-        <td> {{sml.id}} </td>
-        <td> {{sml.user_id}} </td>
+        <td> {{sml.command_id}} </td>
         <td> {{sml.carburant}} </td>
         <td> {{sml.type}}  </td>
         <td> {{sml.disponibilite}} </td>

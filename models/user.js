@@ -47,12 +47,12 @@ return db.query(`
 getIdUserCommandName2ById(user_id){
   return db.query(`SELECT * FROM display2_command WHERE user_id=${user_id}`)
 },
-  createUserCommandName2({ user_id,user_name, command }) {
+  createUserCommandName2({ user_id, user_name, command }) {
     return db.query(`
     INSERT INTO display2_command (user_id, user_name, command)
     VALUES ('${user_id}', '${user_name}', '${command}')`)
   },
-updateUserCommandName2({ user_id,user_name, command }){
+updateUserCommandName2({ user_id, user_name, command }){
   return db.query(`
     UPDATE display2_command
     SET user_name='${user_name}', command='${command}'

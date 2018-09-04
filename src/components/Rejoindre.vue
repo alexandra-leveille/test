@@ -5,7 +5,6 @@
    <v-chip label outline color="amber darken-2"> <h2> Your are currently authenticated as <span id="nbr"> {{this.logUsers[0].user_id}} </span> </h2> </v-chip>
 </section>
 
-
 <section>
     Gas Refuiling order
       <i @click="showingAddModal = true;" class="far fa-plus-square fa-2x"></i>
@@ -26,6 +25,13 @@
         <p class="card-text">
       <button @click="showingAddModal = false" type="button" name="button"> CLOSE </button>
       <table class="table">
+
+        <label for="">user_id</label>
+        <input type="text" name="" value="" v-model="newHeader.user_id">
+
+        <label for="">command_id</label>
+        <input type="text" name="" value="" v-model="newHeader.command_id">
+
         <label for=""> Carburant </label>
         <input type="text" name="" value="" v-model="newHeader.carburant">
         <select  v-model="newHeader.carburant" class="" name="activite">
@@ -137,11 +143,6 @@
           <option value="Faire le 1/2"> Faire le 1/2 </option>
           <option value="Faire le 1/4"> Faire le 1/4 </option>
         </select>
-
-
-
-
-
       </table>
         <button @click="showingAddModal = false; updateHeader()" type="button" name="button"> UPDATE</button>
       </p>
@@ -171,9 +172,6 @@
       </b-card>
     </div>
 
-
-
-
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -189,7 +187,7 @@
       :search="search"
     >
       <template slot="items" slot-scope="props">
-        <td> {{ props.item.id }} </td>
+        <td> {{ props.item.command_id }} </td>
         <td class="text-xs-right">{{ props.item.carburant }}</td>
         <td class="text-xs-right">{{ props.item.type }}</td>
         <td class="text-xs-right">{{ props.item.disponibilite }}</td>
@@ -219,12 +217,12 @@ import axios from 'axios'
         showingAddModal: false,
         showingEditModal:false,
         showingDeleteModal: false,
-        newHeader: {carburant:'', type:'', disponibilite:'' , qualite:'', prix:'', date:'', activity:''},
+        newHeader: {user_id:'', command_id:'', carburant:'', type:'', disponibilite:'' , qualite:'', prix:'', date:'', activity:''},
         clickedHeader: {},
         logUsers:[],
         headers: [
           {
-            text: 'Id Number',
+            text: 'Command Number',
             align: 'left',
             sortable: false,
             value: 'name'
@@ -291,7 +289,7 @@ import axios from 'axios'
         axios.post('http://localhost:3005/headers/', this.newHeader).then((response) => {
           console.log('newHeader', response);
           console.log('this.newHeader', this.newHeader);
-          this.newHeader = { carburant: '', type:'', disponibilite:'' , qualite:'', prix:'', date:'', activity:'' };
+          this.newHeader = { command_id:'', user_id:'', carburant: '', type:'', disponibilite:'' , qualite:'', prix:'', date:'', activity:'' };
           if (response.data.error) {
             console.log('========= ligne 167 =========');
             app.errorMessage = response.data.message;
@@ -302,10 +300,10 @@ import axios from 'axios'
         })
       },
       updateHeader: function(){
-        console.log(this.clickedHeader.id);
+        console.log(this.clickedHeader.command_id);
         console.log(this.clickedHeader.prix);
         console.log(this.clickedHeader.qualite);
-        axios.put('http://localhost:3005/headers/'+ this.clickedHeader.id, this.clickedHeader).then((response) => {
+        axios.put('http://localhost:3005/headers/'+ this.clickedHeader.command_id, this.clickedHeader).then((response) => {
           console.log('from response', response);
           this.clickedHeader = {};
           if (response.data.error) {
@@ -319,7 +317,7 @@ import axios from 'axios'
       deleteHeader: function(){
         console.log('/////////////// deleteHeader /////////////////');
         console.log(this.clickedHeader);
-        axios.delete('http://localhost:3005/headers/'+ this.clickedHeader.id).then((response) => {
+        axios.delete('http://localhost:3005/headers/'+ this.clickedHeader.command_id).then((response) => {
           console.log('from delete response', response);
           this.clickedHeader = {};
           if (response.data.error) {

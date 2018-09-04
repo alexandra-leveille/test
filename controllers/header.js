@@ -9,23 +9,23 @@ module.exports = express.Router()
 })
 
 .post('/', (req, res) => {
-  const { carburant, type, disponibilite, qualite, prix, date, activity } = req.body;
-  model.createHeader({ carburant, type, disponibilite, qualite, prix, date, activity })
+  const { command_id, user_id, carburant, type, disponibilite, qualite, prix, date, activity } = req.body;
+  model.createHeader({ command_id, user_id, carburant, type, disponibilite, qualite, prix, date, activity })
   .then(result => res.json(result))
   .catch(err => console.log(err))
 })
 
-.put('/:id', (req, res) => {
-  const { id } = req.params;
-  const { carburant, type, disponibilite, qualite, prix, date, activity } = req.body;
-  model.updateHeader({ id, carburant, type, disponibilite, qualite, prix, date, activity })
+.put('/:command_id', (req, res) => {
+  const { command_id } = req.params;
+  const { user_id, carburant, type, disponibilite, qualite, prix, date, activity } = req.body;
+  model.updateHeader({  command_id, user_id, carburant, type, disponibilite, qualite, prix, date, activity })
   .then(result => res.json(result))
   .catch(err => res.json(err))
 })
 
-.delete('/:id', (req, res) => {
-  const { id } = req.params;
-  model.deleteHeader(id)
+.delete('/:command_id', (req, res) => {
+  const { command_id } = req.params;
+  model.deleteHeader(command_id)
   .then(result => res.json(result))
   .catch(err => res.json(err))
 })
