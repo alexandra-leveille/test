@@ -61,6 +61,7 @@
         </v-layout>
       </v-container>
     </template>
+     <v-chip label outline color="amber darken-2"> <h2> Listing of your past orders </h2> </v-chip>
     <table class="table">
         <tr>
           <th> You are User number </th>
@@ -80,6 +81,33 @@
           <td> <i class="fas fa-times" @click="showingDeleteModal = true; selectUser(log)"></i> </td>
         </tr>
     </table>
+     <v-chip label outline color="light-green accent-3"> <h2> You have just added the following order </h2> </v-chip>
+    <table class="table">
+      <tr>
+        <th> command number </th>
+        <th> carburant </th>
+        <th> type </th>
+        <th> disponibilite </th>
+        <th> qualite </th>
+        <th> prix </th>
+        <th> date </th>
+        <th> activity </th>
+      </tr>
+
+      <tr v-for="sml in small">
+        <td> {{sml.id}} </td>
+        <td> {{sml.user_id}} </td>
+        <td> {{sml.carburant}} </td>
+        <td> {{sml.type}}  </td>
+        <td> {{sml.disponibilite}} </td>
+        <td> {{sml.qualite}} </td>
+        <td> {{sml.prix}} </td>
+        <td> {{sml.date}} </td>
+        <td> {{sml.activity}} </td>
+      </tr>
+    </table>
+
+
 
       <!-- /////////////////////////// AddModal ///////////////////////// -->
 
@@ -239,9 +267,7 @@
           </p>
         </b-card>
       </div>
-
       <!-- ////////////////////////////////////////////////////////////////////// -->
-
   </div>
 
 
@@ -258,6 +284,7 @@ export default {
   name:'LogUsers',
   data () {
     return {
+      small:[],
       lorem:'Lorem ipsum dolor sit amet, mel at clita quando. Te sit oratio vituperatoribus, nam ad ipsum posidonium mediocritatem, explicari dissentiunt cu mea. Repudiare disputationi vim in, mollis iriure nec cu, alienum argumentum ius ad. Pri eu justo aeque torquatos',
       today:'You have no extra order for the moment',
       total: '90 €',
@@ -292,9 +319,21 @@ export default {
     console.log('mounted from LogUsers');
     this.getIdUserCommandName2();
     this.getIdUserCommandName2ById();
+    this.getHeaders();
     //console.log('Au mounted', logUsersId);
   },
   methods: {
+    getHeaders:function(){
+      axios.get('http://localhost:3005/headers/').then((response) => {
+        console.log('getHeaders', response);
+        if (response.data.error) {
+          app.errorMessage = reponse.data.message;
+        } else {
+          console.log('NO ERRORS THIS HEADERS', this.small);
+          this.small = response.data.rows;
+        }
+      });
+    },
     getIdUserCommandName2: function(){
     axios.get('http://localhost:3005/users/recommand/').then((response) => {
       console.log('getIdUserCommandName2', response);

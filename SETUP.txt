@@ -102,18 +102,20 @@ VALUES
 ////////////////////////// headers /////////////////////////
 CREATE TABLE headers
 (
-id SERIAL PRIMARY KEY,
+command_id integer REFERENCES command ON DELETE CASCADE,
+user_id integer REFERENCES users ON DELETE CASCADE,
 carburant VARCHAR(255),
 type VARCHAR(255),
-dispo boolean,
+disponibilite boolean,
 qualite VARCHAR(255),
-price integer,
+prix integer,
 date VARCHAR(255),
-activity VARCHAR(255),
+activity VARCHAR(255)
 );
 
+
 INSERT INTO headers
-(carburant, type, dispo, qualite, price, date, activity)
+(carburant, type, disponibilite, qualite, price, date, activity)
 VALUES
 ('ESSENCE S98', 'BIO', true, 'acceptable', 76, '2018-08-08', 'Faire le plein' ),
 ('ESSENCE S98', 'polluant', true, 'passable', 50, '2018-08-08', 'Faire le 1/2'),
@@ -124,3 +126,18 @@ VALUES
 ('ESSENCE S98', 'NO-polluant', false, 'acceptable-not', 100, '2018-08-08', 'Faire le plein'),
 ('DIESEL', 'Polluant', true, 'acceptable', 59, '2018-08-08', 'Faire le plein'),
 ('DIESEL', 'Polluant', true, 'acceptable', 77,'2018-08-08', 'Faire le 1/2')
+
+
+/////////////////////// OLD HEADERS ////////////////////
+CREATE TABLE headers
+(
+id SERIAL PRIMARY KEY,
+user_id integer REFERENCES users ON DELETE CASCADE,
+carburant VARCHAR(255),
+type VARCHAR(255),
+disponibilite boolean,
+qualite VARCHAR(255),
+prix integer,
+date VARCHAR(255),
+activity VARCHAR(255)
+);

@@ -1,6 +1,10 @@
 <template>
   <v-card>
     <v-card-title>
+<section>
+   <v-chip label outline color="amber darken-2"> <h2> Your are currently authenticated as <span id="nbr"> {{this.logUsers[0].user_id}} </span> </h2> </v-chip>
+</section>
+
 
 <section>
     Gas Refuiling order
@@ -202,8 +206,6 @@
     </v-data-table>
   </v-card>
 
-
-
 </template>
 
 
@@ -219,6 +221,7 @@ import axios from 'axios'
         showingDeleteModal: false,
         newHeader: {carburant:'', type:'', disponibilite:'' , qualite:'', prix:'', date:'', activity:''},
         clickedHeader: {},
+        logUsers:[],
         headers: [
           {
             text: 'Id Number',
@@ -251,8 +254,22 @@ import axios from 'axios'
     mounted(){
       console.log('we are in mounted');
       this.getHeaders();
+      this.getIdUserCommandName2ById();
     },
     methods: {
+      getIdUserCommandName2ById: function(id){
+        axios.get('http://localhost:3005/users/recommand/'+ sessionStorage.user).then((response) => {
+          console.log('getIdUserCommandName2ById', response);
+          if (response.data.error) {
+            app.errorMessage = response.data.message;
+            console.log('ERROR getIdUserCommandName2ById');
+          } else {
+            console.log('SUCESS response.data.rows', response.data.rows);
+            this.logUsers = response.data.rows;
+            console.log('this.logUsers', this.logUsers);
+          }
+        })
+      },
       getHeaders: function(){
         axios.get('http://localhost:3005/headers/').then((response) => {
           console.log('get headers', response);
@@ -343,5 +360,9 @@ import axios from 'axios'
 
 section{
   margin-right: 7vw;
+}
+span#nbr{
+  font-weight: 800;
+  color: #007bff;
 }
 </style>
