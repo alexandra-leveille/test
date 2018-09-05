@@ -5,13 +5,13 @@ module.exports = {
   getHeaders(){
     return db.query('SELECT * FROM headers')
   },
-  createHeader({ command_id, user_id, carburant, type, disponibilite, qualite, prix, date, activity }){
+  createHeader({ command_id, user_id, carburant, type, disponibilite, qualite, prix, date, activity, filler_id }){
     return db.query(`
       INSERT INTO headers (command_id, user_id, carburant, type,
-      disponibilite, qualite, prix, date, activity) VALUES (
+      disponibilite, qualite, prix, date, activity, filler_id) VALUES (
         '${command_id}','${user_id}',
       '${carburant}','${type}', '${disponibilite}','${qualite}',
-      '${prix}','${date}','${activity}' )`)
+      '${prix}','${date}','${activity}', '${filler_id}' )`)
   },
   updateHeader({ command_id, user_id, carburant, type, disponibilite, qualite, prix, date, activity }) {
   return db.query(`UPDATE headers SET user_id='${user_id}', carburant='${carburant}', type='${type}',

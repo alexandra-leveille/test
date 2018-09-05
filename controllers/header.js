@@ -9,8 +9,8 @@ module.exports = express.Router()
 })
 
 .post('/', (req, res) => {
-  const { command_id, user_id, carburant, type, disponibilite, qualite, prix, date, activity } = req.body;
-  model.createHeader({ command_id, user_id, carburant, type, disponibilite, qualite, prix, date, activity })
+  const { command_id, user_id, carburant, type, disponibilite, qualite, prix, date, activity, filler_id } = req.body;
+  model.createHeader({ command_id, user_id, carburant, type, disponibilite, qualite, prix, date, activity, filler_id })
   .then(result => res.json(result))
   .catch(err => console.log(err))
 })

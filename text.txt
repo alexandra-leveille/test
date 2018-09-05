@@ -777,3 +777,30 @@ Prix integer
 https://www.jsdelivr.com/package/npm/vue-star-rating
 https://www.npmjs.com/package/v-rating
 cdn - https://cdn.jsdelivr.net/npm/vue-star-rating@1.6.0/dist/star-rating.min.js
+
+////////////////////////// const to transform numbers /////////////////
+createHeader: function(){
+  const sentHeader = {
+    ...this.newHeader,
+     command_id: +this.newHeader.command_id,
+     user_id:+this.newHeader.user_id,
+     prix:+this.newHeader.prix,
+     filler_id:+this.newHeader.filler_id
+  }
+
+
+  or do the following
+
+
+  const sentHeader = {
+     command_id: +this.newHeader.command_id,
+     user_id:+this.newHeader.user_id,
+     carburant: this.newHeader.carburant,
+     type:this.newHeader.type,
+     disponibilite: this.newHeader.disponibilite ,
+     qualite:this.newHeader.qualite,
+     prix:+this.newHeader.prix,
+     date: this.newHeader.date,
+     activity:this.newHeader.activity,
+     filler_id:+this.newHeader.filler_id
+  }

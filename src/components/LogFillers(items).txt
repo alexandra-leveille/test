@@ -309,7 +309,7 @@ export default {
       })
     },
     createItem: function() {
-console.log('we create items');
+      console.log('we create items');
       axios.post('http://localhost:3005/items/', this.newItem).then((response) => {
         this.newItem = {name:'', type:'', title:'', activity:'', price:'', dispo:''}
         if (response.data.error) {

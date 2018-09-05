@@ -16,22 +16,27 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col"># id </th>
-        <th scope="col">name</th>
-        <th scope="col">lieux</th>
+        <th scope="col"> Date </th>
+        <th scope="col"> Command # id </th>
+        <th scope="col"> User # id </th>
+        <th scope="col"> DISPO </th>
+        <th scope="col"> Activity </th>
+        <th scope="col"> Filler # id </th>
         <th scope="col"> Edit </th>
         <th scope="col"> Erase </th>
       </tr>
-    </thead>
-    <tbody>
-      <tr v-for="cmd in command">
-        <td> {{cmd.id}} </td>
-        <td> {{cmd.name}} </td>
-        <td> {{cmd.lieux}} </td>
-        <td> <i class="fas fa-eraser"  @click="showingEditModal = true; selectCmd(cmd)"></i></td>
-        <td> <i class="far fa-trash-alt" @click="showingDeleteModal = true; selectCmd(cmd)"></i> </td>
+</thead>
+<tbody>
+      <tr v-for="head in headers">
+        <td> {{head.date}} </td>
+        <td> {{head.command_id}}</td>
+        <td> {{head.user_id}}</td>
+        <td> {{head.disponibilite}}</td>
+        <td> {{head.activity}}</td>
+        <td> {{head.filler_id}}</td>
+        <td> EDIT </td>
+        <td> DELETE</td>
       </tr>
-
     </tbody>
   </table>
 
@@ -47,32 +52,41 @@
         <button @click="showingAddModal= false" type="button" name="button" class="close"> <i class="fas fa-times"></i></button>
        <table class="form">
 
+         <label for="">date</label>
+         <input type="date" name="" value="" v-model="newHeader.date">
 
-       <tr>
-         <th> Command name </th>
-         <td> <input type="text" name="" value="" v-model="newCommand.name"> </td>
-       </tr>
+         <label for="">command_id</label>
+        <input type="number" name="" v-model="newHeader.command_id">
 
-       <tr>
-         <th> Command lieux </th>
-         <td> <input type="text" name="" value="" v-model="newCommand.lieux"> </td>
-       </tr>
+        <label for="">user_id</label>
+       <input type="number" name="" v-model="newHeader.user_id">
 
-       <tr>
-         <td> <button @click="showingAddModal = false; createCommand()" type="button" name="button"> Save </button> </td>
+       <label for="">filler_id</label>
+       <input type="number" name="" v-model="newHeader.filler_id">
+
+       <label for=""> Disponibilite </label>
+           <input type="text" name="" value="" v-model="newHeader.disponibilite">
+           <select v-model="newHeader.disponibilite"  name="">
+             <option value="true"> true </option>
+             <option value="false"> false </option>
+           </select>
+
+           <label for=""> activity</label>
+           <input type="text" name="" value="activity" v-model="newHeader.activity">
+           <select v-model="newHeader.activity" class="" name="activite">
+             <option value="Faire le  Plein"> Faire le  Plein </option>
+             <option value="Faire le 1/2"> Faire le 1/2 </option>
+             <option value="Faire le 1/4"> Faire le 1/4 </option>
+           </select>
+
+
+
+         <td> <button @click="showingAddModal = false; createHeader()" type="button" name="button"> Save </button> </td>
        </tr>
        </table>
        </div></p>
      </b-card>
   </div>
-
-
-
-
-
-
-
-
 
 
 <!-- ////////////////////////editModal////////////////////////// -->
@@ -86,27 +100,12 @@
           style="max-width: 20rem;"
           class="mb-2">
     <p class="card-text">
-      <div>
-        <p> Adding a New Command </p>
-        <button @click="showingEditModal = false" type="button" name="button" class="close"><i class="fas fa-times"></i></button>
-      <table class="form">
-        <tr>
-          <th> Command name </th>
-          <td> <input type="text" name="" value="" v-model="clickedCommand.name">  </td>
-        </tr>
-
 
         <tr>
-          <th> Command lieux </th>
-          <td> <input type="text" name="" value="" v-model="clickedCommand.lieux"> </td>
-        </tr>
-
-
-        <tr>
-          <td> <button @click="showingEditModal= false; updateCommand();" type="button" name="button"> Update </button> </td>
+          <td> <button @click="showingEditModal= false; updateHeader();" type="button" name="button"> Update </button> </td>
         </tr>
       </table>
-      </div>
+
     </p>
   </b-card>
 </div>
@@ -124,8 +123,8 @@
             align="center">
       <p class="card-text"<div>
         <button @click="showingDeleteModal= false" type="button" name="button" class="close"> <i class="fas fa-times"></i></button>
-      <p> Are you sure you want to delete you command </p>
-      <button type="button" name="button" @click="showingDeleteModal = false; deleteCommand()"> Yes </button>
+      <p> Are you sure you want to delete your command </p>
+      <button type="button" name="button" @click="showingDeleteModal = false; deleteHeader()"> Yes </button>
       <button type="button" name="button" @click="showingDeleteModal = false"> No </button>
       </div></p>
     </b-card>
@@ -139,89 +138,56 @@
 <script>
 import axios from 'axios'
 export default {
-  name:'Page20',
-  data (){
-    return {
-    showingAddModal:false,
-    showingEditModal:false,
-    showingDeleteModal:false,
-    command:[],
-    newCommand: {name:'', lieux:''},
-    clickedCommand:{}
+  name:'page20',
+  data(){
+    return{
+      showingAddModal:false,
+      showingDeleteModal:false,
+      showingEditModal:false,
+      newHeader: {command_id:0, user_id:0, carburant: '', type:'', disponibilite:'' , qualite:'', prix:'', date:'', activity:'', filler_id:0},
+      headers:[]
     }
   },
   mounted: function(){
-    console.log("mounted for now");
-    this.getCommands();
-    console.log('=====================ligne 81==========================');
+    console.log('mounted command');
+    this.getHeaders();
   },
   methods: {
-  getCommands: function(){
-    axios.get('http://localhost:3005/command/').then((response) => {
-      console.log('get Command', response);
-      if (response.data.error) {
-        console.log('error');
-      } else {
-        console.log('NO ERROR SO APP COMMAND IS', this.command);
-        this.command = response.data.rows;
-        console.log('ligne 91 sucess', response.data.rows);
+    getHeaders: function(){
+      axios.get('http://localhost:3005/headers/').then((response) => {
+        console.log('get headers', response);
+        if (response.data.error) {
+          app.errorMessage = response.data.message;
+        } else {
+          console.log('NO ERROR IN HEADERS', this.headers);
+          this.headers = response.data.rows;
+          console.log('ligne 142');
+        }
+      })
+    },
+    createHeader: function(){
+      const sentHeader = {
+        ...this.newHeader,
+         command_id: +this.newHeader.command_id,
+         user_id:+this.newHeader.user_id,
+         prix:+this.newHeader.prix,
+         filler_id:+this.newHeader.filler_id
       }
-
-    })
-  },
-createCommand: function(){
-  console.log('we are in createCommand');
-  axios.post('http://localhost:3005/command/', this.newCommand).then((response) => {
-    console.log('1 - showCommand', response);
-    this.newCommand = {name:'', lieux:''};
-    if (response.data.error) {
-      console.log('/// createCommand error /// ');
-    } else {
-      console.log('/// createCommand NOerror ///');
-      this.getCommands();
+      console.log('this.newHeader', this.newHeader);
+      axios.post('http://localhost:3005/headers/', sentHeader).then((response) => {
+        console.log('newHeader', response);
+        this.newHeader = { command_id:0, user_id:0, carburant: '', type:'', disponibilite:'' , qualite:'', prix: 0, date:'', activity:'', filler_id:0 };
+        if (response.data.error) {
+          console.log('========= ligne 167 =========');
+          app.errorMessage = response.data.message;
+        } else {
+          console.log('ligne 99');
+          console.log(this.newHeader);
+          this.getHeaders();
+        }
+      })
     }
-  })
-},
-updateCommand: function(){
-  console.log('we are here to update command');
-  console.log('UPDATE this.clickedCommand', this.clickedCommand);
-  console.log('UPDATE this.clickedCommand.id', this.clickedCommand.id);
-  console.log('UPDATE this.clickedCommand.name', this.clickedCommand.name);
-  console.log('UPDATE this.clickedCommand.lieux', this.clickedCommand.lieux);
-  axios.put('http://localhost:3005/command/'+ this.clickedCommand.id, this.clickedCommand).then((response) => {
-    console.log('from update response', response);
-    this.clickedCommand = {};
-    if (response.data.error) {
-      console.log('error in update');
-      app.errorMessage = response.data.message;
-    } else {
-      console.log('no error in update');
-      app.sucessMessage = response.data.message
-    }
-  })
-},
-selectCmd(cmd){
-  this.clickedCommand = cmd;
-  console.log('cmd.id',cmd.id);
-  console.log('cmd.name',cmd.name);
-  console.log('cmd.lieux',cmd.lieux);
-},
-deleteCommand:function(){
-  console.log('/////// deleteCommand ///// ');
-  axios.delete('http://localhost:3005/command/'+ this.clickedCommand.id).then((response) => {
-    console.log('delete response', response);
-    this.clickedCommand = {};
-    if (response.data.error) {
-      console.log('Error in Delete');
-      app.errorMessage = response.data.message;
-    } else {
-      console.log('NO ERROR IN DELETE');
-      this.getCommands();
-      app.sucessMessage = response.data.message;
-    }
-  })
-}
-}
+  }
 }
 </script>
 
@@ -254,7 +220,7 @@ button.map{
 #addModal, #deleteModal, #editModal{
   margin: auto;
   position: fixed;
-  top: 0
+  top: 0;
 }
 
 .close{
@@ -265,5 +231,17 @@ margin-top:-40px;
 
 #addModal table.form, #deleteModal table.form, #editModal table.form {
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 2px solid;
+}
+
+table.form select{
+  background: rgba(255,192,203,0.4);
+}
+
+table.form input{
+  background: pink
 }
 </style>

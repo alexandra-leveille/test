@@ -2,7 +2,7 @@
   <v-card>
     <v-card-title>
 <section v-if="this.logUsers[0]">
-   <v-chip label outline color="amber darken-2"> <h2> Your are currently authenticated as <span id="nbr"> {{this.logUsers[0].user_id}} </span> </h2> </v-chip>
+   <v-chip label outline color="amber darken-2"> <h2> Your are currently authenticated as User #<span id="nbr"> {{this.logUsers[0].user_id}} </span> </h2> </v-chip>
 </section>
 
 <section>
@@ -33,6 +33,9 @@
         <input v-model="newHeader.command_id" type="number" id="eyes" name="eyes"
            placeholder="select a value"
            min="1" max="1000" />
+
+           <label for="">filler_id</label>
+           <input type="number" name="" v-model="newHeader.user_id">
 
         <label for=""> Carburant </label>
         <input type="text" name="" value="" v-model="newHeader.carburant">
@@ -219,7 +222,7 @@ import axios from 'axios'
         showingAddModal: false,
         showingEditModal:false,
         showingDeleteModal: false,
-        newHeader: {user_id:'', command_id:0, carburant:'', type:'', disponibilite:'' , qualite:'', prix:'', date:'', activity:''},
+        newHeader: {user_id:'', command_id:0, carburant:'', type:'', disponibilite:'' , qualite:'', prix:'', date:'', activity:'', filler_id:'' },
         clickedHeader: {},
         logUsers:[],
         headers: [
@@ -267,7 +270,7 @@ import axios from 'axios'
             console.log('SUCESS response.data.rows', response.data.rows);
             this.logUsers = response.data.rows;
             console.log('this.logUsers', this.logUsers);
-            this.newHeader.user_id = this.logUsers[0].user_id  
+            this.newHeader.user_id = this.logUsers[0].user_id
           }
         })
       },
@@ -292,7 +295,7 @@ import axios from 'axios'
         console.log('this.newHeader', this.newHeader);
         axios.post('http://localhost:3005/headers/', this.newHeader).then((response) => {
           console.log('newHeader', response);
-          this.newHeader = { command_id:0, user_id:'', carburant: '', type:'', disponibilite:'' , qualite:'', prix:'', date:'', activity:'' };
+          this.newHeader = { command_id:0, user_id:'', carburant: '', type:'', disponibilite:'' , qualite:'', prix:'', date:'', activity:'', filler_id:'' };
           if (response.data.error) {
             console.log('========= ligne 167 =========');
             app.errorMessage = response.data.message;
