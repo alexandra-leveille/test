@@ -35,7 +35,7 @@
            min="1" max="1000" />
 
            <label for="">filler_id</label>
-           <input type="number" name="" v-model="newHeader.user_id">
+           <input type="number" name="" value="1" v-model="newHeader.filler_id">
 
         <label for=""> Carburant </label>
         <input type="text" name="" value="" v-model="newHeader.carburant">
@@ -292,6 +292,13 @@ import axios from 'axios'
         console.log(propsItem);
       },
       createHeader: function(){
+        // const sentHeader = {
+        //   ...this.newHeader,
+        //    command_id: +this.newHeader.command_id,
+        //    user_id:+this.newHeader.user_id,
+        //    prix:+this.newHeader.prix,
+        //    filler_id:+this.newHeader.filler_id
+        // }
         console.log('this.newHeader', this.newHeader);
         axios.post('http://localhost:3005/headers/', this.newHeader).then((response) => {
           console.log('newHeader', response);

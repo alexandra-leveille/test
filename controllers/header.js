@@ -17,8 +17,8 @@ module.exports = express.Router()
 
 .put('/:command_id', (req, res) => {
   const { command_id } = req.params;
-  const { user_id, carburant, type, disponibilite, qualite, prix, date, activity } = req.body;
-  model.updateHeader({  command_id, user_id, carburant, type, disponibilite, qualite, prix, date, activity })
+  const { user_id, carburant, type, disponibilite, qualite, prix, date, activity, filler_id } = req.body;
+  model.updateHeader({  command_id, user_id, carburant, type, disponibilite, qualite, prix, date, activity, filler_id })
   .then(result => res.json(result))
   .catch(err => res.json(err))
 })

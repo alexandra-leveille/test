@@ -34,8 +34,8 @@
         <td> {{head.disponibilite}}</td>
         <td> {{head.activity}}</td>
         <td> {{head.filler_id}}</td>
-        <td> EDIT </td>
-        <td> DELETE</td>
+        <td> <button @click="showingEditModal= true; selectHeader(head)" type="button" name="button"> EDIT </button></td>
+        <td> <button @click="showingDeleteModal= true; selectHeader(head)" type="button" name="button"> DELETE </button></td>
       </tr>
     </tbody>
   </table>
@@ -100,6 +100,36 @@
           style="max-width: 20rem;"
           class="mb-2">
     <p class="card-text">
+   <table>
+
+<tr>
+      <label for="">date</label>
+      <input type="date" name="" value="" v-model="clickedHeader.date">
+</tr>
+
+<tr>
+  <label for="">Command_id</label>
+  <input type="number" name="" value="" v-model="clickedHeader.command_id">
+</tr>
+
+<tr>
+  <label for="">User_id</label>
+  <input type="number" name="" value="" v-model="clickedHeader.user_id">
+</tr>
+
+      <tr>
+        <label for=""> Disponibilite </label>
+        <input type="text" name="" value="" v-model="clickedHeader.disponibilite">
+        <select v-model="clickedHeader.disponibilite"  name="">
+          <option value="true"> true </option>
+          <option value="false"> false </option>
+        </select>
+      </tr>
+
+        <tr>
+          <label for=""> filler_id</label>
+          <input type="number" name="" value="" v-model="clickedHeader.filler_id">
+        </tr>
 
         <tr>
           <td> <button @click="showingEditModal= false; updateHeader();" type="button" name="button"> Update </button> </td>
@@ -123,7 +153,7 @@
             align="center">
       <p class="card-text"<div>
         <button @click="showingDeleteModal= false" type="button" name="button" class="close"> <i class="fas fa-times"></i></button>
-      <p> Are you sure you want to delete your command </p>
+      <p> Are you sure you want to delete your command the following command number<span> {{this.clickedHeader.command_id}}</span> </p>
       <button type="button" name="button" @click="showingDeleteModal = false; deleteHeader()"> Yes </button>
       <button type="button" name="button" @click="showingDeleteModal = false"> No </button>
       </div></p>
@@ -145,6 +175,7 @@ export default {
       showingDeleteModal:false,
       showingEditModal:false,
       newHeader: {command_id:0, user_id:0, carburant: '', type:'', disponibilite:'' , qualite:'', prix:'', date:'', activity:'', filler_id:0},
+      clickedHeader:{},
       headers:[]
     }
   },
@@ -184,6 +215,42 @@ export default {
           console.log('ligne 99');
           console.log(this.newHeader);
           this.getHeaders();
+        }
+      })
+    },
+    selectHeader(head){
+      console.log('on a clicke sur ');
+      this.clickedHeader = head;
+      console.log('head', head);
+    },
+    updateHeader: function(){
+      console.log(this.clickedHeader.command_id);
+      console.log(this.clickedHeader.prix);
+      console.log(this.clickedHeader.qualite);
+      axios.put('http://localhost:3005/headers/'+ this.clickedHeader.command_id, this.clickedHeader).then((response) => {
+        console.log('from response', response);
+        this.clickedHeader = {};
+        if (response.data.error) {
+          console.log('ERROR IN UPDATE');
+        } else {
+          console.log('NO ERROR IN UPDATE');
+          app.sucessMessage = response.data.message;
+        }
+      })
+    },
+    deleteHeader: function(){
+      console.log('////////////// deleteheader //////////');
+      console.log(this.clickedHeader);
+      axios.delete('http://localhost:3005/headers/'+this.clickedHeader.command_id).then((response) => {
+        console.log('from delete response', response);
+        this.clickedHeader = {};
+        if (response.data.error) {
+          console.log('ERROR IN DELETE');
+          app.errorMessage = response.data.message;
+        } else {
+          console.log('NO ERROR IN DELETE');
+          this.getHeaders();
+          app.sucessMessage = response.data.message;
         }
       })
     }
