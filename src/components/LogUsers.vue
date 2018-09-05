@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="logusers">
+  <div class="logusers" v-if="this.logUsers[0]">
       <v-avatar size="70px" tile>
         <img
           src="../assets/avatar/flora.png"
@@ -81,7 +81,7 @@
           <td> <i class="fas fa-times" @click="showingDeleteModal = true; selectUser(log)"></i> </td>
         </tr>
     </table>
-     <v-chip label outline color="light-green accent-3"> <h2> You have just added the following order </h2> </v-chip>
+     <v-chip label outline color="light-green accent-3"> <h2> You have just added the following order(s) </h2> </v-chip>
     <table class="table">
       <tr>
         <th> command number </th>

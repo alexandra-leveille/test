@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title>
-<section>
+<section v-if="this.logUsers[0]">
    <v-chip label outline color="amber darken-2"> <h2> Your are currently authenticated as <span id="nbr"> {{this.logUsers[0].user_id}} </span> </h2> </v-chip>
 </section>
 
@@ -24,13 +24,15 @@
               class="mb-2">
         <p class="card-text">
       <button @click="showingAddModal = false" type="button" name="button"> CLOSE </button>
-      <table class="table">
+      <table class="table" v-if="this.logUsers[0]">
 
-        <label for="">user_id</label>
-        <input type="text" name="" value="" v-model="newHeader.user_id">
+         <label for="">user_id</label>
+        <input type="number" name="" v-model="newHeader.user_id">
 
         <label for="">command_id</label>
-        <input type="text" name="" value="" v-model="newHeader.command_id">
+        <input v-model="newHeader.command_id" type="number" id="eyes" name="eyes"
+           placeholder="select a value"
+           min="1" max="1000" />
 
         <label for=""> Carburant </label>
         <input type="text" name="" value="" v-model="newHeader.carburant">
@@ -51,8 +53,8 @@
     <label for=""> Disponibilite </label>
         <input type="text" name="" value="" v-model="newHeader.disponibilite">
         <select v-model="newHeader.disponibilite"  name="">
-          <option value="YES"> YES </option>
-          <option value="NO"> NO </option>
+          <option value="true"> true </option>
+          <option value="false"> false </option>
         </select>
         <label for=""> Qualite </label>
         <input type="text" name="" value="" v-model="newHeader.qualite">
@@ -217,7 +219,7 @@ import axios from 'axios'
         showingAddModal: false,
         showingEditModal:false,
         showingDeleteModal: false,
-        newHeader: {user_id:'', command_id:'', carburant:'', type:'', disponibilite:'' , qualite:'', prix:'', date:'', activity:''},
+        newHeader: {user_id:'', command_id:0, carburant:'', type:'', disponibilite:'' , qualite:'', prix:'', date:'', activity:''},
         clickedHeader: {},
         logUsers:[],
         headers: [
@@ -265,6 +267,7 @@ import axios from 'axios'
             console.log('SUCESS response.data.rows', response.data.rows);
             this.logUsers = response.data.rows;
             console.log('this.logUsers', this.logUsers);
+            this.newHeader.user_id = this.logUsers[0].user_id  
           }
         })
       },
@@ -286,15 +289,16 @@ import axios from 'axios'
         console.log(propsItem);
       },
       createHeader: function(){
+        console.log('this.newHeader', this.newHeader);
         axios.post('http://localhost:3005/headers/', this.newHeader).then((response) => {
           console.log('newHeader', response);
-          console.log('this.newHeader', this.newHeader);
-          this.newHeader = { command_id:'', user_id:'', carburant: '', type:'', disponibilite:'' , qualite:'', prix:'', date:'', activity:'' };
+          this.newHeader = { command_id:0, user_id:'', carburant: '', type:'', disponibilite:'' , qualite:'', prix:'', date:'', activity:'' };
           if (response.data.error) {
             console.log('========= ligne 167 =========');
             app.errorMessage = response.data.message;
           } else {
             console.log('ligne 99');
+            console.log(this.newHeader);
             this.getHeaders();
           }
         })

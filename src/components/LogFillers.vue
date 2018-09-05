@@ -1,6 +1,7 @@
 <template lang="html">
-  <div class="logfillers">
-<h5> <span class="light"> {{LogFillers[0].firstname}} </span>  Welcome on your Personal Filler Page</h5>
+  <div class="logfillers" v-if="this.LogFillers[0]">
+
+<h5> <span class="light"> {{this.LogFillers[0].firstname}} </span>  Welcome on your Personal Filler Page</h5>
 
 <template>
   <v-layout row>

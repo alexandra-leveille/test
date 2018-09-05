@@ -110,22 +110,23 @@ disponibilite boolean,
 qualite VARCHAR(255),
 prix integer,
 date VARCHAR(255),
-activity VARCHAR(255)
+activity VARCHAR(255),
+filler_id integer REFERENCES fillers ON DELETE CASCADE
 );
 
 
 INSERT INTO headers
 (carburant, type, disponibilite, qualite, price, date, activity)
 VALUES
-('ESSENCE S98', 'BIO', true, 'acceptable', 76, '2018-08-08', 'Faire le plein' ),
-('ESSENCE S98', 'polluant', true, 'passable', 50, '2018-08-08', 'Faire le 1/2'),
-('DIESEL', 'anti-polluant', false, 'passable', 130, '2018-08-08', 'Faire le plein'),
-('ESSENCE S95', 'NO-polluant', true, 'acceptable-not', 150, '2018-08-08', 'Faire le 1/4'),
-('Carburant', 'NO-polluant', true, 'anti-polluant', 34, '2018-08-08', 'Faire le plein'),
-('Carburant', 'type', true, 'anti-polluant', 56, '2018-08-08', 'Faire le plein'),
-('ESSENCE S98', 'NO-polluant', false, 'acceptable-not', 100, '2018-08-08', 'Faire le plein'),
-('DIESEL', 'Polluant', true, 'acceptable', 59, '2018-08-08', 'Faire le plein'),
-('DIESEL', 'Polluant', true, 'acceptable', 77,'2018-08-08', 'Faire le 1/2')
+('ESSENCE S98', 'BIO', true, 'acceptable', 76, '2018-08-08', 'Faire le plein', 1 ),
+('ESSENCE S98', 'polluant', true, 'passable', 50, '2018-08-08', 'Faire le 1/2', 1),
+('DIESEL', 'anti-polluant', false, 'passable', 130, '2018-08-08', 'Faire le plein', 1),
+('ESSENCE S95', 'NO-polluant', true, 'acceptable-not', 150, '2018-08-08', 'Faire le 1/4',1),
+('Carburant', 'NO-polluant', true, 'anti-polluant', 34, '2018-08-08', 'Faire le plein', 1),
+('Carburant', 'type', true, 'anti-polluant', 56, '2018-08-08', 'Faire le plein', 1),
+('ESSENCE S98', 'NO-polluant', false, 'acceptable-not', 100, '2018-08-08', 'Faire le plein', 1),
+('DIESEL', 'Polluant', true, 'acceptable', 59, '2018-08-08', 'Faire le plein', 1),
+('DIESEL', 'Polluant', true, 'acceptable', 77,'2018-08-08', 'Faire le 1/2', 1)
 
 
 /////////////////////// OLD HEADERS ////////////////////
