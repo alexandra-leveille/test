@@ -270,7 +270,8 @@ import axios from 'axios'
             console.log('SUCESS response.data.rows', response.data.rows);
             this.logUsers = response.data.rows;
             console.log('this.logUsers', this.logUsers);
-            this.newHeader.user_id = this.logUsers[0].user_id
+            console.log('this.logUsers[0].user_id',this.logUsers[0].user_id);
+            this.newHeader.user_id = this.logUsers[0].user_id;    
           }
         })
       },

@@ -175,8 +175,8 @@ export default {
       showingDeleteModal:false,
       showingEditModal:false,
       newHeader: {command_id:0, user_id:0, carburant: '', type:'', disponibilite:'' , qualite:'', prix:'', date:'', activity:'', filler_id:0},
-      clickedHeader:{},
-      headers:[]
+      headers:[],
+      clickedHeader:{}
     }
   },
   mounted: function(){
@@ -224,9 +224,9 @@ export default {
       console.log('head', head);
     },
     updateHeader: function(){
-      console.log(this.clickedHeader.command_id);
-      console.log(this.clickedHeader.prix);
-      console.log(this.clickedHeader.qualite);
+      console.log('clickedHeader.command_id',this.clickedHeader.command_id);
+      console.log('clickedHeader.user_id',this.clickedHeader.user_id);
+      console.log('clickedHeader.filler_id',this.clickedHeader.filler_id);
       axios.put('http://localhost:3005/headers/'+ this.clickedHeader.command_id, this.clickedHeader).then((response) => {
         console.log('from response', response);
         this.clickedHeader = {};
@@ -235,13 +235,14 @@ export default {
         } else {
           console.log('NO ERROR IN UPDATE');
           app.sucessMessage = response.data.message;
+          console.log('this.clickedHeader', this.clickedHeader);
         }
       })
     },
     deleteHeader: function(){
       console.log('////////////// deleteheader //////////');
       console.log(this.clickedHeader);
-      axios.delete('http://localhost:3005/headers/'+this.clickedHeader.command_id).then((response) => {
+      axios.delete('http://localhost:3005/headers/'+ this.clickedHeader.command_id).then((response) => {
         console.log('from delete response', response);
         this.clickedHeader = {};
         if (response.data.error) {

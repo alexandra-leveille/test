@@ -1,4 +1,4 @@
-<template lang="html">
+date<template lang="html">
   <div class="logfillers" v-if="this.LogFillers[0]">
 
 <h5> <span class="light"> {{this.LogFillers[0].firstname}} </span>  Welcome on your Personal Filler Page</h5>
@@ -57,7 +57,7 @@
 
             <v-list-tile
               v-else
-              :key="item.title"
+              :key="item.date"
               avatar
               @click=""
             >
@@ -68,15 +68,15 @@
               </v-list-tile-avatar>
 
               <div class="mix">
-                <p class="name"> {{item.name}} </p>
+                <p class="name"> {{item.user_id}} </p>
                 <p class="type"> {{item.type}} </p>
               </div>
 
               <v-list-tile-content class="bloc">
-                <p>{{item.title}}</p>
+                <p>{{item.date}}</p>
                 <p> {{item.activity}} </p>
-                <p>{{item.price}} € </p>
-              <p> <h6> Availability : {{item.dispo}} </h6> </p>
+                <p>{{item.prix}} € </p>
+              <p> <h6> Availability : {{item.disponibilite}} </h6> </p>
               </v-list-tile-content>
               <div class="bas">
                 <i class="fas fa-angle-right fa-3x"></i>
@@ -121,8 +121,13 @@
 <button class="fright close" @click="showingAddModal = false"> CLOSE </button>
 <table class="table">
 
-<label for="">Name</label>
-<input type="text" name="Firstname" value="Firstname" v-model="newItem.name">
+<label for="">Command Id </label>
+<input type="number" name="Firstname" value="Firstname" v-model="newItem.command_id">
+
+<label for="">User Id </label>
+<input type="number" name="Firstname" value="Firstname" v-model="newItem.user_id">
+
+
 <label for="">type</label>
 <input type="text" name="" value="type" v-model="newItem.type">
 <select  v-model="newItem.type" class="" name="activite">
@@ -132,7 +137,7 @@
   <option   value="Carburant GPL"> Carburant GPL </option>
 </select>
 <label for="">date</label>
-<input type="date" name="" value="title" v-model="newItem.title">
+<input type="date" name="" value="date" v-model="newItem.date">
 <label for="">activity</label>
 <input type="text" name="" value="activity" v-model="newItem.activity">
 <select v-model="newItem.activity" class="" name="activite">
@@ -141,14 +146,14 @@
   <option value="Faire le 1/4"> Faire le 1/4 </option>
 </select>
 
-<label for="">price</label>
-<input type="text" name="" value="prix" v-model="newItem.price">
-<input type="range" name="points" min="0" max="300" v-model="newItem.price">
+<label for="">prix</label>
+<input type="text" name="" value="prix" v-model="newItem.prix">
+<input type="range" name="points" min="0" max="300" v-model="newItem.prix">
 <hr>
-<label for="">dispo</label>
+<label for="">disponibilite</label>
 
-<input type="text" name="" value="disponibilite" v-model="newItem.dispo">
-<select v-model="newItem.dispo"  name="">
+<input type="text" name="" value="disponibilite" v-model="newItem.disponibilite">
+<select v-model="newItem.disponibilite"  name="">
   <option value="YES"> YES </option>
   <option value="NO"> NO </option>
 </select>
@@ -177,7 +182,7 @@
         <p class="card-text">
           <table class="table">
           <label for=""> name </label>
-          <input type="text" name="" value="" v-model="clickedItem.name">
+          <input type="text" name="" value="" v-model="clickedItem.user_id">
           <label for=""> type </label>
           <input type="text" name="" value="" v-model="clickedItem.type">
           <select v-model="clickedItem.type" name="activite">
@@ -188,8 +193,8 @@
   </select>
   <hr>
 
-          <label for="">title</label>
-          <input type="date" name="" value="" v-model="clickedItem.title">
+          <label for="">date</label>
+          <input type="date" name="" value="" v-model="clickedItem.date">
 
           <label for="">activity</label>
           <input type="text" name="" value="" v-model="clickedItem.activity">
@@ -200,13 +205,13 @@
     <option value="Faire le 1/4"> Faire le 1/4 </option>
   </select>
 
-          <label for="">price</label>
-          <input type="text" name="" value="" v-model="clickedItem.price">
-          <input type="range" name="points" min="0" max="300" v-model="clickedItem.price">
+          <label for="">prix</label>
+          <input type="text" name="" value="" v-model="clickedItem.prix">
+          <input type="range" name="points" min="0" max="300" v-model="clickedItem.prix">
 
-          <label for="">dispo</label>
-          <input type="text" name="" value="" v-model="clickedItem.dispo">
-          <select v-model="clickedItem.dispo" class="" name="">
+          <label for="">disponibilite</label>
+          <input type="text" name="" value="" v-model="clickedItem.disponibilite">
+          <select v-model="clickedItem.disponibilite" class="" name="">
           <option value="YES"> YES </option>
           <option value="NO"> NO </option>
           </select>
@@ -224,7 +229,7 @@
     <b-card title="Delete Order"
             sub-title="For sure">
         <p class="card-text">
-          <p> Are you sure you want to delete {{this.clickedItem.id}} </p>
+          <p> Are you sure you want to delete {{this.clickedItem.command_id}} </p>
           <button  @click="showingDeleteModal = false; deleteItem()" type="button" name="button"> YES </button>
 <button  @click="showingDeleteModal = false" type="button" name="button"> NO </button>
         </p>
@@ -244,7 +249,8 @@ export default {
       LogFillers: [],
       ranges:[],
       items: [],
-      newItem:{name:'', type:'', title:'', activity:'', price:'', dispo:''},
+      //newItem:{name:'', type:'', title:'', activity:'', price:'', dispo:''},
+      newItem: {command_id:0, user_id:0, carburant: '', type:'', disponibilite:'' , qualite:'', prix:'', date:'', activity:'', filler_id:0},
       clickedItem:{},
       showingAddModal:false,
       showingEditModal:false,
@@ -305,13 +311,19 @@ export default {
           //console.log('filler id is', this.LogFillers[0].id);
           //console.log('filler lastname is', this.LogFillers[0].lastname);
           //console.log('filler firstname id', this.LogFillers[0].firstname);
+          console.log('this.newItem.id', this.newItem.id);
+          this.newItem.filler_id = this.LogFillers[0].id;
+          console.log('this.LogFillers[0].filler_id',this.LogFillers[0].id);
+          console.log('this.newItem.filler_id ',this.newItem.filler_id );
+          console.log('ligne 312');
         }
       })
     },
     createItem: function() {
 console.log('we create items');
-      axios.post('http://localhost:3005/items/', this.newItem).then((response) => {
-        this.newItem = {name:'', type:'', title:'', activity:'', price:'', dispo:''}
+      axios.post('http://localhost:3005/headers/', this.newItem).then((response) => {
+        //this.newItem = {name:'', type:'', title:'', activity:'', price:'', disponibilite:''}
+        this.newItem = {command_id:0, user_id:0, carburant: '', type:'', disponibilite:'' , qualite:'', prix:'', date:'', activity:'', filler_id:0};
         if (response.data.error) {
           console.log('error createItem');
           app.errorMesssage = response.data.message;
@@ -322,7 +334,7 @@ console.log('we create items');
       })
     },
     getItems: function(){
-      axios.get('http://localhost:3005/items').then((response) => {
+      axios.get('http://localhost:3005/headers').then((response) => {
         console.log('getItems', response);
         if (response.data.error) {
           console.log('ERROR getItems');
@@ -338,8 +350,8 @@ console.log('we create items');
     },
     updateItem :function(){
       console.log(this.clickedItem);
-      console.log(this.clickedItem.name);
-      axios.put('http://localhost:3005/items/'+this.clickedItem.id, this.clickedItem).then((response) => {
+      console.log(this.clickedItem.user_id);
+      axios.put('http://localhost:3005/headers/'+this.clickedItem.command_id, this.clickedItem).then((response) => {
         console.log('from update', response);
         this.clickedItem = {};
         if (response.data.error) {
@@ -354,7 +366,7 @@ console.log('we create items');
     deleteItem: function () {
   console.log('we do delete');
   console.log(this.clickedItem);
-  axios.delete('http://localhost:3005/items/'+ this.clickedItem.id).then((response) => {
+  axios.delete('http://localhost:3005/headers/'+ this.clickedItem.command_id).then((response) => {
     console.log('delete from response', response);
     this.clickedItem = {};
     if (response.data.error) {
