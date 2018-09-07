@@ -302,7 +302,6 @@ margin-top:-40px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  border: 2px solid;
 }
 
 table.form select{

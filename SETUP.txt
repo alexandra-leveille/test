@@ -102,6 +102,7 @@ VALUES
 ////////////////////////// headers /////////////////////////
 CREATE TABLE headers
 (
+id SERIAL PRIMARY KEY,
 command_id integer REFERENCES command ON DELETE CASCADE,
 user_id integer REFERENCES users ON DELETE CASCADE,
 carburant VARCHAR(255),

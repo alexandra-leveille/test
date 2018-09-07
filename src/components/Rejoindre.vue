@@ -122,8 +122,8 @@
         <label for=""> Disponibilite </label>
         <input type="text" name="" value="" v-model="clickedHeader.disponibilite">
         <select v-model="clickedHeader.disponibilite"  name="">
-          <option value="YES"> YES </option>
-          <option value="NO"> NO </option>
+          <option value="true"> true </option>
+          <option value="false"> false </option>
         </select>
 
         <label for=""> Qualite </label>
@@ -271,7 +271,7 @@ import axios from 'axios'
             this.logUsers = response.data.rows;
             console.log('this.logUsers', this.logUsers);
             console.log('this.logUsers[0].user_id',this.logUsers[0].user_id);
-            this.newHeader.user_id = this.logUsers[0].user_id;    
+            this.newHeader.user_id = this.logUsers[0].user_id;
           }
         })
       },
@@ -356,6 +356,7 @@ import axios from 'axios'
   flex-direction: column;
   align-items: flex-start;
   padding: 2vw;
+  border: none;
 }
 
 #addModal table input, #editModal table input{
@@ -369,8 +370,12 @@ import axios from 'axios'
 #addModal, #editModal{
   height: 55vh;
   width: 35vw;
+  z-index: 1;
 }
 
+#deleteModal{
+  z-index: 1;
+}
 section{
   margin-right: 7vw;
 }

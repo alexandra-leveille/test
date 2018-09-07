@@ -141,7 +141,7 @@
       </button>
     <p> Do you wish to delete the following :
       command number {{clickedUser.id }}, with the lastname {{clickedUser.lastname }}</p>
-    <button @click="showingDeleteModal = false; deleteuser()"  type="button" name="button"> YES </button>
+    <button @click="showingDeleteModal = false; deleteUser()"  type="button" name="button"> YES </button>
     <button @click="showingDeleteModal = false" type="button" name="button"> NO </button>
 
     </div>

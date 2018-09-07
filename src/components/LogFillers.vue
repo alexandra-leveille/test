@@ -154,8 +154,8 @@ date<template lang="html">
 
 <input type="text" name="" value="disponibilite" v-model="newItem.disponibilite">
 <select v-model="newItem.disponibilite"  name="">
-  <option value="YES"> YES </option>
-  <option value="NO"> NO </option>
+  <option value="true"> true </option>
+  <option value="false"> false </option>
 </select>
 <hr>
 </table>
@@ -212,8 +212,8 @@ date<template lang="html">
           <label for="">disponibilite</label>
           <input type="text" name="" value="" v-model="clickedItem.disponibilite">
           <select v-model="clickedItem.disponibilite" class="" name="">
-          <option value="YES"> YES </option>
-          <option value="NO"> NO </option>
+          <option value="true"> true </option>
+          <option value="false"> false </option>
           </select>
 </table>
           <button @click="showingDeleteModal=false;updateItem()" type="button" name="button"> EDIT </button>
@@ -360,6 +360,7 @@ console.log('we create items');
         } else {
           console.log('NO ERROR IN UPDATE');
           app.sucessMessage = response.data.message;
+          console.log('this.clickedItem', this.clickedItem.disponibilite);
         }
       })
     },
@@ -413,7 +414,7 @@ div.map#map{
 }
 
 #addModal, #editModal, #deleteModal{
-  width: 35vw;
+  width: 25vw;
   position: fixed;
   top: 0;
   left: 0;
@@ -428,7 +429,7 @@ flex-direction: column;
 }
 
 #addModal table.table input, #editModal table.table input{
-  width: 25vw;
+  width: 15vw;
   border-bottom: 1px solid;
 }
 
