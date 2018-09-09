@@ -434,4 +434,8 @@ position: fixed;
 top: 0;
 }
 
+
+#addModal input{
+  width: 5vw;
+}
 </style>

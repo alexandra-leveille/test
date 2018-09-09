@@ -1,7 +1,9 @@
-date<template lang="html">
+<template lang="html">
   <div class="logfillers" v-if="this.LogFillers[0]">
 
 <h5> <span class="light"> {{this.LogFillers[0].firstname}} </span>  Welcome on your Personal Filler Page</h5>
+<p> Your are identified as  Driver with Id Number {{LogFillers[0].id}} </p>
+<p> with firstname : {{LogFillers[0].firstname}} and lastname {{LogFillers[0].lastname}}</p>
 
 <template>
   <v-layout row>
@@ -40,9 +42,7 @@ date<template lang="html">
         <v-list three-line>
           <template v-for="(item, index) in items">
             <v-subheader v-if="item.header">
-              <h6> <span class="light"> Hello {{LogFillers[0].firstname}} </span> </h6>
-              <p> Driver with Id Number {{LogFillers[0].id}} </p>
-              <p>Your name  is : {{LogFillers[0].firstname}} {{LogFillers[0].lastname}}</p>
+
 
               <button @click="showingAddModal = true" type="" name="button">
               <i class="fas fa-address-card fa-1x"></i>
@@ -68,7 +68,7 @@ date<template lang="html">
               </v-list-tile-avatar>
 
               <div class="mix">
-                <p class="name"> {{item.user_id}} </p>
+                <p class="name"> USER : {{item.user_id}} </p>
                 <p class="type"> {{item.type}} </p>
               </div>
 
@@ -429,7 +429,7 @@ flex-direction: column;
 }
 
 #addModal table.table input, #editModal table.table input{
-  width: 15vw;
+  width: 5vw;
   border-bottom: 1px solid;
 }
 

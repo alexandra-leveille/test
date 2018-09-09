@@ -361,7 +361,7 @@ import axios from 'axios'
 
 #addModal table input, #editModal table input{
   border-bottom: 1px solid black;
-  width: 15vw;
+  width: 5vw;
 }
 
 #addModal table select, #editModal table select{

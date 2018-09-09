@@ -1,3 +1,5 @@
+//jshint esversion:6
+
 const express = require('express')
 const model = require('../models/header')
 
