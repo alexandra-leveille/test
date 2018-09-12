@@ -155,7 +155,6 @@ button.button{
   font-weight: 800;
   color: white;
   margin-top: 25vh;
-  font-size: 2vw;
 }
 
 

@@ -31,7 +31,23 @@ INSERT INTO fillers
 ('VTC','three'),
 ('VTC','four');
 
-////////////////////////////// command ///////////////////////////////
+
+/////////////////////// new command ////////////////////
+CREATE TABLE command
+(
+id SERIAL PRIMARY KEY,
+user_id integer REFERENCES users ON DELETE CASCADE,
+filler_id integer REFERENCES fillers ON DELETE CASCADE,
+carburant VARCHAR(255),
+type VARCHAR(255),
+disponibilite boolean,
+qualite VARCHAR(255),
+prix integer,
+date VARCHAR(255),
+activity VARCHAR(255)
+);
+
+////////////////////////////// old command ///////////////////////////////
 
 CREATE TABLE command (
 Id SERIAL PRIMARY KEY,

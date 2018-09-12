@@ -30,7 +30,7 @@
                   <v-container fill-height fluid>
                     <v-layout>
                       <v-flex xs12 align-end d-flex>
-                        <span class="headline">{{ post.title }}</span>
+                        <span class="headline red">{{ post.title }}</span>
                       </v-flex>
                     </v-layout>
                   </v-container>
@@ -84,17 +84,17 @@ export default {
           {
             title: ' Step 1 - Connect as a  User',
             content: 'Enter all your personel information that will be necessary to create a complete user profil. Give us your firstname, lastname, adress, phone number, vehicule gabaris, gas type, and availability preferences.',
-            imgUrl: 'https://picsum.photos/900/250/?image=05'
+            imgUrl: 'https://picsum.photos/600/300/?image=09'
           },
           {
             title: ' Step 2 - Find an available filler',
             content: 'Find the proper filler and time spot for you to receive your order. Choose if you want to be present or not during the delivery. Not available ? Dont worry you will receive a text once your order is over .',
-            imgUrl: 'https://picsum.photos/900/250/?image=02'
+            imgUrl: 'https://picsum.photos/600/300/?image=09'
           },
           {
             title: 'Setp 3 - leave your detailed infromations for your order',
             content: 'One your order is over we would like to receive some feedback from you. You can grade the quality of the service or plan for your next order. Remeber we want to see you very soon :)',
-            imgUrl: 'https://picsum.photos/900/250/?image=03'
+            imgUrl: 'https://picsum.photos/600/300/?image=09'
           }
         ]
     }
@@ -102,5 +102,7 @@ export default {
 }
 </script>.
 <style lang="css">
-
+.red{
+  color:white;
+}
 </style>

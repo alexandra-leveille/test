@@ -153,7 +153,6 @@ button.button{
   margin: auto;
   font-weight: 800;
   color: white;
-  font-size:4vw;
 }
 
 @media (max-width: 427px) {

@@ -76,7 +76,7 @@
                 <p>{{item.date}}</p>
                 <p> {{item.activity}} </p>
                 <p>{{item.prix}} € </p>
-              <p> <h6> Availability : {{item.disponibilite}} </h6> </p>
+              <p> Availability : {{item.disponibilite}} </p>
               </v-list-tile-content>
               <div class="bas">
                 <i class="fas fa-angle-right fa-3x"></i>
@@ -87,13 +87,13 @@
 
           <div class="bottom">
             <img src="../assets/min_localize.png" alt="">
-            <h6> Recherche </h6>
+            <h6 class="d-flex justify-content-start"> Recherche </h6>
             <img src="../assets/min_pomp.png" alt="">
-            <h6> Prestataires </h6>
+            <h6 class="d-flex justify-content-start"> Prestataires </h6>
             <img src="../assets/min_pay.png" alt="">
-            <h6> Payez </h6>
+            <h6 class="d-flex justify-content-start"> Payez </h6>
             <img src="../assets/min_pomp.png" alt="">
-            <h6> Mon Compte </h6>
+            <h6 class="d-flex justify-content-start"> Mon Compte </h6>
           </div>
         </v-list>
       </v-card>
@@ -410,7 +410,6 @@ div.map#map{
 
 .bloc p{
   margin-bottom:0;
-  font-size: 0.9vw;
 }
 
 #addModal, #editModal, #deleteModal{
@@ -443,12 +442,11 @@ flex-direction: column;
   background: black;
   color: silver;
   display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .bloc{
   display: grid;
 }
-
 </style>

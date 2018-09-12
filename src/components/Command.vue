@@ -262,7 +262,6 @@ export default {
 <style lang="css">
 
 table.table{
-border: 2px solid;
 width: 60vw;
 height: auto;
 margin: auto;
