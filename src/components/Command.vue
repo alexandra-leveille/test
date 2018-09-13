@@ -27,15 +27,15 @@
       </tr>
 </thead>
 <tbody>
-      <tr v-for="head in headers">
-        <td> {{head.date}} </td>
-        <td> {{head.command_id}}</td>
-        <td> {{head.user_id}}</td>
-        <td> {{head.disponibilite}}</td>
-        <td> {{head.activity}}</td>
-        <td> {{head.filler_id}}</td>
-        <td> <button @click="showingEditModal= true; selectHeader(head)" type="button" name="button"> EDIT </button></td>
-        <td> <button @click="showingDeleteModal= true; selectHeader(head)" type="button" name="button"> DELETE </button></td>
+      <tr v-for="cmd in commands">
+        <td> {{cmd.date}} </td>
+        <td> {{cmd.id}}</td>
+        <td> {{cmd.user_id}}</td>
+        <td> {{cmd.disponibilite}}</td>
+        <td> {{cmd.activity}}</td>
+        <td> {{cmd.filler_id}}</td>
+        <td> <button @click="showingEditModal= true; selectCommand(cmd)" type="button" name="button"> EDIT </button></td>
+        <td> <button @click="showingDeleteModal= true; selectCommand(cmd)" type="button" name="button"> DELETE </button></td>
       </tr>
     </tbody>
   </table>
@@ -53,27 +53,24 @@
        <table class="form">
 
          <label for="">date</label>
-         <input type="date" name="" value="" v-model="newHeader.date">
-
-         <label for="">command_id</label>
-        <input type="number" name="" v-model="newHeader.command_id">
+         <input type="date" name="" value="" v-model="newCommand.date">
 
         <label for="">user_id</label>
-       <input type="number" name="" v-model="newHeader.user_id">
+       <input type="number" name="" v-model="newCommand.user_id">
 
        <label for="">filler_id</label>
-       <input type="number" name="" v-model="newHeader.filler_id">
+       <input type="number" name="" v-model="newCommand.filler_id">
 
        <label for=""> Disponibilite </label>
-           <input type="text" name="" value="" v-model="newHeader.disponibilite">
-           <select v-model="newHeader.disponibilite"  name="">
+           <input type="text" name="" value="" v-model="newCommand.disponibilite">
+           <select v-model="newCommand.disponibilite"  name="">
              <option value="true"> true </option>
              <option value="false"> false </option>
            </select>
 
            <label for=""> activity</label>
-           <input type="text" name="" value="activity" v-model="newHeader.activity">
-           <select v-model="newHeader.activity" class="" name="activite">
+           <input type="text" name="" value="activity" v-model="newCommand.activity">
+           <select v-model="newCommand.activity" class="" name="activite">
              <option value="Faire le  Plein"> Faire le  Plein </option>
              <option value="Faire le 1/2"> Faire le 1/2 </option>
              <option value="Faire le 1/4"> Faire le 1/4 </option>
@@ -81,7 +78,7 @@
 
 
 
-         <td> <button @click="showingAddModal = false; createHeader()" type="button" name="button"> Save </button> </td>
+         <td> <button @click="showingAddModal = false; createCommand()" type="button" name="button"> Save </button> </td>
        </tr>
        </table>
        </div></p>
@@ -104,23 +101,18 @@
 
 <tr>
       <label for="">date</label>
-      <input type="date" name="" value="" v-model="clickedHeader.date">
-</tr>
-
-<tr>
-  <label for="">Command_id</label>
-  <input type="number" name="" value="" v-model="clickedHeader.command_id">
+      <input type="date" name="" value="" v-model="clickedCommand.date">
 </tr>
 
 <tr>
   <label for="">User_id</label>
-  <input type="number" name="" value="" v-model="clickedHeader.user_id">
+  <input type="number" name="" value="" v-model="clickedCommand.user_id">
 </tr>
 
       <tr>
         <label for=""> Disponibilite </label>
-        <input type="text" name="" value="" v-model="clickedHeader.disponibilite">
-        <select v-model="clickedHeader.disponibilite"  name="">
+        <input type="text" name="" value="" v-model="clickedCommand.disponibilite">
+        <select v-model="clickedCommand.disponibilite"  name="">
           <option value="true"> true </option>
           <option value="false"> false </option>
         </select>
@@ -128,11 +120,11 @@
 
         <tr>
           <label for=""> filler_id</label>
-          <input type="number" name="" value="" v-model="clickedHeader.filler_id">
+          <input type="number" name="" value="" v-model="clickedCommand.filler_id">
         </tr>
 
         <tr>
-          <td> <button @click="showingEditModal= false; updateHeader();" type="button" name="button"> Update </button> </td>
+          <td> <button @click="showingEditModal= false; updateCommand();" type="button" name="button"> Update </button> </td>
         </tr>
       </table>
 
@@ -153,8 +145,8 @@
             align="center">
       <p class="card-text"<div>
         <button @click="showingDeleteModal= false" type="button" name="button" class="close"> <i class="fas fa-times"></i></button>
-      <p> Are you sure you want to delete your command the following command number<span> {{this.clickedHeader.command_id}}</span> </p>
-      <button type="button" name="button" @click="showingDeleteModal = false; deleteHeader()"> Yes </button>
+      <p> Are you sure you want to delete your command the following command number<span> {{this.clickedCommand.id}}</span> </p>
+      <button type="button" name="button" @click="showingDeleteModal = false; deleteCommand()"> Yes </button>
       <button type="button" name="button" @click="showingDeleteModal = false"> No </button>
       </div></p>
     </b-card>
@@ -174,83 +166,83 @@ export default {
       showingAddModal:false,
       showingDeleteModal:false,
       showingEditModal:false,
-      newHeader: {command_id:0, user_id:0, carburant: '', type:'', disponibilite:'' , qualite:'', prix:'', date:'', activity:'', filler_id:0},
-      headers:[],
-      clickedHeader:{}
+      newCommand: { user_id:0, carburant: '', type:'', disponibilite:'' , qualite:'', prix:'', date:'', activity:'', filler_id:0},
+      commands:[],
+      clickedCommand:{}
     }
   },
   mounted: function(){
     console.log('mounted command');
-    this.getHeaders();
+    this.getCommands();
   },
   methods: {
-    getHeaders: function(){
-      axios.get('http://localhost:3005/headers/').then((response) => {
-        console.log('get headers', response);
+    getCommands: function(){
+      axios.get('http://localhost:3005/command/').then((response) => {
+        console.log('get commands', response);
         if (response.data.error) {
           app.errorMessage = response.data.message;
         } else {
-          console.log('NO ERROR IN HEADERS', this.headers);
-          this.headers = response.data.rows;
+          console.log('NO ERROR IN COMMANDS', this.commands);
+          this.commands = response.data.rows;
           console.log('ligne 142');
         }
       })
     },
-    createHeader: function(){
-      const sentHeader = {
-        ...this.newHeader,
-         command_id: +this.newHeader.command_id,
-         user_id:+this.newHeader.user_id,
-         prix:+this.newHeader.prix,
-         filler_id:+this.newHeader.filler_id
+    createCommand: function(){
+      const sentCommand = {
+        ...this.newCommand,
+         command_id: +this.newCommand.id,
+         user_id:+this.newCommand.user_id,
+         prix:+this.newCommand.prix,
+         filler_id:+this.newCommand.filler_id
       }
-      console.log('this.newHeader', this.newHeader);
-      axios.post('http://localhost:3005/headers/', sentHeader).then((response) => {
-        console.log('newHeader', response);
-        this.newHeader = { command_id:0, user_id:0, carburant: '', type:'', disponibilite:'' , qualite:'', prix: 0, date:'', activity:'', filler_id:0 };
+      console.log('this.newCommand', this.newCommand);
+      axios.post('http://localhost:3005/command/', sentCommand).then((response) => {
+        console.log('newCommand', response);
+        this.newCommand = {  user_id:0, carburant: '', type:'', disponibilite:'' , qualite:'', prix: 0, date:'', activity:'', filler_id:0 };
         if (response.data.error) {
           console.log('========= ligne 167 =========');
           app.errorMessage = response.data.message;
         } else {
           console.log('ligne 99');
-          console.log(this.newHeader);
-          this.getHeaders();
+          console.log(this.newCommand);
+          this.getCommands();
         }
       })
     },
-    selectHeader(head){
+    selectCommand(cmd){
       console.log('on a clicke sur ');
-      this.clickedHeader = head;
-      console.log('head', head);
+      this.clickedCommand = cmd;
+      console.log('cmd', cmd);
     },
-    updateHeader: function(){
-      console.log('clickedHeader.command_id',this.clickedHeader.command_id);
-      console.log('clickedHeader.user_id',this.clickedHeader.user_id);
-      console.log('clickedHeader.filler_id',this.clickedHeader.filler_id);
-      axios.put('http://localhost:3005/headers/'+ this.clickedHeader.command_id, this.clickedHeader).then((response) => {
+    updateCommand: function(){
+      console.log('clickedCommand.command_id',this.clickedCommand.id);
+      console.log('clickedCommand.user_id',this.clickedCommand.user_id);
+      console.log('clickedCommand.filler_id',this.clickedCommand.filler_id);
+      axios.put('http://localhost:3005/command/'+ this.clickedCommand.id, this.clickedCommand).then((response) => {
         console.log('from response', response);
-        this.clickedHeader = {};
+        this.clickedCommand = {};
         if (response.data.error) {
           console.log('ERROR IN UPDATE');
         } else {
           console.log('NO ERROR IN UPDATE');
           app.sucessMessage = response.data.message;
-          console.log('this.clickedHeader', this.clickedHeader);
+          console.log('this.clickedCommand', this.clickedCommand);
         }
       })
     },
-    deleteHeader: function(){
-      console.log('////////////// deleteheader //////////');
-      console.log(this.clickedHeader);
-      axios.delete('http://localhost:3005/headers/'+ this.clickedHeader.command_id).then((response) => {
+    deleteCommand: function(){
+      console.log('////////////// deleteCommand //////////');
+      console.log(this.clickedCommand);
+      axios.delete('http://localhost:3005/command/'+ this.clickedCommand.id).then((response) => {
         console.log('from delete response', response);
-        this.clickedHeader = {};
+        this.clickedCommand = {};
         if (response.data.error) {
           console.log('ERROR IN DELETE');
           app.errorMessage = response.data.message;
         } else {
           console.log('NO ERROR IN DELETE');
-          this.getHeaders();
+          this.getCommands();
           app.sucessMessage = response.data.message;
         }
       })

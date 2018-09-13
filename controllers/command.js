@@ -7,20 +7,24 @@ module.exports = express.Router()
   .then(result => res.json(result))
   .catch(err => res.json(err))
 })
-
-.post('/',(req, res) => {
-  const { name, lieux } = req.body;
-  model.createCommand({ name, lieux })
-  .then(result => res.send(result))
-  .catch(err => console.log(err))
+.get('/:user_id',(req,res) => {
+  const { user_id } = req.params;
+  model.getCommandByUserId(user_id)
+  .then(result => res.json(result))
+  .catch(err => res.json(err))
 })
 
-
+.post('/', (req,res) => {
+  const { user_id, filler_id, carburant, type, disponibilite, qualite, prix, date, activity } = req.body;
+  model.createCommand({ user_id, filler_id, carburant, type, disponibilite, qualite, prix, date, activity })
+  .then(result => res.json(result))
+  .catch(err =>res.json(err))
+})
 
 .put('/:id', (req,res) => {
   const { id } = req.params;
-  const { name, lieux } = req.body;
-  model.updateCommand({ id, name, lieux })
+  const { user_id, filler_id, carburant, type, disponibilite, qualite, prix, date, activity } = req.body;
+  model.updateCommand({ id, user_id, filler_id, carburant, type, disponibilite, qualite, prix, date, activity })
   .then(result => res.json(result))
   .catch(err => res.json(err))
 })

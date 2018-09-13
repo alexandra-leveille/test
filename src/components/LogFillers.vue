@@ -121,9 +121,6 @@
 <button class="fright close" @click="showingAddModal = false"> CLOSE </button>
 <table class="table">
 
-<label for="">Command Id </label>
-<input type="number" name="Firstname" value="Firstname" v-model="newItem.command_id">
-
 <label for="">User Id </label>
 <input type="number" name="Firstname" value="Firstname" v-model="newItem.user_id">
 
@@ -181,8 +178,7 @@
                <button class="fright close" @click="showingAddModal = false"> <i class="fas fa-times-circle"></i> </button>
         <p class="card-text">
           <table class="table">
-          <label for=""> name </label>
-          <input type="text" name="" value="" v-model="clickedItem.user_id">
+    
           <label for=""> type </label>
           <input type="text" name="" value="" v-model="clickedItem.type">
           <select v-model="clickedItem.type" name="activite">
@@ -229,7 +225,7 @@
     <b-card title="Delete Order"
             sub-title="For sure">
         <p class="card-text">
-          <p> Are you sure you want to delete {{this.clickedItem.command_id}} </p>
+          <p> Are you sure you want to delete {{this.clickedItem.id}} </p>
           <button  @click="showingDeleteModal = false; deleteItem()" type="button" name="button"> YES </button>
 <button  @click="showingDeleteModal = false" type="button" name="button"> NO </button>
         </p>
@@ -250,7 +246,7 @@ export default {
       ranges:[],
       items: [],
       //newItem:{name:'', type:'', title:'', activity:'', price:'', dispo:''},
-      newItem: {command_id:0, user_id:0, carburant: '', type:'', disponibilite:'' , qualite:'', prix:'', date:'', activity:'', filler_id:0},
+      newItem: { user_id:0, carburant: '', type:'', disponibilite:'' , qualite:'', prix:'', date:'', activity:'', filler_id:0},
       clickedItem:{},
       showingAddModal:false,
       showingEditModal:false,
@@ -321,9 +317,9 @@ export default {
     },
     createItem: function() {
 console.log('we create items');
-      axios.post('http://localhost:3005/headers/', this.newItem).then((response) => {
+      axios.post('http://localhost:3005/command/', this.newItem).then((response) => {
         //this.newItem = {name:'', type:'', title:'', activity:'', price:'', disponibilite:''}
-        this.newItem = {command_id:0, user_id:0, carburant: '', type:'', disponibilite:'' , qualite:'', prix:'', date:'', activity:'', filler_id:0};
+        this.newItem = { user_id:0, carburant: '', type:'', disponibilite:'' , qualite:'', prix:'', date:'', activity:'', filler_id:0};
         if (response.data.error) {
           console.log('error createItem');
           app.errorMesssage = response.data.message;
@@ -334,7 +330,7 @@ console.log('we create items');
       })
     },
     getItems: function(){
-      axios.get('http://localhost:3005/headers').then((response) => {
+      axios.get('http://localhost:3005/command/').then((response) => {
         console.log('getItems', response);
         if (response.data.error) {
           console.log('ERROR getItems');
@@ -351,7 +347,7 @@ console.log('we create items');
     updateItem :function(){
       console.log(this.clickedItem);
       console.log(this.clickedItem.user_id);
-      axios.put('http://localhost:3005/headers/'+this.clickedItem.command_id, this.clickedItem).then((response) => {
+      axios.put('http://localhost:3005/command/'+this.clickedItem.id, this.clickedItem).then((response) => {
         console.log('from update', response);
         this.clickedItem = {};
         if (response.data.error) {
@@ -367,7 +363,7 @@ console.log('we create items');
     deleteItem: function () {
   console.log('we do delete');
   console.log(this.clickedItem);
-  axios.delete('http://localhost:3005/headers/'+ this.clickedItem.command_id).then((response) => {
+  axios.delete('http://localhost:3005/command/'+ this.clickedItem.id).then((response) => {
     console.log('delete from response', response);
     this.clickedItem = {};
     if (response.data.error) {
