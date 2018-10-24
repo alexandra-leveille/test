@@ -19,6 +19,7 @@ import ReCommand from '@/components/ReCommand'
 import Maps from '@/components/Maps'
 import LogFillers from '@/components/LogFillers'
 import LogUsers from '@/components/LogUsers'
+import LogUsers2 from '@/components/LogUsers2'
 import Hello from '@/components/Hello'
 import PostsManager from '@/components/PostsManager'
 import Items from '@/components/Items'
@@ -130,6 +131,11 @@ export default new Router({
       path: '/LogUsers',
       name: 'LogUsers',
       component: LogUsers
+    },
+    {
+      path: '/LogUsers2',
+      name: 'LogUsers2',
+      component: LogUsers2
     },
     {
       path: '/LogFillers',

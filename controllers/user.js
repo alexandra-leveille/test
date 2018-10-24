@@ -16,9 +16,7 @@ module.exports = express.Router()
       .then(result => res.send(result))
       .catch(err => console.log(err))
   })
-  /**
-   * Move a card
-   */
+
   .put('/:id', (req, res) => {
     const { id } = req.params;
     const { firstname, lastname } = req.body;

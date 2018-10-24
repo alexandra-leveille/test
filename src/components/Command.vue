@@ -196,10 +196,10 @@ export default {
          prix:+this.newCommand.prix,
          filler_id:+this.newCommand.filler_id
       }
-      console.log('this.newCommand', this.newCommand);
+      console.log('ligne 199 - this.newCommand', this.newCommand);
       axios.post('http://localhost:3005/command/', sentCommand).then((response) => {
         console.log('newCommand', response);
-        this.newCommand = {  user_id:0, carburant: '', type:'', disponibilite:'' , qualite:'', prix: 0, date:'', activity:'', filler_id:0 };
+        this.newCommand = { user_id:0, carburant: '', type:'', disponibilite:'' , qualite:'', prix: 0, date:'', activity:'', filler_id:0 };
         if (response.data.error) {
           console.log('========= ligne 167 =========');
           app.errorMessage = response.data.message;

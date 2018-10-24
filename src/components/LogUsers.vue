@@ -9,8 +9,6 @@
 
 <h2> Hello </h2>
 
-
-
 <h5> <span class="light"> {{this.LogUsers[0].firstname}} </span>  Welcome on your Personal User Page</h5>
 <p> Your are identified as  Driver with Id Number {{LogUsers[0].id}} </p>
 <p> with firstname : {{LogUsers[0].firstname}} and lastname {{LogUsers[0].lastname}}</p>
@@ -23,7 +21,10 @@
   <th scope="col"> carburant </th>
   <th scope="col"> type </th>
   <th scope="col"> DISPO </th>
+  <th scope="col"> qualite </th>
   <th scope="col"> prix </th>
+  <th scope="col"> date </th>
+  <th scope="col"> activity </th>
   <th scope="col"> Edit </th>
   <th scope="col"> Erase </th>
   </thead>
@@ -34,12 +35,16 @@
     <td> {{cmd.carburant}} </td>
     <td> {{cmd.type}} </td>
     <td> {{cmd.disponibilite}} </td>
+    <td> {{cmd.qualite}} </td>
     <td> {{cmd.prix}} </td>
+    <td> {{cmd.date}} </td>
+    <td> {{cmd.activity}} </td>
     <td> swith </td>
     <td> delete </td>
   </tr>
 </tbody>
 </table>
+
 
 <!-- /////////////////////// addModal ///////////////////////// -->
 <div id="addModal" v-if="showingAddModal">
@@ -59,64 +64,54 @@
 <table class="table">
 
 <label for="">User Id </label>
-<input type="number" name="Firstname" value="Firstname" :value="this.LogUsers[0].id">
+<input type="number" name="Firstname" value="Firstname" v-model="newCommand.user_id">
 
-
-<label for="">type</label>
-<input type="text" name="" value="type" v-model="newItem.type">
-<select  v-model="newItem.type" class="" name="activite">
+<label for="">Carburant</label>
+<input type="text" name="" value="type" v-model="newCommand.carburant">
+<select  v-model="newCommand.carburant" class="" name="activite">
     <option   value="DIESEL"> DIESEL </option>
   <option   value="Essence SP 98"> Essence SP 98 </option>
   <option   value="Essence SP 95"> Essence SP 95 </option>
   <option   value="Carburant GPL"> Carburant GPL </option>
 </select>
+
+<label for="">type</label>
+<input type="text" name="" value="type" v-model="newCommand.type">
+<select  v-model="newCommand.type" class="" name="activite">
+    <option   value="DIESEL"> POLLUANT </option>
+  <option   value="Essence SP 98"> NON POLLUANT </option>
+  <option   value="Essence SP 95"> BIO </option>
+  <option   value="Carburant GPL"> OTHER </option>
+</select>
 <label for="">date</label>
-<input type="date" name="" value="date" v-model="newItem.date">
+<input type="date" name="" value="date" v-model="newCommand.date">
 <label for="">activity</label>
-<input type="text" name="" value="activity" v-model="newItem.activity">
-<select v-model="newItem.activity" class="" name="activite">
+<input type="text" name="" value="activity" v-model="newCommand.activity">
+<select v-model="newCommand.activity" class="" name="activite">
   <option value="Faire le  Plein"> Faire le  Plein </option>
   <option value="Faire le 1/2"> Faire le 1/2 </option>
   <option value="Faire le 1/4"> Faire le 1/4 </option>
 </select>
 
 <label for="">prix</label>
-<input type="text" name="" value="prix" v-model="newItem.prix">
-<input type="range" name="points" min="0" max="300" v-model="newItem.prix">
+<input type="text" name="" value="prix" v-model="newCommand.prix">
+<input type="range" name="points" min="0" max="300" v-model="newCommand.prix">
 <hr>
 <label for="">disponibilite</label>
 
-<input type="text" name="" value="disponibilite" v-model="newItem.disponibilite">
-<select v-model="newItem.disponibilite"  name="">
+<input type="text" name="" value="disponibilite" v-model="newCommand.disponibilite">
+<select v-model="newCommand.disponibilite"  name="">
   <option value="true"> true </option>
   <option value="false"> false </option>
 </select>
 <hr>
 </table>
-<button @click="showingAddModal = false; createItem()" type="button" name="button"> CREER </button>
+<button @click="showingAddModal = false; createCommand()" type="button" name="button"> CREER </button>
 </div>
 </div>
     </p>
   </b-card>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </div>
 </template>
@@ -128,7 +123,7 @@ export default{
     return {
       LogUsers:[],
       commands:[],
-      newItem: { user_id:0, carburant: '', type:'', disponibilite:'' , qualite:'', prix:'', date:'', activity:'', filler_id:0},
+      newCommand: {user_id:'', filler_id:'', carburant:'', type:'', disponibilite:'', qualite:'', prix:'', date:'', activity:''},
       showingAddModal : false
     }
   },
@@ -136,6 +131,7 @@ export default{
     console.log('hello');
     this.getUserById();
     this.getCommandByUserId();
+    this.getCommands();
   },
   methods:{
     getUserById: function(id){
@@ -148,8 +144,22 @@ export default{
           this.LogUsers = response.data.rows;
           console.log('this.LogUsers', this.LogUsers);
           console.log('this.LogUsers[0].id', this.LogUsers[0].id);
-          console.log('this.LogUsers[0]', this.LogUsers[0].lastname);
+          console.log('this.LogUsers[0].lastname', this.LogUsers[0].lastname);
+          console.log();
+          this.newCommand.user_id = this.LogUsers[0].id;
           console.log('ligne 38');
+        }
+      })
+    },
+    getCommands:function(){
+      axios.get('http://localhost:3005/command/').then((response) => {
+        console.log('getcommands', response);
+        if (response.data.error) {
+          app.errorMessage = response.data.message;
+        } else {
+          console.log('NO ERROR IN COMMANDS', this.commands);
+          this.commands = response.data.rows;
+          console.log('ligne 161');
         }
       })
     },
@@ -167,20 +177,23 @@ export default{
       }
     })
   },
-  createItem: function() {
-console.log('we create items');
-    axios.post('http://localhost:3005/command/', this.newItem).then((response) => {
-      //this.newItem = {name:'', type:'', title:'', activity:'', price:'', disponibilite:''}
-      this.newItem = { user_id:0, carburant: '', type:'', disponibilite:'' , qualite:'', prix:'', date:'', activity:'', filler_id:0};
+  createCommand: function() {
+console.log('we create Commands');
+console.log('ligne 182', this.newCommand);
+    axios.post('http://localhost:3005/command/', this.newCommand).then((response) => {
+      console.log('create commands', response);
+      this.newCommand = {user_id:'', filler_id:'', carburant:'', type:'', disponibilite:'', qualite:'', prix:'', date:'', activity:''};
       if (response.data.error) {
         console.log('error createItem');
         app.errorMesssage = response.data.message;
       } else {
-        console.log('NO ERROR CREATE ITEM', response);
+        console.log('NO ERROR CREATE COMMAND', response);
+        console.log('ligne 191', this.newCommand);
         this.getCommandByUserId();
+        this.getCommands();
       }
     })
-  },
+  }
   }
 }
 
@@ -217,5 +230,20 @@ top: 0;
 
 #addModal input{
   width: 5vw;
+}
+
+#addModal table.table, #deleteModal table.table, #editModal table.table {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+table.table select{
+  background: rgba(255,192,203,0.4);
+}
+
+table.table input{
+  background: pink
 }
 </style>

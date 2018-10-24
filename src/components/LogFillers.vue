@@ -178,7 +178,7 @@
                <button class="fright close" @click="showingAddModal = false"> <i class="fas fa-times-circle"></i> </button>
         <p class="card-text">
           <table class="table">
-    
+
           <label for=""> type </label>
           <input type="text" name="" value="" v-model="clickedItem.type">
           <select v-model="clickedItem.type" name="activite">

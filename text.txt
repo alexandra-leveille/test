@@ -804,3 +804,10 @@ createHeader: function(){
      activity:this.newHeader.activity,
      filler_id:+this.newHeader.filler_id
   }
+
+
+for log user
+
+session storage
+user 2
+filler 2
