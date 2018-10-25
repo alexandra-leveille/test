@@ -239,10 +239,10 @@
 <script>
 import axios from 'axios'
 export default {
-  name:'Fillers2',
+  name:'logfillers',
   data () {
     return {
-      LogFillers: [],
+      LogFillers:[],
       ranges:[],
       items: [],
       //newItem:{name:'', type:'', title:'', activity:'', price:'', dispo:''},
@@ -267,9 +267,9 @@ export default {
     }
   },
   mounted: function (){
+    this.getFillerById();
     this.getItems();
     console.log('mounted au mounted');
-    this.getFillerById();
     this.geolocate();
   },
   methods: {
@@ -317,6 +317,7 @@ export default {
     },
     createItem: function() {
 console.log('we create items');
+console.log('ligne 320 this.newItem = ', this.newItem);
       axios.post('http://localhost:3005/command/', this.newItem).then((response) => {
         //this.newItem = {name:'', type:'', title:'', activity:'', price:'', disponibilite:''}
         this.newItem = { user_id:0, carburant: '', type:'', disponibilite:'' , qualite:'', prix:'', date:'', activity:'', filler_id:0};
@@ -324,6 +325,7 @@ console.log('we create items');
           console.log('error createItem');
           app.errorMesssage = response.data.message;
         } else {
+          console.log('ligne 328 this.newItem = ', this.newItem);
           console.log('NO ERROR CREATE ITEM', response);
           this.getItems();
         }

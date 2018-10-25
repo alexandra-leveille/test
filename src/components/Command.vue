@@ -75,13 +75,11 @@
              <option value="Faire le 1/2"> Faire le 1/2 </option>
              <option value="Faire le 1/4"> Faire le 1/4 </option>
            </select>
-
-
-
          <td> <button @click="showingAddModal = false; createCommand()" type="button" name="button"> Save </button> </td>
        </tr>
        </table>
-       </div></p>
+       </div>
+      </p>
      </b-card>
   </div>
 
@@ -184,7 +182,7 @@ export default {
         } else {
           console.log('NO ERROR IN COMMANDS', this.commands);
           this.commands = response.data.rows;
-          console.log('ligne 142');
+          console.log('ligne 187');
         }
       })
     },
@@ -204,8 +202,8 @@ export default {
           console.log('========= ligne 167 =========');
           app.errorMessage = response.data.message;
         } else {
-          console.log('ligne 99');
-          console.log(this.newCommand);
+          console.log('ligne 207');
+          console.log('ligne 208 =', this.newCommand);
           this.getCommands();
         }
       })
