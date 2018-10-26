@@ -69,7 +69,7 @@
 
               <div class="mix">
                 <p class="name"> USER : {{item.user_id}} </p>
-                <p class="type"> {{item.type}} </p>
+                <p class="type"> {{item.carburant}} </p>
               </div>
 
               <v-list-tile-content class="bloc">
@@ -125,9 +125,9 @@
 <input type="number" name="Firstname" value="Firstname" v-model="newItem.user_id">
 
 
-<label for="">type</label>
-<input type="text" name="" value="type" v-model="newItem.type">
-<select  v-model="newItem.type" class="" name="activite">
+<label for="">carburant</label>
+<input type="text" name="" value="type" v-model="newItem.carburant">
+<select  v-model="newItem.carburant" class="" name="activite">
     <option   value="DIESEL"> DIESEL </option>
   <option   value="Essence SP 98"> Essence SP 98 </option>
   <option   value="Essence SP 95"> Essence SP 95 </option>
@@ -180,8 +180,8 @@
           <table class="table">
 
           <label for=""> type </label>
-          <input type="text" name="" value="" v-model="clickedItem.type">
-          <select v-model="clickedItem.type" name="activite">
+          <input type="text" name="" value="" v-model="clickedItem.carburant">
+          <select v-model="clickedItem.carburant" name="activite">
     <option value="DIESEL"> DIESEL </option>
     <option value="Essence SP 98"> Essence SP 98 </option>
     <option value="Essence SP 95"> Essence SP 95 </option>
